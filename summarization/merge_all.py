@@ -2,15 +2,15 @@
 import glob
 
 IN_PATHS = [
-    "outputs/textrank.jsonl",
-    "outputs/bart.jsonl",
-    "outputs/pegasus.jsonl",
-    "outputs/flan.jsonl",
-    "outputs/mt5.jsonl",
-    "outputs/mistral.jsonl",  # optional
+    "data/outputs/textrank.jsonl",
+    "data/outputs/bart.jsonl",
+    "data/outputs/pegasus.jsonl",
+    "data/outputs/gemma.jsonl",
+    "data/outputs/mt5.jsonl",
+    "data/outputs/mistral.jsonl",
 ]
 
-def run(out_path="outputs/all_summaries.jsonl"):
+def run(out_path="data/outputs/all_summaries.jsonl"):
     with open(out_path, "w", encoding="utf-8") as out:
         for p in IN_PATHS:
             try:
