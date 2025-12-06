@@ -49,21 +49,20 @@ FEW-SHOT EXAMPLES FOR DOMAIN: EDUCATIONAL
 EXAMPLE 1
 ====================
 
-ARTICLE TITLE: Trump and Project 2025 are attacking the Department of Education. How might they reshape US schools?
+ARTICLE TITLE: Jane Plastow obituary
 DOMAIN: Educational
 
 ORIGINAL ARTICLE (identify cues from here):
-Donald Trump wants to shut down the US Department of Education, saying at recent rallies that it should be disbanded to “move everything back to the states where it belongs”. The idea of dismantling the education department has become increasingly mainstream, though it’s nearly as old as the department itself, which was created by Congress as a cabinet-level agency in 1979. Trump made similar promises on the 2016 campaign trail to either cut or hobble the department. Eliminating it would require Congress to act, which could be an impossible feat, though several of Trump and his allies’ policy goals on education could be accomplished through presidential actions. Project 2025, the Heritage Foundation’s rightwing manifesto for a potential incoming Trump administration, lays out how dismantling the federal education department would work, leaving behind, if anything, a husk focused solely as a “statistics-gathering agency that disseminates information to the states”, writes Lindsey Burke, the author of the education chapter and leader of Heritage’s education policy center. The department’s elimination is one of many goals contained in the extensive conservative playbook that will inform a second Trump term. Project 2025 calls for privatizing education and driving out any programs related to LGBTQ+ youth or diversity. “This playbook actually goes into detail that we’ve never seen before,” said Weadé James, senior director for K-12 policy at the Center for American Progress. It would have profound implications on civil rights, school funding and students’ progress – not to mention on the fate of public schools, she said. “The striking part about all of this, too, is the Department of Education is actually the smallest of any cabinet-level agency. There are only a little over 4,000 employees within the department,” James said. “So we need to be talking about investing in the department, expanding the capacity of the department to do the work that it is designed to do.” Burke, the Heritage author , declined a request for an interview. In a statement, the Heritage Foundation said that while it seeks to offer recommendations to the “next conservative president”, it “does not speak for any candidate or campaign”. And while Trump’s campaign has tried to distance the candidate from Project 2025, saying he has his own agenda to carry out, the former president and the project are aligned on much of their education plans. During a speech to a “faith and freedom” conference this week, Trump railed against education rankings and spending, saying the US performs poorly despite money spent on students. Some states could do better without federal intervention, he said. “We’ll cut our budget in half and not everybody’s going to be great,” he said. “I mean, [California governor] Gavin Newsom will not do a good job with education, so I don’t expect that out of him. And I don’t expect it out of certain other people … But many of the states, I would say 40 of the 50 stat
-[...article truncated for brevity...]
+Jane Plastow, who has died of cancer aged 66, was an academic and theatre-maker based at the University of Leeds who made invaluable contributions to the fields of community-based theatre, African studies and global development. Jane led the Centre for African Studies at Leeds from 2004 to 2014, overseeing the innovative theatre and global development MA. In 2006 she was made professor of African theatre, with the Nobel laureate Wole Soyinka attending her inaugural lecture. A pivotal point in Jane’s career came in the 1990s with her long-term projects with Eritrean artists and educators in the aftermath of the war of independence. Most recently, Jane had a longstanding collaboration with We Are Walukuba, a community group in Jinja, Uganda. Over a decade, Jane and collaborators challenged the dominant short-term and message-based conventions of theatre for development by co-creating new approaches to challenge existing social issues. These long-term dialogical forms of artistic engagement promoted grassroots knowledge and discussion between community members and wider stakeholders. Her experience led to the publication of her two-volume A History of East African Theatre (2020, 2021), followed by Community-Based Arts, Research and Activism in Uganda: We Are Walukuba (2025), and her forthcoming monograph Somali Musical Theatre (2026). Born in Tunbridge Wells, Kent, she was the daughter of Mary (nee Luckett), a legal secretary, and Gerald Plastow, who worked in local government. After attending Tunbridge Wells Girls’ grammar school, Jane completed a BA in English at the University of Manchester in 1981. She then travelled to Africa for the first time, undertaking a teaching post in the Gambia. This job would mark the beginning of a 44-year collaborative relationship with African artists, activists and educators traversing many countries including Kenya, Sudan, Tanzania, Somaliland, Djibouti and Zimbabwe. After her time in the Gambia, Jane became a lecturer at Addis Ababa University, Ethiopia, for three years. She then completed an MPhil and a PhD at Manchester, before moving to the Ulster University at Coleraine in 1991 to lecture in theatre studies, and then to Leeds in 1994. Jane acted as PhD supervisor for many students, many of whom went on to hold senior positions at leading African universities. In her years after her cancer diagnosis, Jane became interested in growing authoritarianism in the UK when her son, Will, was arrested for pro-Palestinian activism. Her uncompleted final book, provisionally titled Keir Starmer’s Political Prisoners, consisted of interviews with British political prisoners, and highlighted the increasingly severe state crackdown on dissent in the UK. Jane was a collaborator who truly believed, inhabited and realised the political power of the arts. She had an unrelenting and unstoppable energy and an enormous sense of fun. She is survived by Will, her brother, John, and sisters Beverley and Caroline.
 
 SUMMARY (check if cues are preserved here):
-Trump tells voters on his campaign site a few ways he would manage education: Cut federal funding for schools that are “pushing critical race theory or gender ideology on our children” and open civil rights investigations into them for race-based discrimination. School funding fundamentally changed Education is primarily funded and overseen by state and local authorities in the US, but the federal government funds some elements of education and sets certain policies, which are then implemented locally. Beyond these major funding changes, the project – and Trump – both want to see expansions of school choice, like voucher programs that allow students to use money that would otherwise fund their seats at public schools to attend a private ones. The project proposes ridding education programs of any “gender ideology and critical race theory”, like a “non-binary” category in data collection or the ability of trans youth to participate in sports aligned with their gender. Instead of directing how funds should be used, it generally says states should be given money with no strings attached to spend on “any lawful education purpose under state law”. The project also wants what remains of the Department of Education to gather data and report on programs or grants that spread “DEI/CRT/gender ideology”, how “family structure” affects student achievement, how pandemic aid funds were spent and how much money goes directly into the classroom from federal grant programs. Eliminating it would require Congress to act, which could be an impossible feat, though several of Trump and his allies’ policy goals on education could be accomplished through presidential actions.
+Jane acted as PhD supervisor for many students, many of whom went on to hold senior positions at leading African universities. Jane Plastow, who has died of cancer aged 66, was an academic and theatre-maker based at the University of Leeds who made invaluable contributions to the fields of community-based theatre, African studies and global development. Over a decade, Jane and collaborators challenged the dominant short-term and message-based conventions of theatre for development by co-creating new approaches to challenge existing social issues. After her time in the Gambia, Jane became a lecturer at Addis Ababa University, Ethiopia, for three years. This job would mark the beginning of a 44-year collaborative relationship with African artists, activists and educators traversing many countries including Kenya, Sudan, Tanzania, Somaliland, Djibouti and Zimbabwe.
 
 EXPECTED OUTPUT (showing how cues are identified and preservation determined):
 {
-  "doc_id": 0,
+  "doc_id": 10,
   "domain": "Educational",
-  "title": "Trump and Project 2025 are attacking the Department of Education. How might they reshape US schools?",
+  "title": "Jane Plastow obituary",
   "tables": [
     {
       "header": [
@@ -76,252 +75,362 @@ EXPECTED OUTPUT (showing how cues are identified and preservation determined):
         {
           "Cue Type": "Cultural",
           "Subtype": "Named people",
-          "Text Span (from original)": "“Donald Trump”",
+          "Text Span (from original)": "Jane Plastow",
           "Preserved in Summary?": "Yes"
         },
         {
           "Cue Type": "Cultural",
           "Subtype": "Named people",
-          "Text Span (from original)": "“Lindsey Burke”",
+          "Text Span (from original)": "Wole Soyinka",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
           "Subtype": "Named people",
-          "Text Span (from original)": "“Weadé James”",
+          "Text Span (from original)": "Mary (nee Luckett)",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
           "Subtype": "Named people",
-          "Text Span (from original)": "“Gavin Newsom”",
+          "Text Span (from original)": "Gerald Plastow",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
           "Subtype": "Named people",
-          "Text Span (from original)": "“(California governor) Gavin Newsom”",
+          "Text Span (from original)": "Will",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
           "Subtype": "Named people",
-          "Text Span (from original)": "“the Heritage author” (referring to Lindsey Burke)",
+          "Text Span (from original)": "Keir Starmer",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "John",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Beverley",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Caroline",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
           "Subtype": "Named places",
-          "Text Span (from original)": "“the US” / “US”",
+          "Text Span (from original)": "Tunbridge Wells",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Kent",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "the Gambia",
           "Preserved in Summary?": "Yes"
         },
         {
           "Cue Type": "Cultural",
           "Subtype": "Named places",
-          "Text Span (from original)": "“California”",
+          "Text Span (from original)": "Africa",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Kenya",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Sudan",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Tanzania",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Somaliland",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Djibouti",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Zimbabwe",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Jinja",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Uganda",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Ethiopia",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Leeds",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Coleraine",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "UK",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
           "Subtype": "Named organizations",
-          "Text Span (from original)": "“Department of Education”",
+          "Text Span (from original)": "University of Leeds",
           "Preserved in Summary?": "Yes"
         },
         {
           "Cue Type": "Cultural",
           "Subtype": "Named organizations",
-          "Text Span (from original)": "“Congress”",
+          "Text Span (from original)": "Centre for African Studies at Leeds",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
           "Subtype": "Named organizations",
-          "Text Span (from original)": "“Heritage Foundation”",
+          "Text Span (from original)": "We Are Walukuba",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
           "Subtype": "Named organizations",
-          "Text Span (from original)": "“Center for American Progress”",
+          "Text Span (from original)": "Addis Ababa University",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "Ulster University at Coleraine",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
           "Subtype": "Named organizations",
-          "Text Span (from original)": "“Department of Health and Human Services”",
+          "Text Span (from original)": "University of Manchester",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named organizations",
-          "Text Span (from original)": "“Project 2025”",
+          "Subtype": "Cultural events / traditions",
+          "Text Span (from original)": "war of independence",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named organizations",
-          "Text Span (from original)": "“Head Start”",
-          "Preserved in Summary?": "No"
-        },
-        {
-          "Cue Type": "Cultural",
-          "Subtype": "Named organizations",
-          "Text Span (from original)": "“Arizona” (as state implementing voucher program—place, but also government unit)",
-          "Preserved in Summary?": "No"
-        },
-        {
-          "Cue Type": "Cultural",
-          "Subtype": "Named organizations",
-          "Text Span (from original)": "“schools” / “public schools” (institutional but nonspecific)",
-          "Preserved in Summary?": "No"
-        },
-        {
-          "Cue Type": "Cultural",
-          "Subtype": "Cultural events/traditions",
-          "Text Span (from original)": "“faith and freedom conference”",
+          "Subtype": "Cultural events / traditions",
+          "Text Span (from original)": "pro-Palestinian activism",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
           "Subtype": "Cultural artifacts",
-          "Text Span (from original)": "“non-binary category” (social/cultural classification)",
+          "Text Span (from original)": "A History of East African Theatre",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
           "Subtype": "Cultural artifacts",
-          "Text Span (from original)": "“DEI/CRT/gender ideology” (ideological/cultural constructs)",
+          "Text Span (from original)": "Community-Based Arts, Research and Activism in Uganda: We Are Walukuba",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Idioms/fixed expressions",
-          "Text Span (from original)": "“move everything back to the states”",
+          "Subtype": "Cultural artifacts",
+          "Text Span (from original)": "Somali Musical Theatre",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Idioms/fixed expressions",
-          "Text Span (from original)": "“cut or hobble the department”",
+          "Subtype": "Cultural artifacts",
+          "Text Span (from original)": "Keir Starmer's Political Prisoners",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Idioms/fixed expressions",
-          "Text Span (from original)": "“a husk focused solely…”",
-          "Preserved in Summary?": "No"
+          "Subtype": "Cultural artifacts",
+          "Text Span (from original)": "community-based theatre",
+          "Preserved in Summary?": "Yes"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Idioms/fixed expressions",
-          "Text Span (from original)": "“harp on diversity”",
-          "Preserved in Summary?": "No"
+          "Subtype": "Cultural artifacts",
+          "Text Span (from original)": "theatre for development",
+          "Preserved in Summary?": "Yes"
         },
         {
-          "Cue Type": "Cultural",
-          "Subtype": "Dialect/slang terms",
-          "Text Span (from original)": "none identified",
-          "Preserved in Summary?": "—"
-        }
-      ]
-    },
-    {
-      "header": [
-        "Cue Type",
-        "Subtype",
-        "Text Span",
-        "Preserved in Summary?"
-      ],
-      "rows": [
-        {
           "Cue Type": "Contextual",
-          "Subtype": "Connector/discourse marker",
-          "Text Span": "“though”",
+          "Subtype": "Time or sequence markers",
+          "Text Span (from original)": "from 2004 to 2014",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Connector/discourse marker",
-          "Text Span": "“however”",
+          "Subtype": "Time or sequence markers",
+          "Text Span (from original)": "In 2006",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Connector/discourse marker",
-          "Text Span": "“and” (coordinating conjunction used frequently)",
+          "Subtype": "Time or sequence markers",
+          "Text Span (from original)": "in the 1990s",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Connector/discourse marker",
-          "Text Span": "“but”",
-          "Preserved in Summary?": "Yes (appears in summary)"
+          "Subtype": "Time or sequence markers",
+          "Text Span (from original)": "Over a decade",
+          "Preserved in Summary?": "Yes"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Time/sequence marker",
-          "Text Span": "“as it stands now”",
+          "Subtype": "Time or sequence markers",
+          "Text Span (from original)": "in 1981",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Time/sequence marker",
-          "Text Span": "“this week”",
+          "Subtype": "Time or sequence markers",
+          "Text Span (from original)": "for three years",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time or sequence markers",
+          "Text Span (from original)": "44-year collaborative relationship",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time or sequence markers",
+          "Text Span (from original)": "In her years after her cancer diagnosis",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Time/sequence marker",
-          "Text Span": "“over a 10-year period”",
+          "Subtype": "Event ordering cues",
+          "Text Span (from original)": "After attending Tunbridge Wells Girls' grammar school",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Time/sequence marker",
-          "Text Span": "“day one”",
+          "Subtype": "Event ordering cues",
+          "Text Span (from original)": "After her time in the Gambia",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (from original)": "This job would mark the beginning of a 44-year collaborative relationship",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (from original)": "She then travelled to Africa for the first time",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Pronouns/references",
-          "Text Span": "“he” / “she” / “they” / “it” / “this” / “that”",
+          "Subtype": "Event ordering cues",
+          "Text Span (from original)": "She then completed an MPhil and a PhD at Manchester, before moving to the Ulster University at Coleraine in 1991 … and then to Leeds in 1994",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Causal/logical phrases",
-          "Text Span": "“because”",
+          "Subtype": "Event ordering cues",
+          "Text Span (from original)": "many of whom went on to hold senior positions at leading African universities",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (from original)": "made invaluable contributions",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (from original)": "dominant short-term and message-based conventions of theatre for development",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (from original)": "innovative theatre and global development MA",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Causal/logical phrases",
-          "Text Span": "“as a result”",
+          "Subtype": "Framing phrases",
+          "Text Span (from original)": "increasingly severe state crackdown on dissent in the UK",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Causal/logical phrases",
-          "Text Span": "“so”",
+          "Subtype": "Causal or logical phrases",
+          "Text Span (from original)": "led to the publication of her two-volume A History of East African Theatre",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Framing phrase",
-          "Text Span": "“in a statement”",
+          "Subtype": "Causal or logical phrases",
+          "Text Span (from original)": "consisted of interviews with British political prisoners",
           "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Framing phrase",
-          "Text Span": "“according to” (implicit in report structure)",
+          "Subtype": "Causal or logical phrases",
+          "Text Span (from original)": "highlighted the increasingly severe state crackdown on dissent in the UK",
           "Preserved in Summary?": "No"
-        },
-        {
-          "Cue Type": "Contextual",
-          "Subtype": "Event ordering cue",
-          "Text Span": "“first… then…” (implied by policy sequence discussion but not explicit phrases)",
-          "Preserved in Summary?": "No explicit ordering preserved"
         }
       ]
     }
@@ -330,17 +439,6 @@ EXPECTED OUTPUT (showing how cues are identified and preservation determined):
 
 
 
-================================================================================
-TARGET ARTICLE/SUMMARY TO ANALYZE (NOT SHOWN IN THIS PREVIEW)
-================================================================================
-
-ARTICLE TITLE: [Target article title will be inserted here]
-DOMAIN: [Target domain will be inserted here]
-
-ORIGINAL ARTICLE (identify cues from here):
-[Full target article text will be inserted here]
-
-SUMMARY (check if cues are preserved here):
-[Target summary text will be inserted here]
-
-NOW OUTPUT YOUR ANALYSIS AS JSON:
+========================================
+TARGET ARTICLE/SUMMARY TO ANALYZE
+========================================

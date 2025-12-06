@@ -49,441 +49,431 @@ FEW-SHOT EXAMPLES FOR DOMAIN: POLITICS
 EXAMPLE 1
 ====================
 
-ARTICLE TITLE: ‘History is repeating itself’: fight against far-right in London’s East End goes on
+ARTICLE TITLE: Drag acts, detractors and true-blue diehards: my weird weekend at a Margaret Thatcher festival
 DOMAIN: Politics
 
 ORIGINAL ARTICLE (identify cues from here):
-“The East End of London is the far right’s prime target – the essence of everything they don’t like. They feel if they can march through our borough with impunity, they can go anywhere. For them, it’s like Wembley (stadium), it’s the ultimate goal,” said Glyn Robbins, co-founder of United East End, an anti-far right coalition of community organisations. In the East End, the historically working-class neighbourhoods in the shadow of the City of London, there’s a feeling that history is repeating itself. It was 89 years ago this month that local people, many of them British Jews, drove out Oswald Mosley’s Blackshirt militia from Whitechapel in the East End, in what has become known as the Battle of Cable Street. In the decades since, the National Front, the BNP and the English Defence League have all tried to carve out a foothold in the East End. In 2025, communities are fighting back against the hard right yet again. This week, rather than attempting to escort protesters, as they had in Mosley’s day, London’s police stopped the hard right UK Independence Party (Ukip) from staging a “crusade on Whitechapel” in the borough of Tower Hamlets, where 40% of the population is Muslim and 14% were born in the EU. The Metropolitan police said the ban was to prevent “serious disorder.” It comes weeks after Tower Hamlets council passed a motion that said flags were “important emblems of patriotism and pride”, but condemned “outside far-right agitators … attempting to import division into our borough,” particularly on the Isle of Dogs, where the far-right BNP won a council seat back in 1993. Furious far-right influencer Tommy Robinson tweeted the photographs of nine British Muslim councillors to his 1.7 million followers, saying: “Here’s a list of the names and faces of Tower Hamlets council for some perspective.” The government’s decision to place asylum seekers at Britannia International Hotel in Canary Wharf, Tower Hamlets has attracted intense anti-migrant protest since the summer, including from a group called the Pink Ladies who say they are concerned about safety. While this weekend’s Ukip march has been stopped, counter-protesters still plan to gather in Whitechapel on Saturday. Dave Rosenberg, who has run walking tours through the East End since 2007, including on local anti-fascist history, will be among them. “I think we owe it to our parents, grandparents and great-grandparents to continue that struggle in the East End,” said Rosenberg, 67. For Rosenberg, the ban on the march was a “double-edged sword” – “a relief to the most targeted communities”, but also “giving wider and wider powers to police to say who can demonstrate and where”. “There’s a very direct parallel with the 1930s,” he said. In 1936, the Public Order Act was introduced to inhibit Mosley’s British Union of Fascists. Mosley’s wasn’t the first anti-immigrant movement to target the area – back in 1901, the British Brothers’ League (BBL) launched itself with a 1,000-strong rally in the
+The bronze statue of Margaret Thatcher by the sculptor Douglas Jennings has a rating of 2.8 out of five on Google Maps. Although curiously, none of the reviewers seems to have overly preoccupied themselves with the quality of the craftsmanship or the fidelity of the likeness. “One of the most important PMs this country ever had,” writes one. “It’s a public toilet but there’s nowhere to wash your hands,” writes another. The statue was originally commissioned more than a decade ago, and was intended to stand in front of the Houses of Parliament, but Westminster city council rejected it on the grounds that it might become a target for vandalism. Instead, it was offered to her birthplace of Grantham, a town she left at the age of 18 and rarely visited again. Within hours of its installation, someone threw an egg at it. Shortly after that, it was defaced with red paint. And now, on a grey October afternoon, Margaret Thatcher herself is gazing upon it, bearing a look of pure disgust. “They’ve got the date wrong,” she moans, her trademark handbag sliding down a blue-sleeved arm pointed accusingly upwards. “It says I died in 2013. As you can see, I am very much alive.” The presence of Thatcher in her home town, on what would have been her 100th birthday, has drawn a small crowd outside the town’s Guildhall Arts Centre. Motorists toot horns; fans want selfies; passersby occasionally flick V-signs from across the street. A middle-aged woman approaches and clasps Thatcher’s hands in her own. “I just want to say, if it weren’t for you, I would never have been able to buy my house.” “That’s wonderful,” Thatcher replies. “And are you still living in the house?” “No,” the woman says. “I sold it to my son.” Somehow it scarcely matters that the figure they are venerating and vilifying is not Thatcher at all, but an actor named Matt Tedford, who plays the former prime minister in a riotous drag show called Margaret Thatcher: Queen of Soho, which played at the Guildhall on Monday night. In the show, Britain’s first female prime minister is depicted walking the streets of London on the night before the section 28 vote in parliament in 1987, stumbling upon a gay bar and ultimately reinventing herself as a disco diva. It’s sharp, topical, ridiculous and very funny. Tedford has been portraying Thatcher for 12 years – “longer than she was prime minister”, he observes wryly. The role has taken him to some strange and random places. He’s met party leaders. He’s been for dinner at the Foreign Office. He’s shared a stage with Kemi Badenoch at a book launch. For a character that began life as a gaudy Halloween costume around the start of the last decade, it’s been quite a ride. As he puts it: “I always say I’m the only northerner she ever gave work to.” Now his work has brought him to Thatcher Fest: a clever wheeze cooked up by Grantham’s local councillors to commemorate the centenary of its most famous daughter. There are talks and walks, Thatcher-themed music nights and ex
 [...article truncated for brevity...]
 
 SUMMARY (check if cues are preserved here):
-“Racism has a long history and Tower Hamlets, we’ve had a particular variant of it,” Robbins, a university lecturer who has seen off numerous far-right marches since United East End was created in 2010. The government’s decision to place asylum seekers at Britannia International Hotel in Canary Wharf, Tower Hamlets has attracted intense anti-migrant protest since the summer, including from a group called the Pink Ladies who say they are concerned about safety. Lutfur Rahman, Tower Hamlets’ British Bengali mayor, described the online attack as “despicable”. This week, rather than attempting to escort protesters, as they had in Mosley’s day, London’s police stopped the hard right UK Independence Party (Ukip) from staging a “crusade on Whitechapel” in the borough of Tower Hamlets, where 40% of the population is Muslim and 14% were born in the EU. It comes weeks after Tower Hamlets council passed a motion that said flags were “important emblems of patriotism and pride”, but condemned “outside far-right agitators … attempting to import division into our borough,” particularly on the Isle of Dogs, where the far-right BNP won a council seat back in 1993. Furious far-right influencer Tommy Robinson tweeted the photographs of nine British Muslim councillors to his 1.7 million followers, saying: “Here’s a list of the names and faces of Tower Hamlets council for some perspective.” When she was a young girl, her father was attacked in Tower Hamlets and left disabled as a result.
+Somehow it scarcely matters that the figure they are venerating and vilifying is not Thatcher at all, but an actor named Matt Tedford, who plays the former prime minister in a riotous drag show called Margaret Thatcher: Queen of Soho, which played at the Guildhall on Monday night. Baxter, the council leader, is in his office reflecting on Thatcher’s true legacy in the town. Thatcher’s old school is now an academy. Naturally enough, current politics also intrude here, as Thatcher’s old party stands on the brink of collapse, as traditional institutions lie in ruins, as a surging far right evoke her memory while simultaneously running from her libertarian brand of small-state economics. There are talks and walks, Thatcher-themed music nights and exhibitions of memorabilia, Gyles Brandreth giving a lecture on Thatcher’s unlikely connection to Winnie-the-Pooh, exhibitions of her exercise books at the local school and newspaper clippings at the library. Tedford has been portraying Thatcher for 12 years – “longer than she was prime minister”, he observes wryly. A middle-aged woman approaches and clasps Thatcher’s hands in her own.
 
 EXPECTED OUTPUT (showing how cues are identified and preservation determined):
 {
-  "doc_id": 6,
+  "doc_id": 0,
   "domain": "Politics",
-  "title": "‘History is repeating itself’: fight against far-right in London’s East End goes on",
+  "title": "Drag acts, detractors and true-blue diehards: my weird weekend at a Margaret Thatcher festival",
   "tables": [
     {
       "header": [
         "Cue Type",
         "Subtype",
-        "Text Span (Exact)",
-        "Preserved?"
+        "Text Span (from original)",
+        "Preserved in Summary?"
       ],
       "rows": [
         {
           "Cue Type": "Cultural",
-          "Subtype": "Idioms / fixed expressions",
-          "Text Span (Exact)": "“history is repeating itself”",
-          "Preserved?": "Yes"
+          "Subtype": "Idiom",
+          "Text Span (from original)": "\"longer than she was prime minister\" (wry phrasing)",
+          "Preserved in Summary?": "Yes (summary includes exact quote)"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Idioms / fixed expressions",
-          "Text Span (Exact)": "“our territory”",
-          "Preserved?": "No"
+          "Subtype": "Idiom",
+          "Text Span (from original)": "very much alive",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named people",
-          "Text Span (Exact)": "Glyn Robbins",
-          "Preserved?": "No"
+          "Subtype": "Idiom",
+          "Text Span (from original)": "quite a ride",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named people",
-          "Text Span (Exact)": "Oswald Mosley",
-          "Preserved?": "No"
+          "Subtype": "Idiom",
+          "Text Span (from original)": "upsetting all the right people",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named people",
-          "Text Span (Exact)": "Dave Rosenberg",
-          "Preserved?": "No"
+          "Subtype": "Idiom",
+          "Text Span (from original)": "flogged to within an inch of its life",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named people",
-          "Text Span (Exact)": "Safia Jama",
-          "Preserved?": "No"
+          "Subtype": "Idiom",
+          "Text Span (from original)": "blood-and-soil nativism",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named people",
-          "Text Span (Exact)": "Rupert Lowe",
-          "Preserved?": "No"
+          "Subtype": "Idiom",
+          "Text Span (from original)": "baked into our electoral calculus",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named people",
-          "Text Span (Exact)": "Elon Musk",
-          "Preserved?": "No"
+          "Subtype": "Named person",
+          "Text Span (from original)": "Margaret Thatcher",
+          "Preserved in Summary?": "Yes (multiple mentions)"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named people",
-          "Text Span (Exact)": "Tommy Robinson",
-          "Preserved?": "Yes"
+          "Subtype": "Named person",
+          "Text Span (from original)": "Matt Tedford",
+          "Preserved in Summary?": "Yes"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named people",
-          "Text Span (Exact)": "Lutfur Rahman",
-          "Preserved?": "Yes"
+          "Subtype": "Named person",
+          "Text Span (from original)": "Ashley Baxter",
+          "Preserved in Summary?": "Yes"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named people",
-          "Text Span (Exact)": "Rev James Olanipekun",
-          "Preserved?": "No"
+          "Subtype": "Named person",
+          "Text Span (from original)": "Gyles Brandreth",
+          "Preserved in Summary?": "Yes"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named people",
-          "Text Span (Exact)": "MP Rupert Lowe",
-          "Preserved?": "No"
+          "Subtype": "Named person",
+          "Text Span (from original)": "Douglas Jennings",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named people",
-          "Text Span (Exact)": "Pearly kings and queens (cultural identity group)",
-          "Preserved?": "No"
+          "Subtype": "Named person",
+          "Text Span (from original)": "Kemi Badenoch",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named places",
-          "Text Span (Exact)": "East End of London",
-          "Preserved?": "No"
+          "Subtype": "Named person",
+          "Text Span (from original)": "Edwina Currie",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named places",
-          "Text Span (Exact)": "Whitechapel",
-          "Preserved?": "Yes"
+          "Subtype": "Named person",
+          "Text Span (from original)": "Charles Moore",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named places",
-          "Text Span (Exact)": "Tower Hamlets",
-          "Preserved?": "Yes"
+          "Subtype": "Named person",
+          "Text Span (from original)": "Ben Green",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named places",
-          "Text Span (Exact)": "Canary Wharf",
-          "Preserved?": "Yes"
+          "Subtype": "Named person",
+          "Text Span (from original)": "Isaac Newton",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named places",
-          "Text Span (Exact)": "Britannia International Hotel",
-          "Preserved?": "Yes"
+          "Subtype": "Place",
+          "Text Span (from original)": "Guildhall / Guildhall Arts Centre",
+          "Preserved in Summary?": "Yes (\"Guildhall\" appears in summary with the show)"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named places",
-          "Text Span (Exact)": "Brick Lane",
-          "Preserved?": "No"
+          "Subtype": "Place",
+          "Text Span (from original)": "London (in drag show description)",
+          "Preserved in Summary?": "No (summary does not mention London)"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named places",
-          "Text Span (Exact)": "Spitalfields",
-          "Preserved?": "No"
+          "Subtype": "Place",
+          "Text Span (from original)": "Soho (from Queen of Soho)",
+          "Preserved in Summary?": "Yes (drag show title preserved)"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named places",
-          "Text Span (Exact)": "Isle of Dogs",
-          "Preserved?": "Yes"
+          "Subtype": "Place",
+          "Text Span (from original)": "Grantham",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named places",
-          "Text Span (Exact)": "Royal London Hospital (town hall)",
-          "Preserved?": "No"
+          "Subtype": "Place",
+          "Text Span (from original)": "Houses of Parliament",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named places",
-          "Text Span (Exact)": "Great Yarmouth",
-          "Preserved?": "No"
+          "Subtype": "Place",
+          "Text Span (from original)": "Foreign Office",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named places",
-          "Text Span (Exact)": "England and Wales",
-          "Preserved?": "No"
+          "Subtype": "Place",
+          "Text Span (from original)": "Manchester",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named places",
-          "Text Span (Exact)": "UK",
-          "Preserved?": "No"
+          "Subtype": "Place",
+          "Text Span (from original)": "Scotland/Wales/Midlands",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named organizations",
-          "Text Span (Exact)": "United East End",
-          "Preserved?": "No"
+          "Subtype": "Place",
+          "Text Span (from original)": "local school",
+          "Preserved in Summary?": "Yes (summary: \"local school\")"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named organizations",
-          "Text Span (Exact)": "UK Independence Party (Ukip)",
-          "Preserved?": "Yes"
+          "Subtype": "Organization",
+          "Text Span (from original)": "Conservative Party (\"Thatcher's old party\")",
+          "Preserved in Summary?": "Yes"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named organizations",
-          "Text Span (Exact)": "Metropolitan Police",
-          "Preserved?": "No"
+          "Subtype": "Organization",
+          "Text Span (from original)": "library",
+          "Preserved in Summary?": "Yes"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named organizations",
-          "Text Span (Exact)": "British Union of Fascists",
-          "Preserved?": "No"
+          "Subtype": "Organization",
+          "Text Span (from original)": "academy (Thatcher's old school now an academy)",
+          "Preserved in Summary?": "Yes"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named organizations",
-          "Text Span (Exact)": "British Brothers’ League (BBL)",
-          "Preserved?": "No"
+          "Subtype": "Organization",
+          "Text Span (from original)": "Westminster City Council",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named organizations",
-          "Text Span (Exact)": "BNP",
-          "Preserved?": "Yes"
+          "Subtype": "Organization",
+          "Text Span (from original)": "Foreign Office",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named organizations",
-          "Text Span (Exact)": "National Front",
-          "Preserved?": "No"
+          "Subtype": "Organization",
+          "Text Span (from original)": "Reform",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named organizations",
-          "Text Span (Exact)": "English Defence League",
-          "Preserved?": "No"
+          "Subtype": "Organization",
+          "Text Span (from original)": "Costa/Starbucks",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named organizations",
-          "Text Span (Exact)": "Women’s Inclusive Team",
-          "Preserved?": "No"
+          "Subtype": "Organization",
+          "Text Span (from original)": "South Kesteven district counci",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Named organizations",
-          "Text Span (Exact)": "Stand Up to Racism",
-          "Preserved?": "No"
+          "Subtype": "Event",
+          "Text Span (from original)": "Margaret Thatcher: Queen of Soho (drag show)",
+          "Preserved in Summary?": "Yes"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Cultural events / holidays",
-          "Text Span (Exact)": "Battle of Cable Street",
-          "Preserved?": "No"
+          "Subtype": "Event",
+          "Text Span (from original)": "talks and walks, Thatcher-themed music nights, exhibitions",
+          "Preserved in Summary?": "Yes"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Cultural events / holidays",
-          "Text Span (Exact)": "festival on Brick Lane (curry festival)",
-          "Preserved?": "No"
+          "Subtype": "Event",
+          "Text Span (from original)": "centenary celebration",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Cultural artifacts",
-          "Text Span (Exact)": "curry (dish)",
-          "Preserved?": "No"
+          "Subtype": "Event",
+          "Text Span (from original)": "birthday gala dinner",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Cultural artifacts",
-          "Text Span (Exact)": "dual-language signs in English and Bengali",
-          "Preserved?": "Yes"
+          "Subtype": "Event",
+          "Text Span (from original)": "Section 28 vote",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Cultural artifacts",
-          "Text Span (Exact)": "steel band, Celtic dancers, klezmer musicians",
-          "Preserved?": "No"
+          "Subtype": "Artifact",
+          "Text Span (from original)": "exhibitions of memorabilia",
+          "Preserved in Summary?": "Yes"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Cultural artifacts",
-          "Text Span (Exact)": "Bengali, Somali, Chinese acts",
-          "Preserved?": "No"
+          "Subtype": "Artifact",
+          "Text Span (from original)": "Winnie-the-Pooh",
+          "Preserved in Summary?": "Yes"
         },
         {
           "Cue Type": "Cultural",
-          "Subtype": "Dialect / slang",
-          "Text Span (Exact)": "“cockneys”",
-          "Preserved?": "No"
-        }
-      ]
-    },
-    {
-      "header": [
-        "Cue Type",
-        "Subtype",
-        "Text Span (Exact)",
-        "Preserved?"
-      ],
-      "rows": [
-        {
-          "Cue Type": "Contextual",
-          "Subtype": "Connector / discourse markers",
-          "Text Span (Exact)": "“but”",
-          "Preserved?": "Yes"
+          "Subtype": "Artifact",
+          "Text Span (from original)": "newspaper clippings",
+          "Preserved in Summary?": "Yes"
         },
         {
-          "Cue Type": "Contextual",
-          "Subtype": "Connector / discourse markers",
-          "Text Span (Exact)": "“however”",
-          "Preserved?": "No"
+          "Cue Type": "Cultural",
+          "Subtype": "Artifact",
+          "Text Span (from original)": "trademark handbag",
+          "Preserved in Summary?": "No"
         },
         {
-          "Cue Type": "Contextual",
-          "Subtype": "Connector / discourse markers",
-          "Text Span (Exact)": "“while”",
-          "Preserved?": "Yes"
+          "Cue Type": "Cultural",
+          "Subtype": "Artifact",
+          "Text Span (from original)": "disco diva persona",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Artifact",
+          "Text Span (from original)": "BT shares",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Slang",
+          "Text Span (from original)": "true-blue diehards",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Connector / discourse markers",
-          "Text Span (Exact)": "“as well as”",
-          "Preserved?": "No"
+          "Subtype": "Connector",
+          "Text Span (from original)": "Naturally enough",
+          "Preserved in Summary?": "Yes (appears verbatim)"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Time or sequence markers",
-          "Text Span (Exact)": "“89 years ago”",
-          "Preserved?": "No"
+          "Subtype": "Connector",
+          "Text Span (from original)": "\"as\" (logical connectors, multiple uses)",
+          "Preserved in Summary?": "Yes"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Time or sequence markers",
-          "Text Span (Exact)": "“this week”",
-          "Preserved?": "Yes"
+          "Subtype": "Connector",
+          "Text Span (from original)": "but",
+          "Preserved in Summary?": "Yes (used in summary sentence 1)"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Time or sequence markers",
-          "Text Span (Exact)": "“in February”",
-          "Preserved?": "No"
+          "Subtype": "Connector",
+          "Text Span (from original)": "although",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Time or sequence markers",
-          "Text Span (Exact)": "“by June”",
-          "Preserved?": "No"
+          "Subtype": "Connector",
+          "Text Span (from original)": "however",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Time or sequence markers",
-          "Text Span (Exact)": "“since the summer”",
-          "Preserved?": "Yes"
+          "Subtype": "Connector",
+          "Text Span (from original)": "instead",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Time or sequence markers",
-          "Text Span (Exact)": "“in 1936”",
-          "Preserved?": "No"
+          "Subtype": "Time",
+          "Text Span (from original)": "for 12 years",
+          "Preserved in Summary?": "Yes"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Time or sequence markers",
-          "Text Span (Exact)": "“last week”",
-          "Preserved?": "No"
+          "Subtype": "Time",
+          "Text Span (from original)": "Monday night (show date)",
+          "Preserved in Summary?": "Yes"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Time or sequence markers",
-          "Text Span (Exact)": "“in September”",
-          "Preserved?": "No"
+          "Subtype": "Time",
+          "Text Span (from original)": "earlier/later/shortly after/within hours",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Time markers",
-          "Text Span (Exact)": "“decades since”",
-          "Preserved?": "No"
+          "Subtype": "Time",
+          "Text Span (from original)": "1987 / Section 28",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Pronouns / references",
-          "Text Span (Exact)": "“they”",
-          "Preserved?": "Yes"
+          "Subtype": "Pronouns",
+          "Text Span (from original)": "\"they,\" \"she,\" \"her,\" \"it\" referring to Thatcher or the actor",
+          "Preserved in Summary?": "Yes"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Pronouns / references",
-          "Text Span (Exact)": "“this”",
-          "Preserved?": "Yes"
+          "Subtype": "Pronouns",
+          "Text Span (from original)": "multiple contextual references to Thatcher and Tedford",
+          "Preserved in Summary?": "Yes"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Pronouns / references",
-          "Text Span (Exact)": "“it”",
-          "Preserved?": "Yes"
+          "Subtype": "Causal",
+          "Text Span (from original)": "\"as …\" (politics intrude as her party collapses)",
+          "Preserved in Summary?": "Yes"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Pronouns / references",
-          "Text Span (Exact)": "“he” / “she”",
-          "Preserved?": "Yes (she referring to Safia Jama, preserved indirectly)"
+          "Subtype": "Causal",
+          "Text Span (from original)": "because",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Causal / logical phrases",
-          "Text Span (Exact)": "“as a result”",
-          "Preserved?": "No"
+          "Subtype": "Causal",
+          "Text Span (from original)": "as a result",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Causal / logical phrases",
-          "Text Span (Exact)": "“due to”",
-          "Preserved?": "No"
+          "Subtype": "Causal",
+          "Text Span (from original)": "on the grounds that",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Causal / logical phrases",
-          "Text Span (Exact)": "“to prevent ‘serious disorder’”",
-          "Preserved?": "No"
+          "Subtype": "Framing",
+          "Text Span (from original)": "Naturally enough…",
+          "Preserved in Summary?": "Yes"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Framing phrases",
-          "Text Span (Exact)": "“for them, it’s like Wembley… ultimate goal”",
-          "Preserved?": "No"
+          "Subtype": "Framing",
+          "Text Span (from original)": "rhetorical scene-setting (less explicit in summary)",
+          "Preserved in Summary?": "No"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Event ordering cues",
-          "Text Span (Exact)": "“has attracted” (ongoing)",
-          "Preserved?": "Yes"
+          "Subtype": "Event ordering",
+          "Text Span (from original)": "depiction of sequential actions (\"approaches and clasps…\")",
+          "Preserved in Summary?": "Yes"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Event ordering cues",
-          "Text Span (Exact)": "“this weekend’s march has been stopped”",
-          "Preserved?": "No"
+          "Subtype": "Event ordering",
+          "Text Span (from original)": "Monday night (chronological anchor)",
+          "Preserved in Summary?": "Yes"
         },
         {
           "Cue Type": "Contextual",
-          "Subtype": "Event ordering cues",
-          "Text Span (Exact)": "“it comes weeks after”",
-          "Preserved?": "Yes"
-        },
-        {
-          "Cue Type": "Contextual",
-          "Subtype": "Event ordering cues",
-          "Text Span (Exact)": "“giving wider powers to police”",
-          "Preserved?": "No"
+          "Subtype": "Event ordering",
+          "Text Span (from original)": "within hours,\" \"shortly after that,\" \"and now",
+          "Preserved in Summary?": "No"
         }
       ]
     }
@@ -492,17 +482,6 @@ EXPECTED OUTPUT (showing how cues are identified and preservation determined):
 
 
 
-================================================================================
-TARGET ARTICLE/SUMMARY TO ANALYZE (NOT SHOWN IN THIS PREVIEW)
-================================================================================
-
-ARTICLE TITLE: [Target article title will be inserted here]
-DOMAIN: [Target domain will be inserted here]
-
-ORIGINAL ARTICLE (identify cues from here):
-[Full target article text will be inserted here]
-
-SUMMARY (check if cues are preserved here):
-[Target summary text will be inserted here]
-
-NOW OUTPUT YOUR ANALYSIS AS JSON:
+========================================
+TARGET ARTICLE/SUMMARY TO ANALYZE
+========================================

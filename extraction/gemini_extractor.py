@@ -4,6 +4,7 @@ import json
 import pandas as pd
 from tqdm import tqdm
 import os
+from dotenv import load_dotenv
 import re
 from datetime import datetime
 from pathlib import Path
@@ -28,7 +29,7 @@ Output:
 # ============================================================================
 
 CONFIG = {
-    'templates_dir': 'data/prompt_templates',
+    'templates_dir': 'data/prompt_previews',
     'n_examples': 2,  # Number of few-shot examples per domain
     'output_file': 'data/extractions/gemini_extractions_production.jsonl',
     'metadata_file': 'data/extractions/extraction_metadata.json',
@@ -53,13 +54,13 @@ def load_templates():
     global TEMPLATES
     
     template_dir = CONFIG['templates_dir']
-    domains = ["Educational", "Politics", "Cultural", "Sport", "Technology", "Social"]
+    domains = ["educational", "politics", "cultural", "sport", "technology", "social"]
     n_examples = CONFIG['n_examples']
     
     print(f"\n📋 Loading prompt templates from: {template_dir}/")
     
     for domain in domains:
-        filename = f"{domain.lower()}_{n_examples}ex.txt"
+        filename = f"{domain.lower()}_ex_no_{n_examples}.txt"
         filepath = os.path.join(template_dir, filename)
         
         if os.path.exists(filepath):
@@ -149,6 +150,7 @@ def extract_with_gemini(article_title, article_text, summary_text, domain, model
     
     # Combine template + target
     prompt = template + target
+    print(prompt)
     
     try:
         # Call Gemini API
@@ -216,6 +218,8 @@ def load_data():
         how='inner',
         suffixes=('_summary', '_article')
     )
+    # Add this at the top of run_extraction() after loading data:
+    merged_df = merged_df.head(5)  # Test with 5 first
     
     # Handle domain column conflict if it exists
     if 'domain_summary' in merged_df.columns and 'domain_article' in merged_df.columns:
@@ -314,7 +318,7 @@ def run_extraction():
     api_key = input("Enter your Gemini API key (or press Enter to use GOOGLE_API_KEY env var): ").strip()
     
     if not api_key:
-        api_key = os.getenv('GOOGLE_API_KEY')
+        api_key = os.getenv('GEMINI_API_KEY')
     
     if not api_key:
         print("❌ No API key provided!")
@@ -501,6 +505,7 @@ def main():
     """
     
     import sys
+    load_dotenv()
     
     # Check for test mode
     if '--test' in sys.argv:
