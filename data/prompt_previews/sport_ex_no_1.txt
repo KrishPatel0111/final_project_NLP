@@ -1,0 +1,508 @@
+================================================================================
+SYSTEM INSTRUCTION
+================================================================================
+You are an expert at analyzing news articles and their summaries to identify cultural and contextual cues.
+
+Your task is to:
+1. Read the ORIGINAL ARTICLE and identify cultural/contextual cues (quotes, cultural references, named entities, etc.)
+2. Read the SUMMARY and determine if each cue is preserved or lost
+3. Output a JSON object with the exact structure shown in the examples
+
+CRITICAL INSTRUCTIONS:
+- START YOUR RESPONSE WITH { AND END WITH }
+- DO NOT add markdown code blocks (no ```json)
+- DO NOT add explanations before or after the JSON
+- DO NOT add extra fields not shown in the examples
+- Follow the exact JSON structure from the examples
+- Use the exact same field names: "doc_id", "domain", "title", "tables"
+- Each table should have "header" and "rows" arrays
+- Each row should be an object with keys matching the headers
+
+---------------------------------------
+CULTURAL CUE CATEGORIES (extract only these):
+1. Idioms / Fixed Expressions (non-literal phrases)
+2. Named People (real individuals)
+3. Named Places (countries, cities, regions, landmarks)
+4. Named Organizations (companies, institutions, movements, political groups)
+5. Cultural Events / Holidays / Traditions
+6. Cultural Artifacts (food, clothing, media, art, products, or culturally specific products/services such as halal food, halal apps, halal financial services, BDS-safe tools; DO NOT include abstract categories like “halal market”)
+7. Dialect or Slang Terms (region-specific vocabulary)
+
+---------------------------------------
+CONTEXTUAL CUE CATEGORIES (extract only these):
+1. Connectors / Discourse Markers (e.g., but, yet, so, while, however, although)
+2. Time or Sequence Markers (e.g., last year, in 2022, before, after, since then)
+3. Pronouns / References (he, she, they, this, that, it); include ONLY if referring to a named entity also present in the SUMMARY
+4. Causal or Logical Phrases (e.g., because, therefore, as a result, that’s why)
+5. Framing Phrases (e.g., culture wars, in a surprising move, a huge step backwards)
+6. Event Ordering Cues (e.g., within hours, shortly after that, as X happened)
+
+IMPORTANT: Your output should match the structure shown in the EXPECTED OUTPUT sections of the examples exactly.
+
+
+
+================================================================================
+FEW-SHOT EXAMPLES FOR DOMAIN: SPORT
+================================================================================
+
+====================
+EXAMPLE 1
+====================
+
+ARTICLE TITLE: Freedom and joy: Rugby World Cup’s quirky quality sets it apart from the pack
+DOMAIN: Sport
+
+ORIGINAL ARTICLE (identify cues from here):
+I have a friend who rejects the notion of “guilty pleasures”. There is, she argues, plenty of real and justified guilt in the world, without co-opting it to our choice of trash TV or an unkickable penchant for romantasy novels. She’s a helpful touchstone when I hear myself trying to justify the silly superhero film I went to see at the cinema on the basis that it might have carried an underlying anti-fascist message (if you squinted hard enough at the screen). My friend will sigh kindly and then remind me: sometimes it’s OK just to enjoy things. It is, perhaps, a lesson we particularly struggle with in sport because of its very nature. A huge part of our investment is grounded in the result and its consequences for whichever athlete or team we prefer. Ask a football fan if they enjoyed themselves at the match they just paid a decent whack to see, and there’s a better-than-even chance they will tell you no. If it was a close match, they will have been too anxious to have fun; if they lost they will be mourning their defeat. Even if their own side ran rampant, you can find them complaining about the lack of challenge or jeopardy. We are, as fans, especially averse to one-sided games, which can feel anything from a deflationary disappointment to a waste of everybody’s time. This is why the current Women’s Rugby World Cup is such a curious phenomenon. The tournament has been one of largely lopsided scorelines, from the group stages to the quarter-finals. Only five of the 28 fixtures have been decided by fewer than 14 points, and more than half were won by more than 40 – at least six scores. And yet there remains a profound and unanimous pleasure to be had across the entire affair: it’s hard to find anyone that’s watching along and not enjoying it. Since the opening game between England and USA a festival atmosphere – prevalent at every ground from Sunderland to Bristol to Brighton – has been successfully transmitted through our television screens thanks to some excellent broadcasting decisions from the BBC (signing Ruby Tui was a stroke of genius). Meanwhile the action on the pitch has delivered flair and fascination, even on days when the rain has lashed down until the ball is butter and the scrums steam like suet pudding. The match-ups may be uneven but the power and athleticism on display on all sides of the pitch have been mesmerising. Sure, the host nation’s dominance is a natural mood enhancer. England’s vast buffer of experience and professionalism has allowed them to see off whatever challenges are temporarily posed: fans have been able to relax and enjoy the show even when their team is not at its brilliant best. That’s only part of the picture, however. It doesn’t encompass the joyful embrace of The Kid, New Zealand’s 18-year-old top try-scorer Braxton Sorensen-McGee (whose daring dashes down the wing could well knock England’s cowgirls out of their saddles if the two sides meet). It can’t account for the bipartisan cheer when Spain, 54-3 d
+[...article truncated for brevity...]
+
+SUMMARY (check if cues are preserved here):
+Their fast-growing fanbase, many of whom have only discovered the sport in the past couple of years, do not show up to games with the typical baggage: decades of disappointment, crusted-over anger, inherited and inexplicably toxic rivalries. England’s vast buffer of experience and professionalism has allowed them to see off whatever challenges are temporarily posed: fans have been able to relax and enjoy the show even when their team is not at its brilliant best. Other sports – and more pertinently their investors – will be analysing this fan engagement and wondering how to replicate it. Since the opening game between England and USA a festival atmosphere – prevalent at every ground from Sunderland to Bristol to Brighton – has been successfully transmitted through our television screens thanks to some excellent broadcasting decisions from the BBC (signing Ruby Tui was a stroke of genius). It is, perhaps, a lesson we particularly struggle with in sport because of its very nature. It is, of course, a marketing tactic as much as a rallying cry, but it came directly from team conversations and reflects something quite true about the women’s rugby community, that is a place where people are for each other, not against them. A huge part of our investment is grounded in the result and its consequences for whichever athlete or team we prefer.
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 17,
+  "domain": "Sport",
+  "title": "Freedom and joy: Rugby World Cup’s quirky quality sets it apart from the pack",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“guilty pleasures”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“kickable penchant”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“if you squinted hard enough”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“just to enjoy things”",
+          "Preserved in Summary?": "Yes (“just enjoy…”)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“paid a decent whack”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“ran rampant”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“waste of everybody’s time”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“knock England’s cowgirls out of their saddles”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“come-as-you-are quality”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“forcing or faking it”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“for one brass farthing”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“for the girls” (slogan)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span": "Ruby Tui",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span": "Braxton Sorensen-McGee",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span": "Maro Itoje",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span": "Ilona Maher",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span": "Aseza Hele",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span": "Abby Dow",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span": "Anne-Marie",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span": "Ellie Kildunne",
+          "Preserved in Summary?": "Yes (appears indirectly in summary? No, does not appear)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span": "England",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span": "USA",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span": "Sunderland",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span": "Bristol",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span": "Brighton",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span": "New Zealand",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span": "Spain",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span": "South Africa",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span": "BBC",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span": "Black Ferns",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span": "Lions / Lions tour",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span": "Red Roses",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span": "Rugby World Cup",
+          "Preserved in Summary?": "Yes (implied as the event)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / traditions",
+          "Text Span": "opening ceremony",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / traditions",
+          "Text Span": "Women’s Rugby World Cup",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span": "cowboy hat",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span": "drums",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span": "Barbie pink",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span": "90s girl-power nostalgia",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span": "referees’ whistles (crocheted)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span": "TikTok videos",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect / slang",
+          "Text Span": "“cowgirls”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect / slang",
+          "Text Span": "“butter” (ball is butter)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect / slang",
+          "Text Span": "“Blommie”",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    },
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span": "“and yet”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span": "“however”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span": "“but” (multiple instances)",
+          "Preserved in Summary?": "Yes (appears in summary)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span": "“which can feel”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span": "“even when”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence marker",
+          "Text Span": "“since the opening game”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence marker",
+          "Text Span": "“more than a year ago”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence marker",
+          "Text Span": "“earlier” (implicit in “opening game”)",
+          "Preserved in Summary?": "Yes (partially)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence marker",
+          "Text Span": "“when players are taking up their positions”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span": "“she” (the friend)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span": "“they” (fans, players)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span": "“this” (referring to tournament)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span": "“it”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span": "“you”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrase",
+          "Text Span": "“because”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrase",
+          "Text Span": "“that’s why” (implied causal)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrase",
+          "Text Span": "“allowing them to”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrase",
+          "Text Span": "“as much as”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrase",
+          "Text Span": "“perhaps”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrase",
+          "Text Span": "“it may be that”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cue",
+          "Text Span": "descriptions of group stage → quarter-finals",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cue",
+          "Text Span": "team scoring at 83rd minute",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cue",
+          "Text Span": "Lions second Test → TV audience comparison",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    }
+  ]
+}
+
+
+
+================================================================================
+TARGET ARTICLE/SUMMARY TO ANALYZE (NOT SHOWN IN THIS PREVIEW)
+================================================================================
+
+ARTICLE TITLE: [Target article title will be inserted here]
+DOMAIN: [Target domain will be inserted here]
+
+ORIGINAL ARTICLE (identify cues from here):
+[Full target article text will be inserted here]
+
+SUMMARY (check if cues are preserved here):
+[Target summary text will be inserted here]
+
+NOW OUTPUT YOUR ANALYSIS AS JSON:

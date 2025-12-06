@@ -1,0 +1,961 @@
+================================================================================
+SYSTEM INSTRUCTION
+================================================================================
+You are an expert at analyzing news articles and their summaries to identify cultural and contextual cues.
+
+Your task is to:
+1. Read the ORIGINAL ARTICLE and identify cultural/contextual cues (quotes, cultural references, named entities, etc.)
+2. Read the SUMMARY and determine if each cue is preserved or lost
+3. Output a JSON object with the exact structure shown in the examples
+
+CRITICAL INSTRUCTIONS:
+- START YOUR RESPONSE WITH { AND END WITH }
+- DO NOT add markdown code blocks (no ```json)
+- DO NOT add explanations before or after the JSON
+- DO NOT add extra fields not shown in the examples
+- Follow the exact JSON structure from the examples
+- Use the exact same field names: "doc_id", "domain", "title", "tables"
+- Each table should have "header" and "rows" arrays
+- Each row should be an object with keys matching the headers
+
+---------------------------------------
+CULTURAL CUE CATEGORIES (extract only these):
+1. Idioms / Fixed Expressions (non-literal phrases)
+2. Named People (real individuals)
+3. Named Places (countries, cities, regions, landmarks)
+4. Named Organizations (companies, institutions, movements, political groups)
+5. Cultural Events / Holidays / Traditions
+6. Cultural Artifacts (food, clothing, media, art, products, or culturally specific products/services such as halal food, halal apps, halal financial services, BDS-safe tools; DO NOT include abstract categories like “halal market”)
+7. Dialect or Slang Terms (region-specific vocabulary)
+
+---------------------------------------
+CONTEXTUAL CUE CATEGORIES (extract only these):
+1. Connectors / Discourse Markers (e.g., but, yet, so, while, however, although)
+2. Time or Sequence Markers (e.g., last year, in 2022, before, after, since then)
+3. Pronouns / References (he, she, they, this, that, it); include ONLY if referring to a named entity also present in the SUMMARY
+4. Causal or Logical Phrases (e.g., because, therefore, as a result, that’s why)
+5. Framing Phrases (e.g., culture wars, in a surprising move, a huge step backwards)
+6. Event Ordering Cues (e.g., within hours, shortly after that, as X happened)
+
+IMPORTANT: Your output should match the structure shown in the EXPECTED OUTPUT sections of the examples exactly.
+
+
+
+================================================================================
+FEW-SHOT EXAMPLES FOR DOMAIN: POLITICS
+================================================================================
+
+====================
+EXAMPLE 1
+====================
+
+ARTICLE TITLE: ‘History is repeating itself’: fight against far-right in London’s East End goes on
+DOMAIN: Politics
+
+ORIGINAL ARTICLE (identify cues from here):
+“The East End of London is the far right’s prime target – the essence of everything they don’t like. They feel if they can march through our borough with impunity, they can go anywhere. For them, it’s like Wembley (stadium), it’s the ultimate goal,” said Glyn Robbins, co-founder of United East End, an anti-far right coalition of community organisations. In the East End, the historically working-class neighbourhoods in the shadow of the City of London, there’s a feeling that history is repeating itself. It was 89 years ago this month that local people, many of them British Jews, drove out Oswald Mosley’s Blackshirt militia from Whitechapel in the East End, in what has become known as the Battle of Cable Street. In the decades since, the National Front, the BNP and the English Defence League have all tried to carve out a foothold in the East End. In 2025, communities are fighting back against the hard right yet again. This week, rather than attempting to escort protesters, as they had in Mosley’s day, London’s police stopped the hard right UK Independence Party (Ukip) from staging a “crusade on Whitechapel” in the borough of Tower Hamlets, where 40% of the population is Muslim and 14% were born in the EU. The Metropolitan police said the ban was to prevent “serious disorder.” It comes weeks after Tower Hamlets council passed a motion that said flags were “important emblems of patriotism and pride”, but condemned “outside far-right agitators … attempting to import division into our borough,” particularly on the Isle of Dogs, where the far-right BNP won a council seat back in 1993. Furious far-right influencer Tommy Robinson tweeted the photographs of nine British Muslim councillors to his 1.7 million followers, saying: “Here’s a list of the names and faces of Tower Hamlets council for some perspective.” The government’s decision to place asylum seekers at Britannia International Hotel in Canary Wharf, Tower Hamlets has attracted intense anti-migrant protest since the summer, including from a group called the Pink Ladies who say they are concerned about safety. While this weekend’s Ukip march has been stopped, counter-protesters still plan to gather in Whitechapel on Saturday. Dave Rosenberg, who has run walking tours through the East End since 2007, including on local anti-fascist history, will be among them. “I think we owe it to our parents, grandparents and great-grandparents to continue that struggle in the East End,” said Rosenberg, 67. For Rosenberg, the ban on the march was a “double-edged sword” – “a relief to the most targeted communities”, but also “giving wider and wider powers to police to say who can demonstrate and where”. “There’s a very direct parallel with the 1930s,” he said. In 1936, the Public Order Act was introduced to inhibit Mosley’s British Union of Fascists. Mosley’s wasn’t the first anti-immigrant movement to target the area – back in 1901, the British Brothers’ League (BBL) launched itself with a 1,000-strong rally in the
+[...article truncated for brevity...]
+
+SUMMARY (check if cues are preserved here):
+“Racism has a long history and Tower Hamlets, we’ve had a particular variant of it,” Robbins, a university lecturer who has seen off numerous far-right marches since United East End was created in 2010. The government’s decision to place asylum seekers at Britannia International Hotel in Canary Wharf, Tower Hamlets has attracted intense anti-migrant protest since the summer, including from a group called the Pink Ladies who say they are concerned about safety. Lutfur Rahman, Tower Hamlets’ British Bengali mayor, described the online attack as “despicable”. This week, rather than attempting to escort protesters, as they had in Mosley’s day, London’s police stopped the hard right UK Independence Party (Ukip) from staging a “crusade on Whitechapel” in the borough of Tower Hamlets, where 40% of the population is Muslim and 14% were born in the EU. It comes weeks after Tower Hamlets council passed a motion that said flags were “important emblems of patriotism and pride”, but condemned “outside far-right agitators … attempting to import division into our borough,” particularly on the Isle of Dogs, where the far-right BNP won a council seat back in 1993. Furious far-right influencer Tommy Robinson tweeted the photographs of nine British Muslim councillors to his 1.7 million followers, saying: “Here’s a list of the names and faces of Tower Hamlets council for some perspective.” When she was a young girl, her father was attacked in Tower Hamlets and left disabled as a result.
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 6,
+  "domain": "Politics",
+  "title": "‘History is repeating itself’: fight against far-right in London’s East End goes on",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (Exact)",
+        "Preserved?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact)": "“history is repeating itself”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact)": "“our territory”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Glyn Robbins",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Oswald Mosley",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Dave Rosenberg",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Safia Jama",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Rupert Lowe",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Elon Musk",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Tommy Robinson",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Lutfur Rahman",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Rev James Olanipekun",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "MP Rupert Lowe",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Pearly kings and queens (cultural identity group)",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "East End of London",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Whitechapel",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Tower Hamlets",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Canary Wharf",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Britannia International Hotel",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Brick Lane",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Spitalfields",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Isle of Dogs",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Royal London Hospital (town hall)",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Great Yarmouth",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "England and Wales",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "UK",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "United East End",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "UK Independence Party (Ukip)",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "Metropolitan Police",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "British Union of Fascists",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "British Brothers’ League (BBL)",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "BNP",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "National Front",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "English Defence League",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "Women’s Inclusive Team",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "Stand Up to Racism",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / holidays",
+          "Text Span (Exact)": "Battle of Cable Street",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / holidays",
+          "Text Span (Exact)": "festival on Brick Lane (curry festival)",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (Exact)": "curry (dish)",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (Exact)": "dual-language signs in English and Bengali",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (Exact)": "steel band, Celtic dancers, klezmer musicians",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (Exact)": "Bengali, Somali, Chinese acts",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect / slang",
+          "Text Span (Exact)": "“cockneys”",
+          "Preserved?": "No"
+        }
+      ]
+    },
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (Exact)",
+        "Preserved?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“but”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“however”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“while”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“as well as”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time or sequence markers",
+          "Text Span (Exact)": "“89 years ago”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time or sequence markers",
+          "Text Span (Exact)": "“this week”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time or sequence markers",
+          "Text Span (Exact)": "“in February”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time or sequence markers",
+          "Text Span (Exact)": "“by June”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time or sequence markers",
+          "Text Span (Exact)": "“since the summer”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time or sequence markers",
+          "Text Span (Exact)": "“in 1936”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time or sequence markers",
+          "Text Span (Exact)": "“last week”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time or sequence markers",
+          "Text Span (Exact)": "“in September”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time markers",
+          "Text Span (Exact)": "“decades since”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (Exact)": "“they”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (Exact)": "“this”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (Exact)": "“it”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (Exact)": "“he” / “she”",
+          "Preserved?": "Yes (she referring to Safia Jama, preserved indirectly)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrases",
+          "Text Span (Exact)": "“as a result”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrases",
+          "Text Span (Exact)": "“due to”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrases",
+          "Text Span (Exact)": "“to prevent ‘serious disorder’”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“for them, it’s like Wembley… ultimate goal”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“has attracted” (ongoing)",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“this weekend’s march has been stopped”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“it comes weeks after”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“giving wider powers to police”",
+          "Preserved?": "No"
+        }
+      ]
+    }
+  ]
+}
+
+
+====================
+EXAMPLE 2
+====================
+
+ARTICLE TITLE: Support for Reform UK increasing among British Indians, poll shows
+DOMAIN: Politics
+
+ORIGINAL ARTICLE (identify cues from here):
+Support for Reform UK among British Indians has tripled since the election, according to polling from a diaspora group that suggests Nigel Farage’s party is gaining ground in some demographics where it has struggled. Research by the 1928 Institute, a group of Oxford academics who analyse the British Indian community, shows backing for Reform has jumped in the past year from 4% to 13%. The findings, which are being released to coincide with Diwali, show support for Farage’s party among Britain’s largest minority ethnic community remains well below the national level. But the increase since the election is far higher than the national average, showing Reform is building momentum in communities where it has traditionally struggled. The report said: “British Indian support for Reform is significantly lower than that of the general UK population. However, there is a strong upwards trend in support.” British Indians, who form about 3% of the population, are becoming increasingly important swing voters. For decades they were closely allied with the Labour party, which was regarded as being more tolerant of immigrants in the 1960s and 1970s. But those ties have begun to fray as the community has become more established and its policy priorities have started to tally more closely with those of the rest of the population. Social conservatism among Indian voters and growing nationalism among Hindus in particular have helped drive them further right on the political spectrum, researchers say. A report in 2021 by the Carnegie Endowment for International Peace found Labour’s support for Kashmiri independence during Jeremy Corbyn’s leadership had been a particular turn-off for British Indian voters. Farage has expressed mixed views on south Asian immigration. The Reform leader criticised the government’s recent trade deal with India for making it easier to bring in workers from the subcontinent but said in 2015 that he preferred Indian and Australian migrants to those from eastern Europe. The findings from the 1928 Institute are taken from a report on the demographics and political priorities of the Indian community in the UK. The academics surveyed more than 2,000 voters earlier this year and compared the results with voting patterns last year and a similar poll carried out five years ago. They found that at the last election 48% of British Indians voted for Labour, 21% for the Conservatives and only 4% for Reform. At the election five years earlier, Reform won just 0.4% of the British Indian vote. Now, however, Labour support stands at 35% with the Indian community, while the Conservatives have collapsed to 18%. Support for the Greens has also risen sharply, especially among younger voters, going from 8% at the election to 13% now. The research shows the shift is being driven in part by changing policy priorities. While Indian voters always put education at the top of their concerns, their second priority has changed from health five years ago to the economy 
+[...article truncated for brevity...]
+
+SUMMARY (check if cues are preserved here):
+The report said: “British Indian support for Reform is significantly lower than that of the general UK population. A report in 2021 by the Carnegie Endowment for International Peace found Labour’s support for Kashmiri independence during Jeremy Corbyn’s leadership had been a particular turn-off for British Indian voters. Support for Reform UK among British Indians has tripled since the election, according to polling from a diaspora group that suggests Nigel Farage’s party is gaining ground in some demographics where it has struggled. Social conservatism among Indian voters and growing nationalism among Hindus in particular have helped drive them further right on the political spectrum, researchers say. While Indian voters always put education at the top of their concerns, their second priority has changed from health five years ago to the economy now. Now, however, Labour support stands at 35% with the Indian community, while the Conservatives have collapsed to 18%.
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 7,
+  "domain": "Politics",
+  "title": "Support for Reform UK increasing among British Indians, poll shows",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (Exact from Original Article)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact from Original Article)": "“Nigel Farage”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact from Original Article)": "“Nikita Ved”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact from Original Article)": "“British Indians” (ethnic community + geographic reference)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact from Original Article)": "“India” / “Indian community”",
+          "Preserved in Summary?": "Yes (Indian community)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact from Original Article)": "“UK” / “Britain”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact from Original Article)": "“Kashmir”",
+          "Preserved in Summary?": "Yes (“Kashmiri independence”)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact from Original Article)": "“Reform UK”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact from Original Article)": "“1928 Institute”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact from Original Article)": "“Labour party”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact from Original Article)": "“Conservatives”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact from Original Article)": "“Carnegie Endowment for International Peace”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact from Original Article)": "“Greens”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / holidays",
+          "Text Span (Exact from Original Article)": "“Diwali”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural traditions",
+          "Text Span (Exact from Original Article)": "“growing nationalism among Hindus”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (Exact from Original Article)": "None present",
+          "Preserved in Summary?": "—"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact from Original Article)": "“turn-off”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect or slang terms",
+          "Text Span (Exact from Original Article)": "None present",
+          "Preserved in Summary?": "—"
+        }
+      ]
+    },
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (Exact from Original)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span (Exact from Original)": "“however”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span (Exact from Original)": "“but”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span (Exact from Original)": "“while”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span (Exact from Original)": "“as” (causal)",
+          "Preserved in Summary?": "Yes (implied in “as a turn-off”)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence marker",
+          "Text Span (Exact from Original)": "“in the past year”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence marker",
+          "Text Span (Exact from Original)": "“five years ago”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence marker",
+          "Text Span (Exact from Original)": "“at the last election” / “the election”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence marker",
+          "Text Span (Exact from Original)": "“now”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (Exact from Original)": "“they,” “their,” “it,” “this”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrases",
+          "Text Span (Exact from Original)": "“as a result” (not present)",
+          "Preserved in Summary?": "—"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrases",
+          "Text Span (Exact from Original)": "“helped drive them”",
+          "Preserved in Summary?": "Yes (paraphrased as causal link)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrases",
+          "Text Span (Exact from Original)": "“turn-off” (causal)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact from Original)": "“according to polling from a diaspora group”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact from Original)": "“researchers say”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact from Original)": "“have begun to fray” (implied sequence)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact from Original)": "“has jumped ... from 4% to 13%”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact from Original)": "“went from ... to ...”",
+          "Preserved in Summary?": "Yes (“changed from health ... to the economy now”)"
+        }
+      ]
+    }
+  ]
+}
+
+
+====================
+EXAMPLE 3
+====================
+
+ARTICLE TITLE: We are heartbroken after synagogue attack, says senior UK Jewish politician
+DOMAIN: Politics
+
+ORIGINAL ARTICLE (identify cues from here):
+One of UK’s most senior Jewish politicians has said he and the Jewish community are “heartbroken, frightened and angry” after the terror attack on a Manchester synagogue. Richard Hermer, the attorney general and a close ally of Keir Starmer in cabinet, said tackling a rising tide of antisemitism would require police protection and political leaders calling it out wherever it was found. The country’s most senior lawyer made the intervention in Jewish News, saying more must be done to tackle antisemitism and to bring communities together. “We are heartbroken. We are frightened. We are angry. The rising tide of antisemitism has been plain for all to see yet is too often explained away,” he wrote. “British Jews are not asking for special treatment. We are asking for the same thing every family, of every faith, should expect: to live and worship freely, without fear. That means, tragically in these times, police on the ground. It means protecting our schools and synagogues. And it means leaders in every party and community calling out antisemitism wherever it appears.” He said stepping up protections for Jewish communities was the right response but it “cannot be the end of the conversation”. “The focus will not just be on security and justice but on how we can bring communities together to heal from this. This government is determined to build a country where no minority has to live in fear and where antisemitism is confronted without hesitation, without qualification and without excuse.” Starmer issued a message to Jewish people on Thursday night pledging to “wrap arms” around the community in the wake of the attack. In a recorded message, Starmer said: “I know how much fear you will be holding inside of you. I really do … Nobody should have to do that. Nobody. “And so I promise you that I will do everything in my power to guarantee you the security that you deserve, starting with a more visible police presence, protecting your community. I promise you that over the coming days you will see the other Britain, the Britain of compassion, of decency, of love.” Starmer, whose wife, Victoria, is Jewish, made tackling antisemitism in Labour a major priority after he became party leader.
+
+SUMMARY (check if cues are preserved here):
+Starmer, whose wife, Victoria, is Jewish, made tackling antisemitism in Labour a major priority after he became party leader. The country’s most senior lawyer made the intervention in Jewish News, saying more must be done to tackle antisemitism and to bring communities together. Richard Hermer, the attorney general and a close ally of Keir Starmer in cabinet, said tackling a rising tide of antisemitism would require police protection and political leaders calling it out wherever it was found. He said stepping up protections for Jewish communities was the right response but it “cannot be the end of the conversation”. Starmer issued a message to Jewish people on Thursday night pledging to “wrap arms” around the community in the wake of the attack.
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 8,
+  "domain": "Politics",
+  "title": "We are heartbroken after synagogue attack, says senior UK Jewish politician",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (from original article)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (from original article)": "“wrap arms”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (from original article)": "“rising tide of antisemitism”",
+          "Preserved in Summary?": "Yes (appears as “rising tide of antisemitism”)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original article)": "Richard Hermer",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original article)": "Keir Starmer",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original article)": "Victoria Starmer",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original article)": "(Unnamed but specific) \"the attorney general\" referring to Hermer",
+          "Preserved in Summary?": "Implicitly Yes (kept as \"the country’s most senior lawyer\")"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original article)": "Manchester",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original article)": "UK",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original article)": "Britain",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original article)": "Jewish News",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original article)": "Labour (Labour Party)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named events / holidays / traditions",
+          "Text Span (from original article)": "(None directly stated in this excerpt apart from synagogue context—not a holiday)",
+          "Preserved in Summary?": "—"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (from original article)": "synagogue (religious building)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (from original article)": "schools (Jewish communal institutions)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect / slang terms",
+          "Text Span (from original article)": "(none)",
+          "Preserved in Summary?": "—"
+        }
+      ]
+    },
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (from original article)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (from original article)": "“yet”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (from original article)": "“however” (appears as “However” paraphrased meaning in summary?)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time or sequence markers",
+          "Text Span (from original article)": "“after the terror attack”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time or sequence markers",
+          "Text Span (from original article)": "“on Thursday night”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (from original article)": "“we”, “you”, “I”, “they”, “this”, “that”, “it”",
+          "Preserved in Summary?": "No (summary removes nearly all pronoun references except within paraphrase)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal or logical phrases",
+          "Text Span (from original article)": "“That means…”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal or logical phrases",
+          "Text Span (from original article)": "“because” (implied, not literal)",
+          "Preserved in Summary?": "—"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal or logical phrases",
+          "Text Span (from original article)": "“the right response but … cannot be the end of the conversation”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (from original article)": "“He said…”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (from original article)": "“Starmer issued a message…”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (from original article)": "“in the wake of the attack”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (from original article)": "“starting with…”",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    }
+  ]
+}
+
+
+
+================================================================================
+TARGET ARTICLE/SUMMARY TO ANALYZE (NOT SHOWN IN THIS PREVIEW)
+================================================================================
+
+ARTICLE TITLE: [Target article title will be inserted here]
+DOMAIN: [Target domain will be inserted here]
+
+ORIGINAL ARTICLE (identify cues from here):
+[Full target article text will be inserted here]
+
+SUMMARY (check if cues are preserved here):
+[Target summary text will be inserted here]
+
+NOW OUTPUT YOUR ANALYSIS AS JSON:

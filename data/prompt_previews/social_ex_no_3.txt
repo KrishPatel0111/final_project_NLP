@@ -1,0 +1,964 @@
+================================================================================
+SYSTEM INSTRUCTION
+================================================================================
+You are an expert at analyzing news articles and their summaries to identify cultural and contextual cues.
+
+Your task is to:
+1. Read the ORIGINAL ARTICLE and identify cultural/contextual cues (quotes, cultural references, named entities, etc.)
+2. Read the SUMMARY and determine if each cue is preserved or lost
+3. Output a JSON object with the exact structure shown in the examples
+
+CRITICAL INSTRUCTIONS:
+- START YOUR RESPONSE WITH { AND END WITH }
+- DO NOT add markdown code blocks (no ```json)
+- DO NOT add explanations before or after the JSON
+- DO NOT add extra fields not shown in the examples
+- Follow the exact JSON structure from the examples
+- Use the exact same field names: "doc_id", "domain", "title", "tables"
+- Each table should have "header" and "rows" arrays
+- Each row should be an object with keys matching the headers
+
+---------------------------------------
+CULTURAL CUE CATEGORIES (extract only these):
+1. Idioms / Fixed Expressions (non-literal phrases)
+2. Named People (real individuals)
+3. Named Places (countries, cities, regions, landmarks)
+4. Named Organizations (companies, institutions, movements, political groups)
+5. Cultural Events / Holidays / Traditions
+6. Cultural Artifacts (food, clothing, media, art, products, or culturally specific products/services such as halal food, halal apps, halal financial services, BDS-safe tools; DO NOT include abstract categories like “halal market”)
+7. Dialect or Slang Terms (region-specific vocabulary)
+
+---------------------------------------
+CONTEXTUAL CUE CATEGORIES (extract only these):
+1. Connectors / Discourse Markers (e.g., but, yet, so, while, however, although)
+2. Time or Sequence Markers (e.g., last year, in 2022, before, after, since then)
+3. Pronouns / References (he, she, they, this, that, it); include ONLY if referring to a named entity also present in the SUMMARY
+4. Causal or Logical Phrases (e.g., because, therefore, as a result, that’s why)
+5. Framing Phrases (e.g., culture wars, in a surprising move, a huge step backwards)
+6. Event Ordering Cues (e.g., within hours, shortly after that, as X happened)
+
+IMPORTANT: Your output should match the structure shown in the EXPECTED OUTPUT sections of the examples exactly.
+
+
+
+================================================================================
+FEW-SHOT EXAMPLES FOR DOMAIN: SOCIAL
+================================================================================
+
+====================
+EXAMPLE 1
+====================
+
+ARTICLE TITLE: Threats, fear and hope as Mumbai slum dwellers await the bulldozers
+DOMAIN: Social
+
+ORIGINAL ARTICLE (identify cues from here):
+For months, the threatening phone calls kept coming. First, allegedly from an ex-police officer and a retired army general, and then from the police themselves. Finally, Mohammad Khurshid Shaikh claims, he was summoned to the police station and told clearly: keep quiet or there will be real trouble for you. Shaikh is among those fighting a multimillion-dollar project in which Dharavi – one of India’s largest and most storied slums – will be bulldozed and redeveloped by the multinational conglomerate Adani Group. “The culture and ecosystem of Dharavi is like nowhere else in the world,” says Shaikh. “But they want to destroy our community and stop us speaking out.” The dank gullies of Dharavi sit in stark contrast to the soaring skyscrapers and Bollywood penthouses that loom over the settlement. Homes are built haphazardly and often without proper sanitation, unregulated industries emit toxic smoke and the air is filled with the suffocating smell of open sewers. To some, the promise of Dharavi transformed into a glistening neighbourhood of luxury high-rises, neat parks, shiny shopping centres and homes with two toilets is an aspirational dream come true. “We don’t have proper healthcare, roads or drainage and there’s nowhere for children to play,” says A Selvin Nadar, 56, a chai seller who migrated from Tamil Nadu in 1982. “The only way is to tear it all down and build us new homes.” But others, such as Shaikh, are resisting. None deny that Dharavi, long neglected as an illegal encroachment, is in stark need of investment and development. Yet they fear that this plan – absent of public consultation – is one that will turn a piece of prime Mumbai real estate into a playground for the rich, forcing out the lower-caste, migrant communities who have been there since the late 1800s. It was these shunned, displaced people who built up the empty marshland into a widely studied marvel of self-reliance and economic productivity, whose output is valued at between $1bn and $2bn a year, making it one of the world’s largest informal economies. Of the roughly 1 million residents living in the dense 220-hectare (2.2 sq km) area, fewer than half will be eligible for new homes in the development, which is projected to take seven years to complete. Others will be moved to wastelands and salt plains on the far outskirts of the city, threatening to fragment a generations-old community. Some will not get homes at all. Those allowed to remain in Dharavi will be given apartments in tower blocks, a significant rupture from the organic, communal way of living and working that has sustained Dharavi for so long. Industries from tailoring to pottery and recycling are likely to shrink in number and be moved to a designated “commercial zone” far from people’s residences. For those such as Shaikh, a leather artisan and third generation of his family to live in Dharavi, the plan presents an existential threat. His rickety, three-storey workshop makes leather coats – sharp blazers
+[...article truncated for brevity...]
+
+SUMMARY (check if cues are preserved here):
+Kalyankar said the terms of rehabilitation for Dharavi residents were “much more generous” than other slum projects in Mumbai. Mahendra Kalyankar, the government chief executive of the Dharavi project, denied that the development would ostracise and fragment the community and said he had not heard of residents facing pressure. Shaikh is among those fighting a multimillion-dollar project in which Dharavi – one of India’s largest and most storied slums – will be bulldozed and redeveloped by the multinational conglomerate Adani Group. Gangawane confirmed to the Guardian he was working as an intelligence officer for Adani Group in Dharavi but denied any threats or coercion and said those who made the allegations had “malicious intentions”. Dharavi can become a central business district if developed properly and it will be a paradise on earth for residents. A spokesperson for Navbharat Mega Developers Private Limited, the Adani-government entity handling Dharavi, said all accusations of intimidation and harassment were “unfounded” and that their survey had been done “with complete fairness and transparency”. Harassment and intimidation In the government offices nearby, an illustrated mock-up of the Dharavi project depicts a very different vision for the future.
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 2,
+  "domain": "Social",
+  "title": "Threats, fear and hope as Mumbai slum dwellers await the bulldozers",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (Exact Quote)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named People",
+          "Text Span (Exact Quote)": "“Mohammad Khurshid Shaikh”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named People",
+          "Text Span (Exact Quote)": "“A Selvin Nadar”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named People",
+          "Text Span (Exact Quote)": "“Jitender Jathwa”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named People",
+          "Text Span (Exact Quote)": "“Vilas Gangawane”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named People",
+          "Text Span (Exact Quote)": "“Mahendra Kalyankar”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named People",
+          "Text Span (Exact Quote)": "“Gautam Adani”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named People",
+          "Text Span (Exact Quote)": "“Jamal Ud Din”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named Places",
+          "Text Span (Exact Quote)": "“Dharavi”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named Places",
+          "Text Span (Exact Quote)": "“Mumbai”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named Places",
+          "Text Span (Exact Quote)": "“Tamil Nadu”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named Places",
+          "Text Span (Exact Quote)": "“Deonar”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named Places",
+          "Text Span (Exact Quote)": "“south Mumbai”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named Places",
+          "Text Span (Exact Quote)": "“India”",
+          "Preserved in Summary?": "Yes (indirect: “India’s largest…”)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named Organizations",
+          "Text Span (Exact Quote)": "“Adani Group”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named Organizations",
+          "Text Span (Exact Quote)": "“Navbharat Mega Developers Private Limited”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named Organizations",
+          "Text Span (Exact Quote)": "“Indian prime minister, Narendra Modi” (political reference)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named Organizations",
+          "Text Span (Exact Quote)": "“supreme court” (India’s Supreme Court)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named Organizations",
+          "Text Span (Exact Quote)": "“state government”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural Artifacts (Food)",
+          "Text Span (Exact Quote)": "“idli sambar”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural Artifacts (Food)",
+          "Text Span (Exact Quote)": "“chai”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural Artifacts (Food)",
+          "Text Span (Exact Quote)": "“baguettes and croissants”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural Artifacts (Clothing)",
+          "Text Span (Exact Quote)": "“leather coats – sharp blazers, suede trenches, studded bomber jackets”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural Artifacts (Crafts)",
+          "Text Span (Exact Quote)": "“clay artisans / pottery”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural Events / Traditions",
+          "Text Span (Exact Quote)": "(none explicitly present)",
+          "Preserved in Summary?": "—"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact Quote)": "“keep quiet or there will be real trouble for you”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact Quote)": "“paradise on earth”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect / Slang",
+          "Text Span (Exact Quote)": "“gullies” (Indian English)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect / Slang",
+          "Text Span (Exact Quote)": "“slum dwellers” (local term)",
+          "Preserved in Summary?": "Yes"
+        }
+      ]
+    },
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (Exact Quote)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / Discourse Marker",
+          "Text Span (Exact Quote)": "“But others…”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / Discourse Marker",
+          "Text Span (Exact Quote)": "“Yet they fear…”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / Discourse Marker",
+          "Text Span (Exact Quote)": "“However” (not present as word)",
+          "Preserved in Summary?": "—"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / Discourse Marker",
+          "Text Span (Exact Quote)": "“While the state government calls it…”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / Sequence Marker",
+          "Text Span (Exact Quote)": "“For months…”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / Sequence Marker",
+          "Text Span (Exact Quote)": "“First… and then…”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / Sequence Marker",
+          "Text Span (Exact Quote)": "“Finally…”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / Sequence Marker",
+          "Text Span (Exact Quote)": "“within the next two months”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / Sequence Marker",
+          "Text Span (Exact Quote)": "“since they began to vocally oppose…”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / References",
+          "Text Span (Exact Quote)": "“he was summoned”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / References",
+          "Text Span (Exact Quote)": "“they fear”",
+          "Preserved in Summary?": "Yes (Shaikh represented)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / References",
+          "Text Span (Exact Quote)": "“those who made the allegations”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / References",
+          "Text Span (Exact Quote)": "“it will be a paradise on earth”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / Logical Phrase",
+          "Text Span (Exact Quote)": "“as a result of methane fires…”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / Logical Phrase",
+          "Text Span (Exact Quote)": "“because Dharavi only got full electricity coverage in 2008”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / Logical Phrase",
+          "Text Span (Exact Quote)": "“forcing out the lower-caste, migrant communities”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing Phrase",
+          "Text Span (Exact Quote)": "“allegedly from an ex-police officer…”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing Phrase",
+          "Text Span (Exact Quote)": "“a case alleging that the project was unfairly awarded”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event Ordering Cue",
+          "Text Span (Exact Quote)": "“were built up over four generations”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event Ordering Cue",
+          "Text Span (Exact Quote)": "“Homes and workshops are scheduled for demolition…”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event Ordering Cue",
+          "Text Span (Exact Quote)": "“projected to take seven years to complete”",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    }
+  ]
+}
+
+
+====================
+EXAMPLE 2
+====================
+
+ARTICLE TITLE: Spirituality isn’t rigid dogma. It’s a living, breathing practice that helps make sense of an incomprehensible world
+DOMAIN: Social
+
+ORIGINAL ARTICLE (identify cues from here):
+When I was leaving London for Melbourne, my eldest sister-in-law told her kids not to forget the “tradition” – to throw a bowl of water behind me as I stepped out the door. Just a small splash on the ground, a gesture older than borders. “La har azaab po aman se,” she whispered in Pashto under her breath – may all hardship stay away from you. The little ones giggled and waved their goodbyes as they spilled the water, somewhere between shy and amused. My mother used to do this too, back in Afghanistan. Every time I left for a journey, especially international ones, she’d quietly follow me to the gate with a bowl of water, whispering prayers I couldn’t always hear. But this moment, between two western cities, with children growing up in a world so far from where that habit began, felt different. It was softer. Bittersweet. Like watching an old song being hummed in a new language. I grew up between Kabul and Karachi; two cities that always felt like they were on the edge of something. One broken by war, the other always just holding itself together amid all sorts of hardships of a city outgrowing itself but starved of resources and infrastructure. In both, I learned that people survive not just through faith but through the small things they do when no one’s watching; the quiet rituals and little beliefs that live in everyday life. They’re not loud, not official. But they’re full of love and hope. I saw it all around me. In the way my grandmother would suggest a black cloth by the door after someone recovered from illness or we bought something “precious” – to keep the evil eye away. In the way my aunt would burn esfand herb above her children in a pot when they came home from a wedding or party looking too beautiful and getting too much attention. In the way my other sister-in-law would put a tiny black dot behind her baby’s ear when he smiled too much – just to hide some of that beauty from the world. “People are not very nice and too much goodness invites jealousy and negativity,” she’d say. “It’s better to be a little hidden.” Drawing on my own encounters, I’ve come to see how these seemingly small gestures – the fragrant smoke of esfand to lift heaviness, the rhythmic pull of qawwali, the quiet assurance of a taweez tied around a wrist – hold more than superstition. They carry virtues: grounding, comfort and a deep sense of protection. None of these things were in any book of religion. No one ever sat down and taught them. They were just picked up, like pebbles from the ground, passed from women to girls, from grandmothers to mothers to daughters – and sometimes to sons who were paying attention. Even the most religious people I know – people who prayed five times a day, who fasted every Ramadan, who could quote the Qur’an by heart – still do these little things. They didn’t see them as separate or wrong. Just part of faith and tradition woven together into everyday life, to feel safe and at peace. When I moved to Melbourne, I carried some of t
+[...article truncated for brevity...]
+
+SUMMARY (check if cues are preserved here):
+Especially back home where things could change overnight, where life was unpredictable, where people had lost so much. In both, I learned that people survive not just through faith but through the small things they do when no one’s watching; the quiet rituals and little beliefs that live in everyday life. “La har azaab po aman se,” she whispered in Pashto under her breath – may all hardship stay away from you. People used to tie little strips of cloth to its branches; one for each prayer they made. Just part of faith and tradition woven together into everyday life, to feel safe and at peace. They are threads that connect us to our past, whispers of love carried across generations and subtle ways of finding peace in a world that so often feels chaotic. Even the most religious people I know – people who prayed five times a day, who fasted every Ramadan, who could quote the Qur’an by heart – still do these little things.
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 3,
+  "domain": "Social",
+  "title": "Spirituality isn’t rigid dogma. It’s a living, breathing practice that helps make sense of an incomprehensible world",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (Exact Quote)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact Quote)": "“La har azaab po aman se”",
+          "Preserved in Summary?": "Yes (appears verbatim)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact Quote)": "“to keep the evil eye away”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact Quote)": "“You’ll sweep away your blessings”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact Quote)": "“too much goodness invites jealousy and negativity”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact Quote)": "Shadi Khan Saif",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact Quote)": "London",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact Quote)": "Melbourne",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact Quote)": "Afghanistan",
+          "Preserved in Summary?": "Yes (implicitly preserved in “back home…but people had lost so much” — however, no explicit mention → No)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact Quote)": "Kabul",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact Quote)": "Karachi",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organization / institution",
+          "Text Span (Exact Quote)": "(none explicitly mentioned besides mosque, see below)",
+          "Preserved in Summary?": "—"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places / landmark",
+          "Text Span (Exact Quote)": "“mosque in the bazaar of Kabul” (landmark + place)",
+          "Preserved in Summary?": "Yes (summary mentions cloth tied to trees for prayer)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / holidays / traditions",
+          "Text Span (Exact Quote)": "Throwing water behind a departing traveler",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / holidays / traditions",
+          "Text Span (Exact Quote)": "Burning esfand herb",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / holidays / traditions",
+          "Text Span (Exact Quote)": "Putting a black dot behind a baby’s ear",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural traditions",
+          "Text Span (Exact Quote)": "Tying cloth strips to tree branches for prayers",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (Exact Quote)": "Esfand herb",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (Exact Quote)": "Qawwali",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (Exact Quote)": "Taweez",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect / slang",
+          "Text Span (Exact Quote)": "Pashto phrase (“La har azaab po aman se”)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect / slang",
+          "Text Span (Exact Quote)": "Mention of Pashto",
+          "Preserved in Summary?": "No (language name does not appear in summary)"
+        }
+      ]
+    },
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (Exact Quote)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span (Exact Quote)": "“But this moment…”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (Exact Quote)": "“In both…”",
+          "Preserved in Summary?": "Yes (implicitly preserved via summary paraphrase)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (Exact Quote)": "“Even…” (e.g., “Even the most religious people…”)",
+          "Preserved in Summary?": "Yes (appears in summary)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (Exact Quote)": "“Especially…”",
+          "Preserved in Summary?": "Yes (“Especially back home…” appears verbatim)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time/sequence marker",
+          "Text Span (Exact Quote)": "“When I was leaving…”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time/sequence marker",
+          "Text Span (Exact Quote)": "“Every time I left…”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time/sequence marker",
+          "Text Span (Exact Quote)": "“When I moved to Melbourne”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (Exact Quote)": "“she,” “they,” “you,” “this,” “these,” “it,” etc.",
+          "Preserved in Summary?": "Yes (summary uses pronouns, though not identical ones)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal/logical",
+          "Text Span (Exact Quote)": "“because…” (“because I remember my mother saying…”)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal/logical",
+          "Text Span (Exact Quote)": "“not because I’m scared but because…”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal/logical",
+          "Text Span (Exact Quote)": "“so…”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrase",
+          "Text Span (Exact Quote)": "“I’ve come to see…”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrase",
+          "Text Span (Exact Quote)": "“I still remember…”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (Exact Quote)": "“first… then…” (not present explicitly but implied by narrative)",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    }
+  ]
+}
+
+
+====================
+EXAMPLE 3
+====================
+
+ARTICLE TITLE: Church of Norway says sorry to LGBTQ+ people for ‘shame, great harm and pain’ 
+DOMAIN: Social
+
+ORIGINAL ARTICLE (identify cues from here):
+Against a backdrop of red stage curtains at one of Oslo’s most prominent LGBTQ+ spaces, the Church of Norway apologised for the discrimination and harm it had inflicted. “The church in Norway has caused LGBTQ+ people shame, great harm and pain,” the presiding bishop, Olav Fykse Tveit, said on Thursday. “This should never have happened and that is why I apologise today.” The “discrimination, unequal treatment and harassment” had caused some to lose their faith, Tveit acknowledged. A church service at Oslo Cathedral was scheduled to follow his apology. The apology took place at the London Pub, one of two bars targeted in the 2022 shooting that killed two people and left nine seriously injured during Oslo’s Pride celebrations. A Norwegian of Iranian origin, who had pledged allegiance to Islamic State, was sentenced to at least 30 years in prison for the killings. Like many religions around the world, the Church of Norway – an evangelical Lutheran church that is Norway’s largest faith community – had long marginalised LGBTQ+ people, refusing to allow them to become pastors or to marry in church. In the 1950s, the church’s bishops described gay people as a “social danger of global proportions”. But as Norwegian society became increasingly liberal, becoming the second in the world to allow same-sex registered partnerships in 1993 and in 2009 the first Scandinavian country to allow same-sex marriage, the church slowly followed. In 2007, the Church of Norway began ordaining gay pastors, and same-sex couples have been able to marry in church since 2017. In 2023, Tveit participated in Oslo’s Pride parade in what was described as a first for the church. Thursday’s apology was met with a mixed reaction. The head of a network of Christian lesbians in Norway, Hanne Marie Pedersen-Eriksen, herself a gay pastor, described it as “an important reparation” and a moment that “finally marked the end of a dark chapter in the church’s history”. For Stephen Adom, the head of Norway’s Association for Gender and Sexual Diversity, the apology was “strong and important” but had come “too late for those among us who died of Aids … with hearts filled with anguish because the church considered the epidemic to be God’s punishment”. Globally, a handful of religious institutions have sought to make amends for their actions towards LGBTQ+ people. In 2023, the Church of England apologised for what it described as its “shameful” treatment, though it continues to refuse to allow same-sex marriages in church. Similarly, the Methodist Church in Ireland last year apologised for its “failures in pastoral support and care” to LGBTQ+ people and their families, but remained staunch in its belief that marriage could only be a union between a man and a woman. Earlier this year, the United Church of Canada offered an apology to two spirit and LGBTQIA+ communities, describing it as a reaffirmation of the church’s “commitment to radical hospitality and full inclusion” in all aspects of church li
+[...article truncated for brevity...]
+
+SUMMARY (check if cues are preserved here):
+Like many religions around the world, the Church of Norway – an evangelical Lutheran church that is Norway’s largest faith community – had long marginalised LGBTQ+ people, refusing to allow them to become pastors or to marry in church. In 2007, the Church of Norway began ordaining gay pastors, and same-sex couples have been able to marry in church since 2017. “The church in Norway has caused LGBTQ+ people shame, great harm and pain,” the presiding bishop, Olav Fykse Tveit, said on Thursday. Similarly, the Methodist Church in Ireland last year apologised for its “failures in pastoral support and care” to LGBTQ+ people and their families, but remained staunch in its belief that marriage could only be a union between a man and a woman. Against a backdrop of red stage curtains at one of Oslo’s most prominent LGBTQ+ spaces, the Church of Norway apologised for the discrimination and harm it had inflicted. Globally, a handful of religious institutions have sought to make amends for their actions towards LGBTQ+ people.
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 6,
+  "domain": "Social",
+  "title": "Church of Norway says sorry to LGBTQ+ people for ‘shame, great harm and pain’ ",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (from original)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (from original)": "a dark chapter",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Non-literal phrases",
+          "Text Span (from original)": "a social danger of global proportions",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Non-literal phrases",
+          "Text Span (from original)": "an important reparation",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Non-literal phrases",
+          "Text Span (from original)": "strong and important",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Non-literal phrases",
+          "Text Span (from original)": "too late for those among us who died of Aids … with hearts filled with anguish",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Olav Fykse Tveit",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Hanne Marie Pedersen-Eriksen",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Stephen Adom",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Michael Blair / Rev Michael Blair",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Oslo",
+          "Preserved in Summary?": "No (summary does not include the word \"Oslo\")"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "London Pub",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Norway",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Ireland",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Canada",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "Church of Norway",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "Islamic State",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "Church of England",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "Methodist Church in Ireland",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "United Church of Canada",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "Association for Gender and Sexual Diversity",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / traditions",
+          "Text Span (from original)": "Oslo's Pride celebrations",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (from original)": "red stage curtains",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect / slang",
+          "Text Span (from original)": "(none clearly present)",
+          "Preserved in Summary?": "—"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connectors",
+          "Text Span (from original)": "and",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connectors",
+          "Text Span (from original)": "but",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connectors",
+          "Text Span (from original)": "Similarly,",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time markers",
+          "Text Span (from original)": "on Thursday",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time markers",
+          "Text Span (from original)": "In the 1950s,",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time markers",
+          "Text Span (from original)": "in 1993",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time markers",
+          "Text Span (from original)": "in 2009",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time markers",
+          "Text Span (from original)": "In 2007,",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time markers",
+          "Text Span (from original)": "since 2017",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time markers",
+          "Text Span (from original)": "In 2023,",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time markers",
+          "Text Span (from original)": "last year",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns",
+          "Text Span (from original)": "\"it\" (referring to Church of Norway)",
+          "Preserved in Summary?": "Yes (\"it\" used in summary referring to Church of Norway)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns",
+          "Text Span (from original)": "they",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal phrases",
+          "Text Span (from original)": "because the church considered the epidemic to be God's punishment",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal phrases",
+          "Text Span (from original)": "but remained staunch in its belief",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal phrases",
+          "Text Span (from original)": "though it continues to refuse",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (from original)": "had long marginalised LGBTQ+ people",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (from original)": "shame, great harm and pain",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (from original)": "a first for the church",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (from original)": "had long marginalised",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (from original)": "began ordaining",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (from original)": "have been able to marry in church since 2017",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (from original)": "took place",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    }
+  ]
+}
+
+
+
+================================================================================
+TARGET ARTICLE/SUMMARY TO ANALYZE (NOT SHOWN IN THIS PREVIEW)
+================================================================================
+
+ARTICLE TITLE: [Target article title will be inserted here]
+DOMAIN: [Target domain will be inserted here]
+
+ORIGINAL ARTICLE (identify cues from here):
+[Full target article text will be inserted here]
+
+SUMMARY (check if cues are preserved here):
+[Target summary text will be inserted here]
+
+NOW OUTPUT YOUR ANALYSIS AS JSON:

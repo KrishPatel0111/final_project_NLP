@@ -1,0 +1,924 @@
+================================================================================
+SYSTEM INSTRUCTION
+================================================================================
+You are an expert at analyzing news articles and their summaries to identify cultural and contextual cues.
+
+Your task is to:
+1. Read the ORIGINAL ARTICLE and identify cultural/contextual cues (quotes, cultural references, named entities, etc.)
+2. Read the SUMMARY and determine if each cue is preserved or lost
+3. Output a JSON object with the exact structure shown in the examples
+
+CRITICAL INSTRUCTIONS:
+- START YOUR RESPONSE WITH { AND END WITH }
+- DO NOT add markdown code blocks (no ```json)
+- DO NOT add explanations before or after the JSON
+- DO NOT add extra fields not shown in the examples
+- Follow the exact JSON structure from the examples
+- Use the exact same field names: "doc_id", "domain", "title", "tables"
+- Each table should have "header" and "rows" arrays
+- Each row should be an object with keys matching the headers
+
+---------------------------------------
+CULTURAL CUE CATEGORIES (extract only these):
+1. Idioms / Fixed Expressions (non-literal phrases)
+2. Named People (real individuals)
+3. Named Places (countries, cities, regions, landmarks)
+4. Named Organizations (companies, institutions, movements, political groups)
+5. Cultural Events / Holidays / Traditions
+6. Cultural Artifacts (food, clothing, media, art, products, or culturally specific products/services such as halal food, halal apps, halal financial services, BDS-safe tools; DO NOT include abstract categories like “halal market”)
+7. Dialect or Slang Terms (region-specific vocabulary)
+
+---------------------------------------
+CONTEXTUAL CUE CATEGORIES (extract only these):
+1. Connectors / Discourse Markers (e.g., but, yet, so, while, however, although)
+2. Time or Sequence Markers (e.g., last year, in 2022, before, after, since then)
+3. Pronouns / References (he, she, they, this, that, it); include ONLY if referring to a named entity also present in the SUMMARY
+4. Causal or Logical Phrases (e.g., because, therefore, as a result, that’s why)
+5. Framing Phrases (e.g., culture wars, in a surprising move, a huge step backwards)
+6. Event Ordering Cues (e.g., within hours, shortly after that, as X happened)
+
+IMPORTANT: Your output should match the structure shown in the EXPECTED OUTPUT sections of the examples exactly.
+
+
+
+================================================================================
+FEW-SHOT EXAMPLES FOR DOMAIN: SPORT
+================================================================================
+
+====================
+EXAMPLE 1
+====================
+
+ARTICLE TITLE: Freedom and joy: Rugby World Cup’s quirky quality sets it apart from the pack
+DOMAIN: Sport
+
+ORIGINAL ARTICLE (identify cues from here):
+I have a friend who rejects the notion of “guilty pleasures”. There is, she argues, plenty of real and justified guilt in the world, without co-opting it to our choice of trash TV or an unkickable penchant for romantasy novels. She’s a helpful touchstone when I hear myself trying to justify the silly superhero film I went to see at the cinema on the basis that it might have carried an underlying anti-fascist message (if you squinted hard enough at the screen). My friend will sigh kindly and then remind me: sometimes it’s OK just to enjoy things. It is, perhaps, a lesson we particularly struggle with in sport because of its very nature. A huge part of our investment is grounded in the result and its consequences for whichever athlete or team we prefer. Ask a football fan if they enjoyed themselves at the match they just paid a decent whack to see, and there’s a better-than-even chance they will tell you no. If it was a close match, they will have been too anxious to have fun; if they lost they will be mourning their defeat. Even if their own side ran rampant, you can find them complaining about the lack of challenge or jeopardy. We are, as fans, especially averse to one-sided games, which can feel anything from a deflationary disappointment to a waste of everybody’s time. This is why the current Women’s Rugby World Cup is such a curious phenomenon. The tournament has been one of largely lopsided scorelines, from the group stages to the quarter-finals. Only five of the 28 fixtures have been decided by fewer than 14 points, and more than half were won by more than 40 – at least six scores. And yet there remains a profound and unanimous pleasure to be had across the entire affair: it’s hard to find anyone that’s watching along and not enjoying it. Since the opening game between England and USA a festival atmosphere – prevalent at every ground from Sunderland to Bristol to Brighton – has been successfully transmitted through our television screens thanks to some excellent broadcasting decisions from the BBC (signing Ruby Tui was a stroke of genius). Meanwhile the action on the pitch has delivered flair and fascination, even on days when the rain has lashed down until the ball is butter and the scrums steam like suet pudding. The match-ups may be uneven but the power and athleticism on display on all sides of the pitch have been mesmerising. Sure, the host nation’s dominance is a natural mood enhancer. England’s vast buffer of experience and professionalism has allowed them to see off whatever challenges are temporarily posed: fans have been able to relax and enjoy the show even when their team is not at its brilliant best. That’s only part of the picture, however. It doesn’t encompass the joyful embrace of The Kid, New Zealand’s 18-year-old top try-scorer Braxton Sorensen-McGee (whose daring dashes down the wing could well knock England’s cowgirls out of their saddles if the two sides meet). It can’t account for the bipartisan cheer when Spain, 54-3 d
+[...article truncated for brevity...]
+
+SUMMARY (check if cues are preserved here):
+Their fast-growing fanbase, many of whom have only discovered the sport in the past couple of years, do not show up to games with the typical baggage: decades of disappointment, crusted-over anger, inherited and inexplicably toxic rivalries. England’s vast buffer of experience and professionalism has allowed them to see off whatever challenges are temporarily posed: fans have been able to relax and enjoy the show even when their team is not at its brilliant best. Other sports – and more pertinently their investors – will be analysing this fan engagement and wondering how to replicate it. Since the opening game between England and USA a festival atmosphere – prevalent at every ground from Sunderland to Bristol to Brighton – has been successfully transmitted through our television screens thanks to some excellent broadcasting decisions from the BBC (signing Ruby Tui was a stroke of genius). It is, perhaps, a lesson we particularly struggle with in sport because of its very nature. It is, of course, a marketing tactic as much as a rallying cry, but it came directly from team conversations and reflects something quite true about the women’s rugby community, that is a place where people are for each other, not against them. A huge part of our investment is grounded in the result and its consequences for whichever athlete or team we prefer.
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 17,
+  "domain": "Sport",
+  "title": "Freedom and joy: Rugby World Cup’s quirky quality sets it apart from the pack",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“guilty pleasures”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“kickable penchant”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“if you squinted hard enough”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“just to enjoy things”",
+          "Preserved in Summary?": "Yes (“just enjoy…”)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“paid a decent whack”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“ran rampant”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“waste of everybody’s time”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“knock England’s cowgirls out of their saddles”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“come-as-you-are quality”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“forcing or faking it”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“for one brass farthing”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“for the girls” (slogan)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span": "Ruby Tui",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span": "Braxton Sorensen-McGee",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span": "Maro Itoje",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span": "Ilona Maher",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span": "Aseza Hele",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span": "Abby Dow",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span": "Anne-Marie",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span": "Ellie Kildunne",
+          "Preserved in Summary?": "Yes (appears indirectly in summary? No, does not appear)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span": "England",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span": "USA",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span": "Sunderland",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span": "Bristol",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span": "Brighton",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span": "New Zealand",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span": "Spain",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span": "South Africa",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span": "BBC",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span": "Black Ferns",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span": "Lions / Lions tour",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span": "Red Roses",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span": "Rugby World Cup",
+          "Preserved in Summary?": "Yes (implied as the event)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / traditions",
+          "Text Span": "opening ceremony",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / traditions",
+          "Text Span": "Women’s Rugby World Cup",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span": "cowboy hat",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span": "drums",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span": "Barbie pink",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span": "90s girl-power nostalgia",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span": "referees’ whistles (crocheted)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span": "TikTok videos",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect / slang",
+          "Text Span": "“cowgirls”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect / slang",
+          "Text Span": "“butter” (ball is butter)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect / slang",
+          "Text Span": "“Blommie”",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    },
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span": "“and yet”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span": "“however”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span": "“but” (multiple instances)",
+          "Preserved in Summary?": "Yes (appears in summary)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span": "“which can feel”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span": "“even when”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence marker",
+          "Text Span": "“since the opening game”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence marker",
+          "Text Span": "“more than a year ago”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence marker",
+          "Text Span": "“earlier” (implicit in “opening game”)",
+          "Preserved in Summary?": "Yes (partially)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence marker",
+          "Text Span": "“when players are taking up their positions”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span": "“she” (the friend)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span": "“they” (fans, players)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span": "“this” (referring to tournament)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span": "“it”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span": "“you”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrase",
+          "Text Span": "“because”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrase",
+          "Text Span": "“that’s why” (implied causal)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrase",
+          "Text Span": "“allowing them to”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrase",
+          "Text Span": "“as much as”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrase",
+          "Text Span": "“perhaps”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrase",
+          "Text Span": "“it may be that”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cue",
+          "Text Span": "descriptions of group stage → quarter-finals",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cue",
+          "Text Span": "team scoring at 83rd minute",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cue",
+          "Text Span": "Lions second Test → TV audience comparison",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    }
+  ]
+}
+
+
+====================
+EXAMPLE 2
+====================
+
+ARTICLE TITLE: The USTA’s censorship of Trump dissent at the US Open is cowardly, hypocritical and un-American
+DOMAIN: Sport
+
+ORIGINAL ARTICLE (identify cues from here):
+When the dust finally settles in the days after Sunday’s eagerly awaited US Open men’s final, the United States Tennis Association will issue its annual victory-lap press release. It will tout another record-setting Open: more than a million fans through the gates, unprecedented social-media engagement, double-digit growth in food and beverage sales, and hundreds of celebrities packed into suites from Rolex to Ralph Lauren. It will beam about growing the game, championing diversity and turning Flushing Meadows into a pop-culture destination. But for all the milestones the USTA is teeing up to celebrate, this year’s tournament will be remembered for a different kind of first: the governing body’s lamentable decision to ask broadcasters not to show dissent against Donald Trump. In making that pre-emptive concession, the USTA has committed an unforced error that can’t be undone: sacrificing credibility in order to shield a politician – any politician, regardless of party, ideology or affiliation – from the sound of public disapproval. According to internal emails obtained by outlets including PA and Bounces, the USTA instructed its television partners to “refrain from showcasing any disruptions or reactions” when Trump appears on screen during Sunday’s final. A separate note reminded staff he would be seated in Rolex’s suite as a client guest. The 11-word statement to the Guardian on Saturday night from a USTA spokesperson – “We regularly ask our broadcasters to refrain from showcasing off-court disruptions” – is so weak it could buckle under the weight of its own hypocrisy. (Rolex did not respond to a request for comment.) This is, after all, the same tournament that happily televised a climate protester gluing himself to a seat for nearly an hour during Coco Gauff’s semi-final win over Karolina Muchova two years ago, along with countless other fan disturbances. The same tournament that shrugs at the drunken buffoonery behind its US Bro-pen reputation. The Open practically invented televising distractions. Chaos is its brand. For the USTA to draw the line at showing boos for a sitting president is not “policy consistency” but capitulation. And to what end? Because of the fear that Trump – once a fixture at the US Open but loudly booed on his last visit in 2015, three months after announcing his first presidential campaign – may once again be exposed as unpopular before a global audience? Because of the fear that a chorus of jeers could overshadow the match itself? But that fear misunderstands both sport and democracy. Crowd dissent on broadcasts is not a breakdown of civic order. It is its expression. Then UK home secretary Theresa May was booed at the 2012 London Paralympics. French president Emmanuel Macron was whistled during the 2023 Rugby World Cup opening ceremony in Paris. In the US, NFL commissioner Roger Goodell is all but guaranteed a chorus of boos during public appearances, and that’s practically a standing ovation next to the venom res
+[...article truncated for brevity...]
+
+SUMMARY (check if cues are preserved here):
+It platformed, embraced and celebrated LGBTQ+ athletes decades before it was fashionable to do so, from Billie Jean King and Martina Navratilova in the 1970s to Renée Richards breaking ground as one of the first transgender athletes in professional tennis, to Open Pride nights today. And this year’s theme, “75 years of breaking barriers”, honors Althea Gibson, who in 1950 became the first Black player to compete at the tournament’s predecessor, the US nationals, and went on to clear a path for generations of Black players who followed. But for all the milestones the USTA is teeing up to celebrate, this year’s tournament will be remembered for a different kind of first: the governing body’s lamentable decision to ask broadcasters not to show dissent against Donald Trump. In his first presidency, he was broadly reviled by athletes and sports bodies. It was the first of the majors to award equal prize money to women and men, long before other sports caught up. Her story is literally built into the grounds this fortnight, from the banners and installations designed by Melissa Koby – the first Black artist to create the Open’s theme art – to the constant reminders that the sport has prided itself on inclusion. Because of the fear that Trump – once a fixture at the US Open but loudly booed on his last visit in 2015, three months after announcing his first presidential campaign – may once again be exposed as unpopular before a global audience?
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 18,
+  "domain": "Sport",
+  "title": "The USTA’s censorship of Trump dissent at the US Open is cowardly, hypocritical and un-American",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (exact phrase from original)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (exact phrase from original)": "“victory-lap press release”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (exact phrase from original)": "“when the dust finally settles”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (exact phrase from original)": "“unforced error”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (exact phrase from original)": "“buckle under the weight of its own hypocrisy”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (exact phrase from original)": "“draw the line”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (exact phrase from original)": "“4D chess move”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (exact phrase from original)": "“corrupt, disgusting hellhole” (regional slang insult)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (exact phrase from original)": "Donald Trump",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (exact phrase from original)": "Joe Biden",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (exact phrase from original)": "Theresa May",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (exact phrase from original)": "Emmanuel Macron",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (exact phrase from original)": "Roger Goodell",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (exact phrase from original)": "Gary Bettman",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (exact phrase from original)": "Coco Gauff",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (exact phrase from original)": "Karolina Muchova",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (exact phrase from original)": "Serena Williams",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (exact phrase from original)": "Venus Williams",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (exact phrase from original)": "Billie Jean King",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (exact phrase from original)": "Martina Navratilova",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (exact phrase from original)": "Renée Richards",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (exact phrase from original)": "Althea Gibson",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (exact phrase from original)": "Melissa Koby",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (exact phrase from original)": "United States",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (exact phrase from original)": "Flushing Meadows",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (exact phrase from original)": "New York",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (exact phrase from original)": "Paris",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (exact phrase from original)": "London",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (exact phrase from original)": "Ashe Stadium",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (exact phrase from original)": "United States Tennis Association / USTA",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (exact phrase from original)": "Rolex",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (exact phrase from original)": "Ralph Lauren",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (exact phrase from original)": "PA",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (exact phrase from original)": "Bounces",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (exact phrase from original)": "Guardian",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (exact phrase from original)": "NFL",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (exact phrase from original)": "NHL",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (exact phrase from original)": "Maga (political movement)",
+          "Preserved in Summary?": "Yes (implicitly as “Maga vantage point”)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / holidays / traditions",
+          "Text Span (exact phrase from original)": "US Open",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / holidays / traditions",
+          "Text Span (exact phrase from original)": "Super Bowl",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / holidays / traditions",
+          "Text Span (exact phrase from original)": "Rugby World Cup",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / holidays / traditions",
+          "Text Span (exact phrase from original)": "Paralympics",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (exact phrase from original)": "“$23 vodka-lemonades”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (exact phrase from original)": "Pride nights / Open Pride nights",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect or slang",
+          "Text Span (exact phrase from original)": "“US Bro-pen”",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    },
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (exact phrase)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span (exact phrase)": "“But” (multiple uses)",
+          "Preserved in Summary?": "Yes (present in summary)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span (exact phrase)": "“Because”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span (exact phrase)": "“And” (as discourse linking)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span (exact phrase)": "“This is, after all,”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span (exact phrase)": "“However”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time/sequence marker",
+          "Text Span (exact phrase)": "“after Sunday’s…final”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time/sequence marker",
+          "Text Span (exact phrase)": "“before a global audience”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time/sequence marker",
+          "Text Span (exact phrase)": "“two years ago”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time/sequence marker",
+          "Text Span (exact phrase)": "“first presidency”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (exact phrase)": "“he” (referring to Trump)",
+          "Preserved in Summary?": "No (not in summary)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (exact phrase)": "“it” (multiple uses)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (exact phrase)": "“this year’s theme”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal/logical phrase",
+          "Text Span (exact phrase)": "“because of the fear”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal/logical phrase",
+          "Text Span (exact phrase)": "“as a result” (implied but not used literally)",
+          "Preserved in Summary?": "N/A"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrase",
+          "Text Span (exact phrase)": "“According to internal emails obtained…”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrase",
+          "Text Span (exact phrase)": "“from a Maga vantage point”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cue",
+          "Text Span (exact phrase)": "“will be remembered for”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cue",
+          "Text Span (exact phrase)": "“first…then…” (contrast of past visits)",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    }
+  ]
+}
+
+
+
+================================================================================
+TARGET ARTICLE/SUMMARY TO ANALYZE (NOT SHOWN IN THIS PREVIEW)
+================================================================================
+
+ARTICLE TITLE: [Target article title will be inserted here]
+DOMAIN: [Target domain will be inserted here]
+
+ORIGINAL ARTICLE (identify cues from here):
+[Full target article text will be inserted here]
+
+SUMMARY (check if cues are preserved here):
+[Target summary text will be inserted here]
+
+NOW OUTPUT YOUR ANALYSIS AS JSON:

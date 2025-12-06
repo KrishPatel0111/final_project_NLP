@@ -1,0 +1,346 @@
+================================================================================
+SYSTEM INSTRUCTION
+================================================================================
+You are an expert at analyzing news articles and their summaries to identify cultural and contextual cues.
+
+Your task is to:
+1. Read the ORIGINAL ARTICLE and identify cultural/contextual cues (quotes, cultural references, named entities, etc.)
+2. Read the SUMMARY and determine if each cue is preserved or lost
+3. Output a JSON object with the exact structure shown in the examples
+
+CRITICAL INSTRUCTIONS:
+- START YOUR RESPONSE WITH { AND END WITH }
+- DO NOT add markdown code blocks (no ```json)
+- DO NOT add explanations before or after the JSON
+- DO NOT add extra fields not shown in the examples
+- Follow the exact JSON structure from the examples
+- Use the exact same field names: "doc_id", "domain", "title", "tables"
+- Each table should have "header" and "rows" arrays
+- Each row should be an object with keys matching the headers
+
+---------------------------------------
+CULTURAL CUE CATEGORIES (extract only these):
+1. Idioms / Fixed Expressions (non-literal phrases)
+2. Named People (real individuals)
+3. Named Places (countries, cities, regions, landmarks)
+4. Named Organizations (companies, institutions, movements, political groups)
+5. Cultural Events / Holidays / Traditions
+6. Cultural Artifacts (food, clothing, media, art, products, or culturally specific products/services such as halal food, halal apps, halal financial services, BDS-safe tools; DO NOT include abstract categories like “halal market”)
+7. Dialect or Slang Terms (region-specific vocabulary)
+
+---------------------------------------
+CONTEXTUAL CUE CATEGORIES (extract only these):
+1. Connectors / Discourse Markers (e.g., but, yet, so, while, however, although)
+2. Time or Sequence Markers (e.g., last year, in 2022, before, after, since then)
+3. Pronouns / References (he, she, they, this, that, it); include ONLY if referring to a named entity also present in the SUMMARY
+4. Causal or Logical Phrases (e.g., because, therefore, as a result, that’s why)
+5. Framing Phrases (e.g., culture wars, in a surprising move, a huge step backwards)
+6. Event Ordering Cues (e.g., within hours, shortly after that, as X happened)
+
+IMPORTANT: Your output should match the structure shown in the EXPECTED OUTPUT sections of the examples exactly.
+
+
+
+================================================================================
+FEW-SHOT EXAMPLES FOR DOMAIN: EDUCATIONAL
+================================================================================
+
+====================
+EXAMPLE 1
+====================
+
+ARTICLE TITLE: Trump and Project 2025 are attacking the Department of Education. How might they reshape US schools?
+DOMAIN: Educational
+
+ORIGINAL ARTICLE (identify cues from here):
+Donald Trump wants to shut down the US Department of Education, saying at recent rallies that it should be disbanded to “move everything back to the states where it belongs”. The idea of dismantling the education department has become increasingly mainstream, though it’s nearly as old as the department itself, which was created by Congress as a cabinet-level agency in 1979. Trump made similar promises on the 2016 campaign trail to either cut or hobble the department. Eliminating it would require Congress to act, which could be an impossible feat, though several of Trump and his allies’ policy goals on education could be accomplished through presidential actions. Project 2025, the Heritage Foundation’s rightwing manifesto for a potential incoming Trump administration, lays out how dismantling the federal education department would work, leaving behind, if anything, a husk focused solely as a “statistics-gathering agency that disseminates information to the states”, writes Lindsey Burke, the author of the education chapter and leader of Heritage’s education policy center. The department’s elimination is one of many goals contained in the extensive conservative playbook that will inform a second Trump term. Project 2025 calls for privatizing education and driving out any programs related to LGBTQ+ youth or diversity. “This playbook actually goes into detail that we’ve never seen before,” said Weadé James, senior director for K-12 policy at the Center for American Progress. It would have profound implications on civil rights, school funding and students’ progress – not to mention on the fate of public schools, she said. “The striking part about all of this, too, is the Department of Education is actually the smallest of any cabinet-level agency. There are only a little over 4,000 employees within the department,” James said. “So we need to be talking about investing in the department, expanding the capacity of the department to do the work that it is designed to do.” Burke, the Heritage author , declined a request for an interview. In a statement, the Heritage Foundation said that while it seeks to offer recommendations to the “next conservative president”, it “does not speak for any candidate or campaign”. And while Trump’s campaign has tried to distance the candidate from Project 2025, saying he has his own agenda to carry out, the former president and the project are aligned on much of their education plans. During a speech to a “faith and freedom” conference this week, Trump railed against education rankings and spending, saying the US performs poorly despite money spent on students. Some states could do better without federal intervention, he said. “We’ll cut our budget in half and not everybody’s going to be great,” he said. “I mean, [California governor] Gavin Newsom will not do a good job with education, so I don’t expect that out of him. And I don’t expect it out of certain other people … But many of the states, I would say 40 of the 50 stat
+[...article truncated for brevity...]
+
+SUMMARY (check if cues are preserved here):
+Trump tells voters on his campaign site a few ways he would manage education: Cut federal funding for schools that are “pushing critical race theory or gender ideology on our children” and open civil rights investigations into them for race-based discrimination. School funding fundamentally changed Education is primarily funded and overseen by state and local authorities in the US, but the federal government funds some elements of education and sets certain policies, which are then implemented locally. Beyond these major funding changes, the project – and Trump – both want to see expansions of school choice, like voucher programs that allow students to use money that would otherwise fund their seats at public schools to attend a private ones. The project proposes ridding education programs of any “gender ideology and critical race theory”, like a “non-binary” category in data collection or the ability of trans youth to participate in sports aligned with their gender. Instead of directing how funds should be used, it generally says states should be given money with no strings attached to spend on “any lawful education purpose under state law”. The project also wants what remains of the Department of Education to gather data and report on programs or grants that spread “DEI/CRT/gender ideology”, how “family structure” affects student achievement, how pandemic aid funds were spent and how much money goes directly into the classroom from federal grant programs. Eliminating it would require Congress to act, which could be an impossible feat, though several of Trump and his allies’ policy goals on education could be accomplished through presidential actions.
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 0,
+  "domain": "Educational",
+  "title": "Trump and Project 2025 are attacking the Department of Education. How might they reshape US schools?",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (from original)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "“Donald Trump”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "“Lindsey Burke”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "“Weadé James”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "“Gavin Newsom”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "“(California governor) Gavin Newsom”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "“the Heritage author” (referring to Lindsey Burke)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "“the US” / “US”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "“California”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "“Department of Education”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "“Congress”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "“Heritage Foundation”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "“Center for American Progress”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "“Department of Health and Human Services”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "“Project 2025”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "“Head Start”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "“Arizona” (as state implementing voucher program—place, but also government unit)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "“schools” / “public schools” (institutional but nonspecific)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events/traditions",
+          "Text Span (from original)": "“faith and freedom conference”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (from original)": "“non-binary category” (social/cultural classification)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (from original)": "“DEI/CRT/gender ideology” (ideological/cultural constructs)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms/fixed expressions",
+          "Text Span (from original)": "“move everything back to the states”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms/fixed expressions",
+          "Text Span (from original)": "“cut or hobble the department”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms/fixed expressions",
+          "Text Span (from original)": "“a husk focused solely…”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms/fixed expressions",
+          "Text Span (from original)": "“harp on diversity”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect/slang terms",
+          "Text Span (from original)": "none identified",
+          "Preserved in Summary?": "—"
+        }
+      ]
+    },
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector/discourse marker",
+          "Text Span": "“though”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector/discourse marker",
+          "Text Span": "“however”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector/discourse marker",
+          "Text Span": "“and” (coordinating conjunction used frequently)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector/discourse marker",
+          "Text Span": "“but”",
+          "Preserved in Summary?": "Yes (appears in summary)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time/sequence marker",
+          "Text Span": "“as it stands now”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time/sequence marker",
+          "Text Span": "“this week”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time/sequence marker",
+          "Text Span": "“over a 10-year period”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time/sequence marker",
+          "Text Span": "“day one”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns/references",
+          "Text Span": "“he” / “she” / “they” / “it” / “this” / “that”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal/logical phrases",
+          "Text Span": "“because”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal/logical phrases",
+          "Text Span": "“as a result”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal/logical phrases",
+          "Text Span": "“so”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrase",
+          "Text Span": "“in a statement”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrase",
+          "Text Span": "“according to” (implicit in report structure)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cue",
+          "Text Span": "“first… then…” (implied by policy sequence discussion but not explicit phrases)",
+          "Preserved in Summary?": "No explicit ordering preserved"
+        }
+      ]
+    }
+  ]
+}
+
+
+
+================================================================================
+TARGET ARTICLE/SUMMARY TO ANALYZE (NOT SHOWN IN THIS PREVIEW)
+================================================================================
+
+ARTICLE TITLE: [Target article title will be inserted here]
+DOMAIN: [Target domain will be inserted here]
+
+ORIGINAL ARTICLE (identify cues from here):
+[Full target article text will be inserted here]
+
+SUMMARY (check if cues are preserved here):
+[Target summary text will be inserted here]
+
+NOW OUTPUT YOUR ANALYSIS AS JSON:

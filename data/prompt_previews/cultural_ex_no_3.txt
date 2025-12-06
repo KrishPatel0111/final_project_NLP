@@ -1,0 +1,1412 @@
+================================================================================
+SYSTEM INSTRUCTION
+================================================================================
+You are an expert at analyzing news articles and their summaries to identify cultural and contextual cues.
+
+Your task is to:
+1. Read the ORIGINAL ARTICLE and identify cultural/contextual cues (quotes, cultural references, named entities, etc.)
+2. Read the SUMMARY and determine if each cue is preserved or lost
+3. Output a JSON object with the exact structure shown in the examples
+
+CRITICAL INSTRUCTIONS:
+- START YOUR RESPONSE WITH { AND END WITH }
+- DO NOT add markdown code blocks (no ```json)
+- DO NOT add explanations before or after the JSON
+- DO NOT add extra fields not shown in the examples
+- Follow the exact JSON structure from the examples
+- Use the exact same field names: "doc_id", "domain", "title", "tables"
+- Each table should have "header" and "rows" arrays
+- Each row should be an object with keys matching the headers
+
+---------------------------------------
+CULTURAL CUE CATEGORIES (extract only these):
+1. Idioms / Fixed Expressions (non-literal phrases)
+2. Named People (real individuals)
+3. Named Places (countries, cities, regions, landmarks)
+4. Named Organizations (companies, institutions, movements, political groups)
+5. Cultural Events / Holidays / Traditions
+6. Cultural Artifacts (food, clothing, media, art, products, or culturally specific products/services such as halal food, halal apps, halal financial services, BDS-safe tools; DO NOT include abstract categories like “halal market”)
+7. Dialect or Slang Terms (region-specific vocabulary)
+
+---------------------------------------
+CONTEXTUAL CUE CATEGORIES (extract only these):
+1. Connectors / Discourse Markers (e.g., but, yet, so, while, however, although)
+2. Time or Sequence Markers (e.g., last year, in 2022, before, after, since then)
+3. Pronouns / References (he, she, they, this, that, it); include ONLY if referring to a named entity also present in the SUMMARY
+4. Causal or Logical Phrases (e.g., because, therefore, as a result, that’s why)
+5. Framing Phrases (e.g., culture wars, in a surprising move, a huge step backwards)
+6. Event Ordering Cues (e.g., within hours, shortly after that, as X happened)
+
+IMPORTANT: Your output should match the structure shown in the EXPECTED OUTPUT sections of the examples exactly.
+
+
+
+================================================================================
+FEW-SHOT EXAMPLES FOR DOMAIN: CULTURAL
+================================================================================
+
+====================
+EXAMPLE 1
+====================
+
+ARTICLE TITLE: Stephen Colbert on Trump’s White House East Wing demolition: ‘So deeply unsettling’
+DOMAIN: Cultural
+
+ORIGINAL ARTICLE (identify cues from here):
+Late-night hosts reacted to Donald Trump’s partial demolition of the East Wing of the White House for his proposed $250m gilded ballroom. Stephen Colbert “At this point, we’re nine months into this, you’d think it would be impossible for us to be shocked by Donald Trump,” said Stephen Colbert on Tuesday’s Late Show. “But give the man credit – every so often, he takes the time to attach the electrodes to our nipples. And then it feels like the first time.” Case in point: on Monday, as part of his White House renovation project to construct a gilded ballroom, Trump sent out a backhoe to rip off a part of the East Wing. “That is it, we are not giving him the security deposit back,” Colbert quipped. “That is so deeply unsettling,” he continued. “It’s like being a kid and seeing your teacher at the grocery store … for sale … in the meat department. “We’re just nine months into Trump’s term, and he’s already going ‘Hulk smash’ on the White House. Last time, it took at least four years to bring a demo crew to the Capitol,” he added, referring to January 6. The demolition comes after Trump promised that the $250m, 90,000-sq-ft ballroom renovation would not touch the existing White House. “So that was a lie,” said Colbert. “At this point, should we even believe that this is going to end up being a ballroom? It could just as easily end up being a combination Pizza Hut-Taco Bell!” The treasury department has even instructed its employees not to share any photos of the White House “construction”. “Not generally something you instruct when you’re proud of what’s going on,” Colbert noted. “Hey guys, remember, no photos at my wedding … and it’s not because I’m marrying a body pillow of Mariah Carey.’” The Daily Show “The government shutdown is now in its third week,” said Michael Kosta on the Daily Show. “Countless federal employees aren’t being paid. Food stamps will run out soon. And there’s no end in sight. But not to worry – President Trump is working day and night … to build a ballroom! “It’s exactly what you voted for, coalminers in Pennsylvania: 90,000 gilded sq ft for Trump to do the jerk-off dance in,” he joked. “But if you’re worried such a renovation might damage the people’s house, let Donald Trump put your fears to rest.” Trump claimed that the project would “not interfere with the current building” because it would be “near it but not touching it” and “paying total respect to the existing building, which I’m the biggest fan of, it’s my favorite” “Yeah, it’s my favorite. I never want to leave … and I’m never going to,” Kosta mocked. “I believe it’s his favorite building, though. He loves the history, the decor, the immunity from criminal convictions it provides. But great! The White House itself is going to be fine.” Until a backhoe tore down some of the East Wing facade. “Well, it looks like they touched it,” Kosta joked. “I mean, holy shit, who’s his general contractor? Bin Laden and Sons?” “Apparently ‘not touching’ the White House turned into ‘
+[...article truncated for brevity...]
+
+SUMMARY (check if cues are preserved here):
+Case in point: on Monday, as part of his White House renovation project to construct a gilded ballroom, Trump sent out a backhoe to rip off a part of the East Wing. In other news, during a White House press conference on Monday, Trump claimed that a cameraman hit a mirror with a piece of equipment. The demolition comes after Trump promised that the $250m, 90,000-sq-ft ballroom renovation would not touch the existing White House. But not to worry – President Trump is working day and night … to build a ballroom! Stephen Colbert “At this point, we’re nine months into this, you’d think it would be impossible for us to be shocked by Donald Trump,” said Stephen Colbert on Tuesday’s Late Show. “But if you’re worried such a renovation might damage the people’s house, let Donald Trump put your fears to rest.” “We’re just nine months into Trump’s term, and he’s already going ‘Hulk smash’ on the White House.
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 4,
+  "domain": "Cultural",
+  "title": "Stephen Colbert on Trump’s White House East Wing demolition: ‘So deeply unsettling’",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (Exact from Original)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“attach the electrodes to our nipples”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“not giving him the security deposit back”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“like being a kid and seeing your teacher at the grocery store … in the meat department”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“Hulk smash”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“So that was a lie”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“combination Pizza Hut–Taco Bell”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“working day and night”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“jerk-off dance”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“not touching” the White House",
+          "Preserved in Summary?": "Yes (concept preserved)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“I don’t think he’s planning on leaving”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“one room where Barron did not have to crouch”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“riles up the dogs”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Stephen Colbert",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Donald Trump",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Michael Kosta",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Seth Meyers",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Anthony Albanese",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Kristi Noem",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Stephen Miller",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Barron",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Bin Laden",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (Exact from Original)": "White House",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (Exact from Original)": "East Wing",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (Exact from Original)": "Capitol",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (Exact from Original)": "Pennsylvania",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (Exact from Original)": "Australia (implied)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (Exact from Original)": "Treasury Department",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (Exact from Original)": "The Daily Show",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (Exact from Original)": "TSA",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (Exact from Original)": "Homeland Security",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural event",
+          "Text Span (Exact from Original)": "January 6",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifact",
+          "Text Span (Exact from Original)": "Pizza Hut",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifact",
+          "Text Span (Exact from Original)": "Taco Bell",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifact",
+          "Text Span (Exact from Original)": "body pillow of Mariah Carey",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifact",
+          "Text Span (Exact from Original)": "food stamps",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Slang",
+          "Text Span (Exact from Original)": "“Hulk smash”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Slang",
+          "Text Span (Exact from Original)": "“jerk-off dance”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Slang",
+          "Text Span (Exact from Original)": "“holy shit”",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    },
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (Exact from Original)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (Exact from Original)": "“But”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (Exact from Original)": "“And then”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (Exact from Original)": "“So”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (Exact from Original)": "“But give the man credit”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (Exact from Original)": "“on Monday”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (Exact from Original)": "“nine months into this”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (Exact from Original)": "“Last time”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (Exact from Original)": "“after”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (Exact from Original)": "“in its third week”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (Exact from Original)": "“he” (Trump)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (Exact from Original)": "“it”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (Exact from Original)": "“this”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal phrase",
+          "Text Span (Exact from Original)": "“because”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal phrase",
+          "Text Span (Exact from Original)": "“not generally something you instruct when…”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal phrase",
+          "Text Span (Exact from Original)": "“might damage”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing",
+          "Text Span (Exact from Original)": "“Case in point:”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing",
+          "Text Span (Exact from Original)": "“In other news,”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing",
+          "Text Span (Exact from Original)": "“referring to January 6”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (Exact from Original)": "“The demolition comes after Trump promised…”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (Exact from Original)": "“Until a backhoe tore down…”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (Exact from Original)": "“After Trump praised…”",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    }
+  ]
+}
+
+
+====================
+EXAMPLE 2
+====================
+
+ARTICLE TITLE: ‘Dictator-for-life vibes’: our architecture critic on Trump’s bulletproof ballroom bling
+DOMAIN: Cultural
+
+ORIGINAL ARTICLE (identify cues from here):
+As if truffling thuggishly in pursuit of the Nobel peace prize wasn’t enough, the spectacle of bulldozers ripping into the White House is yet more evidence of Donald Trump’s unstinting quest for epic self-aggrandisement. Having decreed the East Wing not fit for purpose – namely, his purposes of swank and show – he plans to replace it with a faux classical bulletproof ballroom, capable of seating up to 650 partygoers. Renderings show a vast, glacially white aircraft hangar of a structure embellished with an ornate coffered ceiling, gilded Corinthian columns and drooping gold chandeliers. Nero, who conceived the original domus aurea, would feel right at home. Costing $250m (£187.5m), a sum to be extracted from sycophantic donors, Trump’s ballroom is one of the most grandiose White House projects to be implemented in more than a century, as he strives to bend the building – and US architecture more generally – to his will. On re-assuming the presidency, one of his first executive orders – under the title Making Federal Architecture Beautiful Again – mandated that “traditional and classical architecture” should be the preferred style for all federal public buildings, with Trump having the final veto on designs. A similarly prescriptive order was enacted during Trump’s first spell in office, only to be rescinded by Joe Biden. So, having been here before, the American Institute of Architects is wearily wary, stating: “AIA is extremely concerned about any revisions that remove control from local communities, mandate official federal design preferences, or otherwise hinder design freedom, and add bureaucratic hurdles for federal buildings.” White House occupants do have a history of tweaking, expanding and remodelling. Theodore Roosevelt added the West Wing, Richard Nixon installed a bowling lane and Harry S Truman commissioned an entire reconstruction. Several first ladies have revamped the decor and furnishings, notably Jackie Kennedy, whose soigné interiors were designed to connect the presidential home more resonantly with American history. The now doomed East Wing, dating from 1902, has been a much-changed addition. Intermittently housing the office of the first lady, what’s left of it sits above the presidential emergency operations centre, a high security bunker built during the second world war. Vice-president Dick Cheney and his retinue retreated there during the 9/11 attacks, as did Trump at the start of the George Floyd protests in 2020. The man who landed the ballroom job is James McCrery, founder of Washington-based McCrery Architects and a trenchant advocate of classical architecture. “Americans love classical architecture,” he has said, “because it is our formative architecture – and we love our nation’s formation.” Ironically, McCrery began his career working for Peter Eisenman, the high priest of deconstructivism, before a conversion of Damascene proportions prompted him to renounce the avant garde and “rethink his modernist education”. 
+[...article truncated for brevity...]
+
+SUMMARY (check if cues are preserved here):
+Costing $250m (£187.5m), a sum to be extracted from sycophantic donors, Trump’s ballroom is one of the most grandiose White House projects to be implemented in more than a century, as he strives to bend the building – and US architecture more generally – to his will. White House occupants do have a history of tweaking, expanding and remodelling. His more recent engoldening of the Oval Office, described by White House press secretary Karoline Leavitt as a “golden office for the golden age”, has been unflatteringly compared to a professional wrestler’s dressing room. “It gives Trump a narrative of authority and tradition,” says Daniel Abramson, professor of architectural history at Boston University, “and fits into his overarching strategy of undermining the established elites, including in architecture.” On re-assuming the presidency, one of his first executive orders – under the title Making Federal Architecture Beautiful Again – mandated that “traditional and classical architecture” should be the preferred style for all federal public buildings, with Trump having the final veto on designs. A similarly prescriptive order was enacted during Trump’s first spell in office, only to be rescinded by Joe Biden. Specialising in the design of “traditional” Catholic churches, McCrery was appointed by Trump during his first term to serve on the US Commission of Fine Arts, an independent federal agency with the power to review the “design and aesthetics” of all construction within Washington DC.
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 5,
+  "domain": "Cultural",
+  "title": "‘Dictator-for-life vibes’: our architecture critic on Trump’s bulletproof ballroom bling",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (Exact)",
+        "Preserved?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span (Exact)": "“truffling thuggishly”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span (Exact)": "“not fit for purpose”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span (Exact)": "“we have been here before”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span (Exact)": "“rollercoaster career”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span (Exact)": "“get away with just about anything”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span (Exact)": "“comfort blanket”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span (Exact)": "“imperial wheeze”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact)": "Donald Trump",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact)": "Joe Biden",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact)": "Theodore Roosevelt",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact)": "Richard Nixon",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact)": "Harry S Truman",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact)": "Jackie Kennedy",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact)": "Dick Cheney",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact)": "Peter Eisenman",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact)": "James McCrery",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact)": "Daniel Abramson",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact)": "Karoline Leavitt",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact)": "Nero",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact)": "Louis XIV",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "White House",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "East Wing",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "West Wing",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Mar-a-Lago",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Rose Garden",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Oval Office",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Lincoln Memorial",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Paris",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "American Institute of Architects / AIA",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "US Commission of Fine Arts",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "Boston University",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "McCrery Architects",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / traditions",
+          "Text Span (Exact)": "US’s 250th anniversary",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (Exact)": "“golden bronze cladding”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (Exact)": "“gilded, winged goddess of victory”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect / slang",
+          "Text Span (Exact)": "“bling”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect / slang",
+          "Text Span (Exact)": "“poky”",
+          "Preserved?": "No"
+        }
+      ]
+    },
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (Exact)",
+        "Preserved?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span (Exact)": "“however”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span (Exact)": "“but”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span (Exact)": "“and” (conjunctive linking)",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence marker",
+          "Text Span (Exact)": "“at the start of the George Floyd protests in 2020”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence marker",
+          "Text Span (Exact)": "“during the second world war”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence marker",
+          "Text Span (Exact)": "“during his first term”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence marker",
+          "Text Span (Exact)": "“on re-assuming the presidency”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence marker",
+          "Text Span (Exact)": "“next year”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (Exact)": "“he” (referring to Trump)",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (Exact)": "“his”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (Exact)": "“it”",
+          "Preserved?": "No (not used in summary)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrase",
+          "Text Span (Exact)": "“as he strives to…”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrase",
+          "Text Span (Exact)": "“because it is our formative architecture”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrase",
+          "Text Span (Exact)": "“fits into his overarching strategy”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrase",
+          "Text Span (Exact)": "“ironically”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrase",
+          "Text Span (Exact)": "“another imperial wheeze”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event-ordering cue",
+          "Text Span (Exact)": "“one of his first executive orders”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event-ordering cue",
+          "Text Span (Exact)": "“only to be rescinded by Joe Biden”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event-ordering cue",
+          "Text Span (Exact)": "“intermittently housing”",
+          "Preserved?": "No"
+        }
+      ]
+    }
+  ]
+}
+
+
+====================
+EXAMPLE 3
+====================
+
+ARTICLE TITLE: ‘A palette unlike anything in the west’: Ben Okri, Yinka Shonibare and more on how Nigerian art revived Britain’s cultural landscape
+DOMAIN: Cultural
+
+ORIGINAL ARTICLE (identify cues from here):
+Some primal energy was unleashed among Nigerian artists in the years leading up to independence. The century-long reign of colonialism was nearing its end and the people of Nigeria, with its over 300 tribes, its ebullient energy, were poised for a new future in which they would determine the shape and context of their lives. And the people who most articulated that double position, that paradox of modernity and tradition, were artists in all their stripes. Artists across the country, in constant dialogue with one another, created works that evoked their traditions but in a contemporary context. Artists such as Yusuf Grillo in the north, Bruce Onobrakpeya from the midwest, Ben Enwonwu from the east and Twins Seven Seven from the west were remaking the dream of art in a rigorously Nigerian context. The effect of the works created by the Zaria Art Society, the generation that congregated in Lagos and exhibited all over the world, was profound. Their work helped the nation to reconnect with its ancient ways, but adapted to modern times. It was a new art, brooding and celebratory. Often it was an art that hinted at the many dimensions of Nigerian mythology; often it drew upon daily realities. Spirits, ancestral presences, rituals, masquerades featured prominently, alongside popular subjects of dancing figures, portraits and landscapes, but rendered in a unique light, with a palette that was utterly unlike anything in the western tradition. It is important to stress that these were not artists creating in isolation. They were in touch with the currents of world art, as can be seen by the responses to cubism in many works of sculpture. It was not a response as such but a taking back, a retrieval, of what cubism took from Africa. The other area in which this Nigerian modernism revealed itself is in the Nigerian novel. Works such as Chinua Achebe’s seminal Things Fall Apart, Wole Soyinka’s The Interpreters and Amos Tutuola’s The Palm-Wine Drinkard are all works that depict a nation fermenting with energy and cultural tensions. Christopher Okigbo wrote in Labyrinths, 1967, that “We carry in our worlds that flourish / Our worlds that have failed.” But the opposite is also true. We carry in our worlds that have failed, our worlds that flourish. Two important contemporary events bear this out. The much-awaited opening of the art museum in the ancient city of Benin, MOWAA (Museum of West African Art), may be the single most important event in African art since the infamous burning of African works of art by the British in that same city, in 1897. The other is the Tate Modern in London’s upcoming exhibition, Nigerian Modernism, which aims to spotlight Nigeria’s contribution to the wider story of modern art and British culture. Nigerian writers and artists in Britain have been a vital part of that story, not least Ben Enwonwu, who sojourned here during the Nigerian civil war and sculpted Queen Elizabeth II in the 50s. For almost 100 years, figures such as Uzo Eg
+[...article truncated for brevity...]
+
+SUMMARY (check if cues are preserved here):
+A turning point in the recognition of Nigerian modernism came in 2018, when Enwonwu’s portrait Tutu sold at Bonhams for £1.2m. Suddenly, Nigerian art was being taken seriously by the global art market. Some primal energy was unleashed among Nigerian artists in the years leading up to independence. This exhibition centres Nigerian artists on their own terms. It was only when I lived in Lagos in the early 2000s that I saw the incredible range of Nigerian artists. Nigerian artists such as Wizkid, and British-Nigerian musicians such as Tinie Tempah and Dave, bring an energy and confidence that I try to bring to my writing. If I had to choose one piece of Nigerian art which has affected me the most, it would be Half of a Yellow Sun by Chimamanda Ngozi Adichie. It was powerful, uplifting and deeply connected to Nigerian identity, and left a lasting impression on me, even as a child.
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 11,
+  "domain": "Cultural",
+  "title": "‘A palette unlike anything in the west’: Ben Okri, Yinka Shonibare and more on how Nigerian art revived Britain’s cultural landscape",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (Exact Quote from Original)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact Quote from Original)": "\"primal energy was unleashed\"",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Yusuf Grillo",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Bruce Onobrakpeya",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Ben Enwonwu",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Twins Seven Seven",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Chinua Achebe",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Wole Soyinka",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Amos Tutuola",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Christopher Okigbo",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "El Anatsui",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Ladi Kwali",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Yinka Shonibare",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Sade Adu",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Ben Okri",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Chi Onwurah",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Chimamanda Ngozi Adichie",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Fela Kuti",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Uzo Egonu",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Demas Nwoko",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Njideka Akunyili Crosby",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Joy Labinjo",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Ife Ogunjobi",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Skepta",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Wizkid",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Burna Boy",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Theresa Lola",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Niyi Osundare",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Molara Ogundipe",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact Quote from Original)": "Gabriel Okara",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (Exact Quote from Original)": "Nigeria",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (Exact Quote from Original)": "Lagos",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (Exact Quote from Original)": "Benin (city)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (Exact Quote from Original)": "Britain / UK",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (Exact Quote from Original)": "London",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (Exact Quote from Original)": "Venice Biennale",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (Exact Quote from Original)": "Newcastle",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (Exact Quote from Original)": "Zaria Art Society",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (Exact Quote from Original)": "Tate Modern",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (Exact Quote from Original)": "Bonhams",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (Exact Quote from Original)": "MOWAA (Museum of West African Art)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (Exact Quote from Original)": "National Museum, Lagos",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (Exact Quote from Original)": "Festival of Black Arts and Culture",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural event",
+          "Text Span (Exact Quote from Original)": "#EndSARS",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural event",
+          "Text Span (Exact Quote from Original)": "\"leading up to independence\" (historical era)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifact",
+          "Text Span (Exact Quote from Original)": "“Things Fall Apart”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifact",
+          "Text Span (Exact Quote from Original)": "“Half of a Yellow Sun”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifact",
+          "Text Span (Exact Quote from Original)": "“The Palm-Wine Drinkard”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifact",
+          "Text Span (Exact Quote from Original)": "“The Interpreters”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifact",
+          "Text Span (Exact Quote from Original)": "Anyanwu (sculpture)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifact",
+          "Text Span (Exact Quote from Original)": "Benin bronzes",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifact",
+          "Text Span (Exact Quote from Original)": "Afrobeats",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifact",
+          "Text Span (Exact Quote from Original)": "Africa Dances series",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifact",
+          "Text Span (Exact Quote from Original)": "Yoruba rhythms",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifact",
+          "Text Span (Exact Quote from Original)": "Highlife music",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifact",
+          "Text Span (Exact Quote from Original)": "Oriki",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Slang / dialect",
+          "Text Span (Exact Quote from Original)": "“hustlers” (slang)",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    },
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (Exact Quote from Original)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (Exact Quote from Original)": "\"but\"",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (Exact Quote from Original)": "\"and\"",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (Exact Quote from Original)": "\"as\"",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (Exact Quote from Original)": "\"so\"",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (Exact Quote from Original)": "\"because\"",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (Exact Quote from Original)": "\"and yet\" (implicit)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (Exact Quote from Original)": "\"leading up to independence\"",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (Exact Quote from Original)": "\"in the 50s\"",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (Exact Quote from Original)": "\"1967\"",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (Exact Quote from Original)": "\"in 2018\"",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (Exact Quote from Original)": "\"in 2006\"",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (Exact Quote from Original)": "\"in the early 2000s\"",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (Exact Quote from Original)": "\"in 1977\"",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (Exact Quote from Original)": "\"over 100 years\"",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (Exact Quote from Original)": "\"around a decade ago\"",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (Exact Quote from Original)": "\"they\"",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (Exact Quote from Original)": "\"it\"",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (Exact Quote from Original)": "\"we\"",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (Exact Quote from Original)": "\"I\"",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (Exact Quote from Original)": "\"this\"",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (Exact Quote from Original)": "\"that\"",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal phrase",
+          "Text Span (Exact Quote from Original)": "\"as a result\"",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal phrase",
+          "Text Span (Exact Quote from Original)": "\"because\"",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal phrase",
+          "Text Span (Exact Quote from Original)": "\"which\" (explanatory clause)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrase",
+          "Text Span (Exact Quote from Original)": "\"It is important to stress that\"",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrase",
+          "Text Span (Exact Quote from Original)": "\"For me\"",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrase",
+          "Text Span (Exact Quote from Original)": "\"If I had to choose\"",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrase",
+          "Text Span (Exact Quote from Original)": "“A turning point…”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event-ordering",
+          "Text Span (Exact Quote from Original)": "“suddenly”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event-ordering",
+          "Text Span (Exact Quote from Original)": "“first saw”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event-ordering",
+          "Text Span (Exact Quote from Original)": "“began”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event-ordering",
+          "Text Span (Exact Quote from Original)": "“then”",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    }
+  ]
+}
+
+
+
+================================================================================
+TARGET ARTICLE/SUMMARY TO ANALYZE (NOT SHOWN IN THIS PREVIEW)
+================================================================================
+
+ARTICLE TITLE: [Target article title will be inserted here]
+DOMAIN: [Target domain will be inserted here]
+
+ORIGINAL ARTICLE (identify cues from here):
+[Full target article text will be inserted here]
+
+SUMMARY (check if cues are preserved here):
+[Target summary text will be inserted here]
+
+NOW OUTPUT YOUR ANALYSIS AS JSON:
