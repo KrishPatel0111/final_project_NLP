@@ -1,0 +1,460 @@
+================================================================================
+SYSTEM INSTRUCTION
+================================================================================
+You are an expert at analyzing news articles and their summaries to identify cultural and contextual cues.
+
+Your task is to:
+1. Read the ORIGINAL ARTICLE and identify cultural/contextual cues (quotes, cultural references, named entities, etc.)
+2. Read the SUMMARY and determine if each cue is preserved or lost
+3. Output a JSON object with the exact structure shown in the examples
+
+CRITICAL INSTRUCTIONS:
+- START YOUR RESPONSE WITH { AND END WITH }
+- DO NOT add markdown code blocks (no ```json)
+- DO NOT add explanations before or after the JSON
+- DO NOT add extra fields not shown in the examples
+- Follow the exact JSON structure from the examples
+- Use the exact same field names: "doc_id", "domain", "title", "tables"
+- Each table should have "header" and "rows" arrays
+- Each row should be an object with keys matching the headers
+
+---------------------------------------
+CULTURAL CUE CATEGORIES (extract only these):
+1. Idioms / Fixed Expressions (non-literal phrases)
+2. Named People (real individuals)
+3. Named Places (countries, cities, regions, landmarks)
+4. Named Organizations (companies, institutions, movements, political groups)
+5. Cultural Events / Holidays / Traditions
+6. Cultural Artifacts (food, clothing, media, art, products, or culturally specific products/services such as halal food, halal apps, halal financial services, BDS-safe tools; DO NOT include abstract categories like “halal market”)
+7. Dialect or Slang Terms (region-specific vocabulary)
+
+---------------------------------------
+CONTEXTUAL CUE CATEGORIES (extract only these):
+1. Connectors / Discourse Markers (e.g., but, yet, so, while, however, although)
+2. Time or Sequence Markers (e.g., last year, in 2022, before, after, since then)
+3. Pronouns / References (he, she, they, this, that, it); include ONLY if referring to a named entity also present in the SUMMARY
+4. Causal or Logical Phrases (e.g., because, therefore, as a result, that’s why)
+5. Framing Phrases (e.g., culture wars, in a surprising move, a huge step backwards)
+6. Event Ordering Cues (e.g., within hours, shortly after that, as X happened)
+
+IMPORTANT: Your output should match the structure shown in the EXPECTED OUTPUT sections of the examples exactly.
+
+
+
+================================================================================
+FEW-SHOT EXAMPLES FOR DOMAIN: CULTURAL
+================================================================================
+
+====================
+EXAMPLE 1
+====================
+
+ARTICLE TITLE: Stephen Colbert on Trump’s White House East Wing demolition: ‘So deeply unsettling’
+DOMAIN: Cultural
+
+ORIGINAL ARTICLE (identify cues from here):
+Late-night hosts reacted to Donald Trump’s partial demolition of the East Wing of the White House for his proposed $250m gilded ballroom. Stephen Colbert “At this point, we’re nine months into this, you’d think it would be impossible for us to be shocked by Donald Trump,” said Stephen Colbert on Tuesday’s Late Show. “But give the man credit – every so often, he takes the time to attach the electrodes to our nipples. And then it feels like the first time.” Case in point: on Monday, as part of his White House renovation project to construct a gilded ballroom, Trump sent out a backhoe to rip off a part of the East Wing. “That is it, we are not giving him the security deposit back,” Colbert quipped. “That is so deeply unsettling,” he continued. “It’s like being a kid and seeing your teacher at the grocery store … for sale … in the meat department. “We’re just nine months into Trump’s term, and he’s already going ‘Hulk smash’ on the White House. Last time, it took at least four years to bring a demo crew to the Capitol,” he added, referring to January 6. The demolition comes after Trump promised that the $250m, 90,000-sq-ft ballroom renovation would not touch the existing White House. “So that was a lie,” said Colbert. “At this point, should we even believe that this is going to end up being a ballroom? It could just as easily end up being a combination Pizza Hut-Taco Bell!” The treasury department has even instructed its employees not to share any photos of the White House “construction”. “Not generally something you instruct when you’re proud of what’s going on,” Colbert noted. “Hey guys, remember, no photos at my wedding … and it’s not because I’m marrying a body pillow of Mariah Carey.’” The Daily Show “The government shutdown is now in its third week,” said Michael Kosta on the Daily Show. “Countless federal employees aren’t being paid. Food stamps will run out soon. And there’s no end in sight. But not to worry – President Trump is working day and night … to build a ballroom! “It’s exactly what you voted for, coalminers in Pennsylvania: 90,000 gilded sq ft for Trump to do the jerk-off dance in,” he joked. “But if you’re worried such a renovation might damage the people’s house, let Donald Trump put your fears to rest.” Trump claimed that the project would “not interfere with the current building” because it would be “near it but not touching it” and “paying total respect to the existing building, which I’m the biggest fan of, it’s my favorite” “Yeah, it’s my favorite. I never want to leave … and I’m never going to,” Kosta mocked. “I believe it’s his favorite building, though. He loves the history, the decor, the immunity from criminal convictions it provides. But great! The White House itself is going to be fine.” Until a backhoe tore down some of the East Wing facade. “Well, it looks like they touched it,” Kosta joked. “I mean, holy shit, who’s his general contractor? Bin Laden and Sons?” “Apparently ‘not touching’ the White House turned into ‘
+[...article truncated for brevity...]
+
+SUMMARY (check if cues are preserved here):
+Case in point: on Monday, as part of his White House renovation project to construct a gilded ballroom, Trump sent out a backhoe to rip off a part of the East Wing. In other news, during a White House press conference on Monday, Trump claimed that a cameraman hit a mirror with a piece of equipment. The demolition comes after Trump promised that the $250m, 90,000-sq-ft ballroom renovation would not touch the existing White House. But not to worry – President Trump is working day and night … to build a ballroom! Stephen Colbert “At this point, we’re nine months into this, you’d think it would be impossible for us to be shocked by Donald Trump,” said Stephen Colbert on Tuesday’s Late Show. “But if you’re worried such a renovation might damage the people’s house, let Donald Trump put your fears to rest.” “We’re just nine months into Trump’s term, and he’s already going ‘Hulk smash’ on the White House.
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 4,
+  "domain": "Cultural",
+  "title": "Stephen Colbert on Trump’s White House East Wing demolition: ‘So deeply unsettling’",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (Exact from Original)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“attach the electrodes to our nipples”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“not giving him the security deposit back”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“like being a kid and seeing your teacher at the grocery store … in the meat department”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“Hulk smash”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“So that was a lie”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“combination Pizza Hut–Taco Bell”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“working day and night”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“jerk-off dance”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“not touching” the White House",
+          "Preserved in Summary?": "Yes (concept preserved)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“I don’t think he’s planning on leaving”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“one room where Barron did not have to crouch”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“riles up the dogs”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Stephen Colbert",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Donald Trump",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Michael Kosta",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Seth Meyers",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Anthony Albanese",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Kristi Noem",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Stephen Miller",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Barron",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Bin Laden",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (Exact from Original)": "White House",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (Exact from Original)": "East Wing",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (Exact from Original)": "Capitol",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (Exact from Original)": "Pennsylvania",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (Exact from Original)": "Australia (implied)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (Exact from Original)": "Treasury Department",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (Exact from Original)": "The Daily Show",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (Exact from Original)": "TSA",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (Exact from Original)": "Homeland Security",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural event",
+          "Text Span (Exact from Original)": "January 6",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifact",
+          "Text Span (Exact from Original)": "Pizza Hut",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifact",
+          "Text Span (Exact from Original)": "Taco Bell",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifact",
+          "Text Span (Exact from Original)": "body pillow of Mariah Carey",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifact",
+          "Text Span (Exact from Original)": "food stamps",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Slang",
+          "Text Span (Exact from Original)": "“Hulk smash”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Slang",
+          "Text Span (Exact from Original)": "“jerk-off dance”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Slang",
+          "Text Span (Exact from Original)": "“holy shit”",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    },
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (Exact from Original)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (Exact from Original)": "“But”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (Exact from Original)": "“And then”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (Exact from Original)": "“So”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (Exact from Original)": "“But give the man credit”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (Exact from Original)": "“on Monday”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (Exact from Original)": "“nine months into this”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (Exact from Original)": "“Last time”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (Exact from Original)": "“after”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (Exact from Original)": "“in its third week”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (Exact from Original)": "“he” (Trump)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (Exact from Original)": "“it”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (Exact from Original)": "“this”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal phrase",
+          "Text Span (Exact from Original)": "“because”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal phrase",
+          "Text Span (Exact from Original)": "“not generally something you instruct when…”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal phrase",
+          "Text Span (Exact from Original)": "“might damage”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing",
+          "Text Span (Exact from Original)": "“Case in point:”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing",
+          "Text Span (Exact from Original)": "“In other news,”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing",
+          "Text Span (Exact from Original)": "“referring to January 6”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (Exact from Original)": "“The demolition comes after Trump promised…”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (Exact from Original)": "“Until a backhoe tore down…”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (Exact from Original)": "“After Trump praised…”",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    }
+  ]
+}
+
+
+
+================================================================================
+TARGET ARTICLE/SUMMARY TO ANALYZE (NOT SHOWN IN THIS PREVIEW)
+================================================================================
+
+ARTICLE TITLE: [Target article title will be inserted here]
+DOMAIN: [Target domain will be inserted here]
+
+ORIGINAL ARTICLE (identify cues from here):
+[Full target article text will be inserted here]
+
+SUMMARY (check if cues are preserved here):
+[Target summary text will be inserted here]
+
+NOW OUTPUT YOUR ANALYSIS AS JSON:

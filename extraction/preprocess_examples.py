@@ -68,7 +68,7 @@ def save_domain_prompts(domain_map: Dict[str, List[Dict]], output_dir: str):
         formatted_examples = []
         for idx, example in enumerate(examples, 1):
             # Add separator and example number
-            example_header = f"\n{'='*80}\nEXAMPLE {idx}\n{'='*80}\n\n"
+            example_header = f""
             
             try:
                 example_text = create_example_prompt_text(example)
@@ -77,8 +77,8 @@ def save_domain_prompts(domain_map: Dict[str, List[Dict]], output_dir: str):
                     'doc_id': example.get('doc_id'),
                     'title': example.get('title', 'Untitled'),
                     'formatted_text': example_header + example_text,
-                    'has_article': 'article_text' in example and len(example.get('article_text', '')) > 0,
-                    'has_summary': 'summary_text' in example and len(example.get('summary_text', '')) > 0
+                    'has_article': 'article_text' in example and len(example.get('article_text', '')) > 0 and example.get('article_text', '')!="[Article not found]",
+                    'has_summary': 'summary_text' in example and len(example.get('summary_text', '')) > 0 and example.get('summary_text', '')!="[Summary not found]"
                 })
                 
             except Exception as e:
@@ -114,6 +114,25 @@ CRITICAL INSTRUCTIONS:
 - Use the exact same field names: "doc_id", "domain", "title", "tables"
 - Each table should have "header" and "rows" arrays
 - Each row should be an object with keys matching the headers
+
+---------------------------------------
+CULTURAL CUE CATEGORIES (extract only these):
+1. Idioms / Fixed Expressions (non-literal phrases)
+2. Named People (real individuals)
+3. Named Places (countries, cities, regions, landmarks)
+4. Named Organizations (companies, institutions, movements, political groups)
+5. Cultural Events / Holidays / Traditions
+6. Cultural Artifacts (food, clothing, media, art, products, or culturally specific products/services such as halal food, halal apps, halal financial services, BDS-safe tools; DO NOT include abstract categories like “halal market”)
+7. Dialect or Slang Terms (region-specific vocabulary)
+
+---------------------------------------
+CONTEXTUAL CUE CATEGORIES (extract only these):
+1. Connectors / Discourse Markers (e.g., but, yet, so, while, however, although)
+2. Time or Sequence Markers (e.g., last year, in 2022, before, after, since then)
+3. Pronouns / References (he, she, they, this, that, it); include ONLY if referring to a named entity also present in the SUMMARY
+4. Causal or Logical Phrases (e.g., because, therefore, as a result, that’s why)
+5. Framing Phrases (e.g., culture wars, in a surprising move, a huge step backwards)
+6. Event Ordering Cues (e.g., within hours, shortly after that, as X happened)
 
 IMPORTANT: Your output should match the structure shown in the EXPECTED OUTPUT sections of the examples exactly.
 """

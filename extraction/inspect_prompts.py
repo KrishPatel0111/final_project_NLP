@@ -31,7 +31,10 @@ def generate_prompt_for_inspection(domain, n_examples=2):
     prompt_parts.append("="*80)
     prompt_parts.append(f"FEW-SHOT EXAMPLES FOR DOMAIN: {domain.upper()}")
     prompt_parts.append("="*80)
-    prompt_parts.append("\n".join(examples))
+    for idx, ex in enumerate(examples, start=1):
+        header = f"\n{'='*20}\nEXAMPLE {idx}\n{'='*20}\n\n"
+        prompt_parts.append(header + ex)
+
     prompt_parts.append("\n")
     
     # Add placeholder for target article/summary
@@ -63,7 +66,7 @@ def save_domain_prompts():
     print("="*80)
     
     # Define domains (based on your labeled data)
-    domains = ["Educational", "Politics", "Cultural", "Sport", "Technology"]
+    domains = ["Educational", "Politics", "Cultural", "Sport", "Technology", "Social"]
     
     # Create output directory
     output_dir = "data/prompt_previews"

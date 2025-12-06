@@ -1,0 +1,508 @@
+================================================================================
+SYSTEM INSTRUCTION
+================================================================================
+You are an expert at analyzing news articles and their summaries to identify cultural and contextual cues.
+
+Your task is to:
+1. Read the ORIGINAL ARTICLE and identify cultural/contextual cues (quotes, cultural references, named entities, etc.)
+2. Read the SUMMARY and determine if each cue is preserved or lost
+3. Output a JSON object with the exact structure shown in the examples
+
+CRITICAL INSTRUCTIONS:
+- START YOUR RESPONSE WITH { AND END WITH }
+- DO NOT add markdown code blocks (no ```json)
+- DO NOT add explanations before or after the JSON
+- DO NOT add extra fields not shown in the examples
+- Follow the exact JSON structure from the examples
+- Use the exact same field names: "doc_id", "domain", "title", "tables"
+- Each table should have "header" and "rows" arrays
+- Each row should be an object with keys matching the headers
+
+---------------------------------------
+CULTURAL CUE CATEGORIES (extract only these):
+1. Idioms / Fixed Expressions (non-literal phrases)
+2. Named People (real individuals)
+3. Named Places (countries, cities, regions, landmarks)
+4. Named Organizations (companies, institutions, movements, political groups)
+5. Cultural Events / Holidays / Traditions
+6. Cultural Artifacts (food, clothing, media, art, products, or culturally specific products/services such as halal food, halal apps, halal financial services, BDS-safe tools; DO NOT include abstract categories like “halal market”)
+7. Dialect or Slang Terms (region-specific vocabulary)
+
+---------------------------------------
+CONTEXTUAL CUE CATEGORIES (extract only these):
+1. Connectors / Discourse Markers (e.g., but, yet, so, while, however, although)
+2. Time or Sequence Markers (e.g., last year, in 2022, before, after, since then)
+3. Pronouns / References (he, she, they, this, that, it); include ONLY if referring to a named entity also present in the SUMMARY
+4. Causal or Logical Phrases (e.g., because, therefore, as a result, that’s why)
+5. Framing Phrases (e.g., culture wars, in a surprising move, a huge step backwards)
+6. Event Ordering Cues (e.g., within hours, shortly after that, as X happened)
+
+IMPORTANT: Your output should match the structure shown in the EXPECTED OUTPUT sections of the examples exactly.
+
+
+
+================================================================================
+FEW-SHOT EXAMPLES FOR DOMAIN: POLITICS
+================================================================================
+
+====================
+EXAMPLE 1
+====================
+
+ARTICLE TITLE: ‘History is repeating itself’: fight against far-right in London’s East End goes on
+DOMAIN: Politics
+
+ORIGINAL ARTICLE (identify cues from here):
+“The East End of London is the far right’s prime target – the essence of everything they don’t like. They feel if they can march through our borough with impunity, they can go anywhere. For them, it’s like Wembley (stadium), it’s the ultimate goal,” said Glyn Robbins, co-founder of United East End, an anti-far right coalition of community organisations. In the East End, the historically working-class neighbourhoods in the shadow of the City of London, there’s a feeling that history is repeating itself. It was 89 years ago this month that local people, many of them British Jews, drove out Oswald Mosley’s Blackshirt militia from Whitechapel in the East End, in what has become known as the Battle of Cable Street. In the decades since, the National Front, the BNP and the English Defence League have all tried to carve out a foothold in the East End. In 2025, communities are fighting back against the hard right yet again. This week, rather than attempting to escort protesters, as they had in Mosley’s day, London’s police stopped the hard right UK Independence Party (Ukip) from staging a “crusade on Whitechapel” in the borough of Tower Hamlets, where 40% of the population is Muslim and 14% were born in the EU. The Metropolitan police said the ban was to prevent “serious disorder.” It comes weeks after Tower Hamlets council passed a motion that said flags were “important emblems of patriotism and pride”, but condemned “outside far-right agitators … attempting to import division into our borough,” particularly on the Isle of Dogs, where the far-right BNP won a council seat back in 1993. Furious far-right influencer Tommy Robinson tweeted the photographs of nine British Muslim councillors to his 1.7 million followers, saying: “Here’s a list of the names and faces of Tower Hamlets council for some perspective.” The government’s decision to place asylum seekers at Britannia International Hotel in Canary Wharf, Tower Hamlets has attracted intense anti-migrant protest since the summer, including from a group called the Pink Ladies who say they are concerned about safety. While this weekend’s Ukip march has been stopped, counter-protesters still plan to gather in Whitechapel on Saturday. Dave Rosenberg, who has run walking tours through the East End since 2007, including on local anti-fascist history, will be among them. “I think we owe it to our parents, grandparents and great-grandparents to continue that struggle in the East End,” said Rosenberg, 67. For Rosenberg, the ban on the march was a “double-edged sword” – “a relief to the most targeted communities”, but also “giving wider and wider powers to police to say who can demonstrate and where”. “There’s a very direct parallel with the 1930s,” he said. In 1936, the Public Order Act was introduced to inhibit Mosley’s British Union of Fascists. Mosley’s wasn’t the first anti-immigrant movement to target the area – back in 1901, the British Brothers’ League (BBL) launched itself with a 1,000-strong rally in the
+[...article truncated for brevity...]
+
+SUMMARY (check if cues are preserved here):
+“Racism has a long history and Tower Hamlets, we’ve had a particular variant of it,” Robbins, a university lecturer who has seen off numerous far-right marches since United East End was created in 2010. The government’s decision to place asylum seekers at Britannia International Hotel in Canary Wharf, Tower Hamlets has attracted intense anti-migrant protest since the summer, including from a group called the Pink Ladies who say they are concerned about safety. Lutfur Rahman, Tower Hamlets’ British Bengali mayor, described the online attack as “despicable”. This week, rather than attempting to escort protesters, as they had in Mosley’s day, London’s police stopped the hard right UK Independence Party (Ukip) from staging a “crusade on Whitechapel” in the borough of Tower Hamlets, where 40% of the population is Muslim and 14% were born in the EU. It comes weeks after Tower Hamlets council passed a motion that said flags were “important emblems of patriotism and pride”, but condemned “outside far-right agitators … attempting to import division into our borough,” particularly on the Isle of Dogs, where the far-right BNP won a council seat back in 1993. Furious far-right influencer Tommy Robinson tweeted the photographs of nine British Muslim councillors to his 1.7 million followers, saying: “Here’s a list of the names and faces of Tower Hamlets council for some perspective.” When she was a young girl, her father was attacked in Tower Hamlets and left disabled as a result.
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 6,
+  "domain": "Politics",
+  "title": "‘History is repeating itself’: fight against far-right in London’s East End goes on",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (Exact)",
+        "Preserved?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact)": "“history is repeating itself”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact)": "“our territory”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Glyn Robbins",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Oswald Mosley",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Dave Rosenberg",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Safia Jama",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Rupert Lowe",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Elon Musk",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Tommy Robinson",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Lutfur Rahman",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Rev James Olanipekun",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "MP Rupert Lowe",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Pearly kings and queens (cultural identity group)",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "East End of London",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Whitechapel",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Tower Hamlets",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Canary Wharf",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Britannia International Hotel",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Brick Lane",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Spitalfields",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Isle of Dogs",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Royal London Hospital (town hall)",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Great Yarmouth",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "England and Wales",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "UK",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "United East End",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "UK Independence Party (Ukip)",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "Metropolitan Police",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "British Union of Fascists",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "British Brothers’ League (BBL)",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "BNP",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "National Front",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "English Defence League",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "Women’s Inclusive Team",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "Stand Up to Racism",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / holidays",
+          "Text Span (Exact)": "Battle of Cable Street",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / holidays",
+          "Text Span (Exact)": "festival on Brick Lane (curry festival)",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (Exact)": "curry (dish)",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (Exact)": "dual-language signs in English and Bengali",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (Exact)": "steel band, Celtic dancers, klezmer musicians",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (Exact)": "Bengali, Somali, Chinese acts",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect / slang",
+          "Text Span (Exact)": "“cockneys”",
+          "Preserved?": "No"
+        }
+      ]
+    },
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (Exact)",
+        "Preserved?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“but”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“however”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“while”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“as well as”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time or sequence markers",
+          "Text Span (Exact)": "“89 years ago”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time or sequence markers",
+          "Text Span (Exact)": "“this week”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time or sequence markers",
+          "Text Span (Exact)": "“in February”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time or sequence markers",
+          "Text Span (Exact)": "“by June”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time or sequence markers",
+          "Text Span (Exact)": "“since the summer”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time or sequence markers",
+          "Text Span (Exact)": "“in 1936”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time or sequence markers",
+          "Text Span (Exact)": "“last week”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time or sequence markers",
+          "Text Span (Exact)": "“in September”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time markers",
+          "Text Span (Exact)": "“decades since”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (Exact)": "“they”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (Exact)": "“this”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (Exact)": "“it”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (Exact)": "“he” / “she”",
+          "Preserved?": "Yes (she referring to Safia Jama, preserved indirectly)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrases",
+          "Text Span (Exact)": "“as a result”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrases",
+          "Text Span (Exact)": "“due to”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrases",
+          "Text Span (Exact)": "“to prevent ‘serious disorder’”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“for them, it’s like Wembley… ultimate goal”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“has attracted” (ongoing)",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“this weekend’s march has been stopped”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“it comes weeks after”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“giving wider powers to police”",
+          "Preserved?": "No"
+        }
+      ]
+    }
+  ]
+}
+
+
+
+================================================================================
+TARGET ARTICLE/SUMMARY TO ANALYZE (NOT SHOWN IN THIS PREVIEW)
+================================================================================
+
+ARTICLE TITLE: [Target article title will be inserted here]
+DOMAIN: [Target domain will be inserted here]
+
+ORIGINAL ARTICLE (identify cues from here):
+[Full target article text will be inserted here]
+
+SUMMARY (check if cues are preserved here):
+[Target summary text will be inserted here]
+
+NOW OUTPUT YOUR ANALYSIS AS JSON:

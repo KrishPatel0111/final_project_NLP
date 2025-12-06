@@ -35,9 +35,16 @@ def load_domain_examples(domain: str, templates_dir: str = "data/prompt_template
     
     with open(domain_file, 'r', encoding='utf-8') as f:
         examples = json.load(f)
-    
-    # Return up to n formatted example texts
-    return [ex['formatted_text'] for ex in examples[:n]]
+
+    # Keep only examples that have has_article == True
+    examples_with_article = [ex for ex in examples if ex.get("has_article")]
+
+    if not examples_with_article:
+        print(f"⚠️  No examples with has_article=True for domain '{domain}'")
+        return []
+
+    # Return up to n formatted example texts from filtered list
+    return [ex["formatted_text"] for ex in examples_with_article[:n]]
 
 
 def build_fast_prompt(
