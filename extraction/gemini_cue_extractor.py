@@ -235,6 +235,7 @@ def extract_cues_from_article(article_title, article_text, domain, model, templa
         
         # Parse JSON
         try:
+            print("="*80)
             result = json.loads(response.text)
             return result  # ← Return ONLY result
         except json.JSONDecodeError:

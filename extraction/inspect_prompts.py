@@ -54,7 +54,7 @@ def save_domain_prompts():
     print("="*80)
     
     # Define domains (based on your labeled data)
-    domains = ["Educational", "Politics", "Cultural", "Sport", "Technology", "Social"]
+    domains = ["Education", "Politics", "Culture", "Sports", "Tech", "Social"]
     
     # Create output directory
     output_dir = "data/prompt_previews"
