@@ -1,5 +1,6 @@
-# extraction/deepseek_cue_extraction.py
+# extraction/extract_article_cues.py
 
+import openai
 import json
 import pandas as pd
 from tqdm import tqdm
@@ -7,228 +8,423 @@ import os
 from dotenv import load_dotenv
 import re
 from datetime import datetime
-import requests
 
-load_dotenv()
+"""
+STAGE 1: EXTRACT ALL CUES FROM ARTICLES
+
+This script extracts ALL cultural and contextual cues from each unique article.
+Run this ONCE to generate the canonical set of cues for each article.
+
+Input:
+  - data/guardian_articles_raw.csv (original articles)
+  
+Output:
+  - data/article_cues/article_cues.jsonl (one line per article with all cues)
+  
+Usage:
+  python extraction/extract_article_cues.py
+"""
+
+# ============================================================================
+# CONFIGURATION
+# ============================================================================
 
 CONFIG = {
-    "templates_dir": "data/prompt_previews",
-    "n_examples": 2,
-    "output_file": "data/extractions/deepseek_article_only_cues.jsonl",
-    "api_url": "https://api.deepseek.com/chat/completions",
-    "model_name": "deepseek-chat",
-    "temperature": 0.1,
+    'templates_dir': 'data/prompt_previews',
+    'n_examples': 2,
+    'output_dir': 'data/article_cues',
+    'output_file': 'data/article_cues/gpt4o_mini_cues.jsonl',
+    'model_name': 'gpt-4o-mini',
+    'temperature': 0.1,
 }
 
+# ============================================================================
+# PROMPT BUILDING
+# ============================================================================
 
-TEMPLATES = {}
+def load_template(domain, templates_dir):
+    """Load prompt template for a domain."""
+    
+    filename = f"{domain.lower()}_ex_no_{CONFIG['n_examples']}.txt"
+    filepath = os.path.join(templates_dir, filename)
+    
+    if os.path.exists(filepath):
+        with open(filepath, 'r', encoding='utf-8') as f:
+            return f.read()
+    
+    # Fallback to politics
+    fallback = os.path.join(templates_dir, f"politics_{CONFIG['n_examples']}ex.txt")
+    if os.path.exists(fallback):
+        with open(fallback, 'r', encoding='utf-8') as f:
+            return f.read()
+    
+    return None
 
-# --------------------------------------------------------------------
-# TEMPLATE LOADING
-# --------------------------------------------------------------------
-def load_templates():
-    global TEMPLATES
-    template_dir = CONFIG["templates_dir"]
-    domains = ["educational", "politics", "cultural", "sport", "technology", "social"]
+def build_article_extraction_prompt(article_title, article_text, domain, templates_dir):
+    """
+    Build prompt to extract meaningful cues from an article.
+    Updated to be more selective and avoid noise.
+    """
+    
+    template = load_template(domain, templates_dir)
+    
+    if not template:
+        raise ValueError(f"No template found for domain: {domain}")
+    
+    # More selective extraction prompt
+    target = f"""ARTICLE TITLE: {article_title}
+DOMAIN: {domain}
 
-    print(f"\n📋 Loading templates from: {template_dir}")
+ORIGINAL ARTICLE:
+{article_text}
 
-    for domain in domains:
-        fname = f"{domain}_ex_no_{CONFIG['n_examples']}.txt"
-        path = os.path.join(template_dir, fname)
+TASK: Extract cultural and contextual cues from the article above.
 
-        if os.path.exists(path):
-            TEMPLATES[domain] = open(path, "r", encoding="utf-8").read()
-            print(f"   ✅ Loaded template for {domain}")
-        else:
-            print(f"   ⚠️ Missing: {fname}")
+CULTURAL CUES TO EXTRACT:
+✓ Idioms and fixed expressions (e.g., "double-edged sword", "history repeating itself")
+✓ Named people (e.g., "Tommy Robinson", "Oswald Mosley")
+✓ Named places (e.g., "Tower Hamlets", "Whitechapel", "Cable Street")
+✓ Organizations (e.g., "BNP", "English Defence League", "United East End")
+✓ Cultural events (e.g., "Battle of Cable Street", "curry festival")
+✓ Cultural artifacts (e.g., "flags", "Pearly kings and queens")
+✓ Slang or dialect terms (e.g., "cockneys")
 
-    if len(TEMPLATES) == 0:
-        print("❌ No templates loaded")
-        return False
+CONTEXTUAL CUES TO EXTRACT:
+✓ Discourse markers (e.g., "however", "therefore", "rather than")
+✓ Time/sequence markers (e.g., "89 years ago", "In the decades since", "This week")
+✓ Specific pronouns with clear antecedents (e.g., "his march" referring to Robinson)
+✓ Causal phrases explaining why/how (e.g., "as a result", "to prevent disorder")
+✓ Framing phrases that set context (e.g., "double-edged sword", "prime target")
+✓ Event ordering cues (e.g., "weeks after", "Since then", "before the rally")
 
-    return True
+DO NOT EXTRACT:
+✗ Generic pronouns without context (it, they, he, she used generally)
+✗ Simple connectors (and, but, or, so, as)
+✗ Common verbs (is, was, has, have)
+✗ Articles (the, a, an)
+✗ Very long sentences or phrases (keep cues concise, under 10 words ideally)
 
+QUALITY OVER QUANTITY: Extract only meaningful, distinctive cues.
+For now, mark "preserved" as null (we will check preservation later).
 
-# --------------------------------------------------------------------
-# PROMPT BUILDER — ARTICLE ONLY (NO PRESERVATION, NO SUMMARY)
-# --------------------------------------------------------------------
-def build_prompt(domain, title, article_text):
-    template = TEMPLATES.get(domain.lower(), "")
+OUTPUT YOUR JSON ANALYSIS:
+"""
+    return template + '\n'+ target
 
-    prompt = (
-        template
-        + f"\n\nARTICLE TITLE: {title}\n"
-        f"DOMAIN: {domain}\n\n"
-        f"ARTICLE TEXT:\n{article_text}\n\n"
-        "🎯 TASK:\n"
-        "- Extract ALL contextual cues from the ARTICLE ONLY.\n"
-        "- Extract ALL cultural cues from the ARTICLE ONLY.\n"
-        "- DO NOT reference or compare to the summary.\n"
-        "- DO NOT mention preserved/lost cues.\n"
-        "- DO NOT classify or explain.\n"
-        "- Output ONLY cues.\n\n"
-        "🎯 STRICT JSON OUTPUT:\n"
-        "{\n"
-        '  \"contextual_cues\": [ ... ],\n'
-        '  \"cultural_cues\": [ ... ]\n'
-        "}\n"
-    )
+# ============================================================================
+# JSON FIXING
+# ============================================================================
 
-    return prompt
+def fix_json_errors(json_text):
+    """Fix common JSON errors."""
+    
+    json_text = json_text.replace('"Contexttype"', '"Contextual"')
+    json_text = json_text.replace('"Cue type"', '"Cue Type"')
+    json_text = re.sub(r',(\s*[}\]])', r'\1', json_text)
+    json_text = json_text.replace('```json', '').replace('```', '')
+    
+    return json_text.strip()
 
+# ============================================================================
+# EXTRACTION
+# ============================================================================
 
-# --------------------------------------------------------------------
-# CLEAN JSON
-# --------------------------------------------------------------------
-def fix_json_errors(text):
-    text = text.replace("```json", "").replace("```", "")
-    text = re.sub(r",\s*([\]}])", r"\1", text)
-    return text.strip()
+def flatten_cues(extraction_result):
+    """
+    Flatten the nested cue structure into a simple list.
+    Handles different possible key names from Gemini.
+    """
+    
+    cues = []
+    
+    if 'tables' in extraction_result:
+        # Old structure
+        for table in extraction_result.get('tables', []):
+            for row in table.get('rows', []):
+                # Try multiple possible key names for text
+                text = (
+                    row.get('Text Span (from original)') or  # ← NEW! Gemini uses this
+                    row.get('Text Span (Exact)') or
+                    row.get('Text Span (Exact Quote from Original)') or
+                    row.get('text') or
+                    ''
+                )
+                
+                # Skip if text is empty
+                if not text or text.strip() == '':
+                    continue
+                
+                cue = {
+                    'cue_type': row.get('Cue Type', row.get('cue_type', 'unknown')),
+                    'subtype': row.get('Subtype', row.get('subtype', 'unknown')),
+                    'text': text.strip()
+                }
+                cues.append(cue)
+    
+    elif 'cues' in extraction_result:
+        # New structure
+        for cue in extraction_result.get('cues', []):
+            text = cue.get('text', '').strip()
+            
+            # Skip empty
+            if not text:
+                continue
+            
+            cues.append({
+                'cue_type': cue.get('cue_type', 'unknown'),
+                'subtype': cue.get('subtype', 'unknown'),
+                'text': text
+            })
+    
+    return cues
 
-
-# --------------------------------------------------------------------
-# CALL DEEPSEEK
-# --------------------------------------------------------------------
-def deepseek_call(prompt):
-    api_key = os.getenv("DEEPSEEK_API_KEY")
-    if not api_key:
-        raise RuntimeError("❌ Missing DEEPSEEK_API_KEY in .env file")
-
-    headers = {
-        "Authorization": f"Bearer {api_key}",
-        "Content-Type": "application/json",
+def filter_noisy_cues(cues):
+    """
+    Remove low-value generic cues.
+    """
+    
+    # Generic single words to skip
+    SKIP_WORDS = {
+        'while', 'since', 'but', 'yet', 'however', 'although',
     }
+    
+    filtered = []
+    
+    for cue in cues:
+        text = cue['text'].lower().strip()
+        subtype = cue.get('subtype', '').lower()
+        
+        # Skip single generic words
+        if text in SKIP_WORDS:
+            continue
+        
+        # Skip pronouns entirely (too generic)
+        if subtype == 'pronouns':
+            continue
+        
+        # Skip very short connectors
+        if subtype == 'connector' and len(text) < 4:
+            continue
+        
+        # Skip generic connectors with "said" or "wrote"
+        if any(word in text for word in ['said', 'wrote', 'added', 'replied']):
+            continue
+        
+        # Keep everything else
+        filtered.append(cue)
+    
+    return filtered
 
-    payload = {
-        "model": CONFIG["model_name"],
-        "messages": [{"role": "user", "content": prompt}],
-        "temperature": CONFIG["temperature"],
-    }
-
-    r = requests.post(CONFIG["api_url"], headers=headers, json=payload)
-
-    if r.status_code != 200:
-        print("❌ DeepSeek Error:", r.text)
-        return None
-
+# Update extract_cues_from_article to use OpenAI
+def extract_cues_from_article(article_title, article_text, domain, client, templates_dir):
+    """
+    Extract ALL cues from an article using OpenAI.
+    Returns the OpenAI extraction result.
+    """
+    
     try:
-        return r.json()["choices"][0]["message"]["content"]
-    except:
-        print("❌ Unexpected DeepSeek Output:", r.text)
-        return None
-
-
-# --------------------------------------------------------------------
-# EXTRACTION LOGIC
-# --------------------------------------------------------------------
-def extract_from_article(domain, title, text):
-    prompt = build_prompt(domain, title, text)
-    raw = deepseek_call(prompt)
-
-    if raw is None:
-        return None
-
-    try:
-        return json.loads(raw)
-    except:
-        fixed = fix_json_errors(raw)
+        # Build prompt
+        prompt = build_article_extraction_prompt(
+            article_title, 
+            article_text, 
+            domain, 
+            templates_dir
+        )
+        print(prompt)
+        print(a)        
+        # Call OpenAI API
+        response = client.chat.completions.create(
+            model=CONFIG['model_name'],
+            messages=[
+                {"role": "system", "content": "You are a JSON extraction expert. Return only valid JSON."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=CONFIG['temperature'],
+            response_format={"type": "json_object"}
+        )
+        
+        # Parse JSON
         try:
-            return json.loads(fixed)
-        except:
-            print("\n❌ Still invalid JSON:")
-            print(raw[:200])
-            return None
+            result = json.loads(response.choices[0].message.content)
+            return result
+        except json.JSONDecodeError:
+            # Try fixing
+            fixed = fix_json_errors(response.choices[0].message.content)
+            result = json.loads(fixed)
+            return result
+            
+    except Exception as e:
+        print(f"\n❌ Error: {e}")
+        return None
 
+# ============================================================================
+# MAIN PIPELINE
+# ============================================================================
 
-# --------------------------------------------------------------------
-# LOAD DATA (FIX DOMAIN_X / DOMAIN_Y)
-# --------------------------------------------------------------------
-def load_data():
-    print("\n📊 Loading data...")
-
-    summaries = pd.read_json("data/outputs/all_summaries.jsonl", lines=True)
-    articles = pd.read_csv("data/guardian_articles_raw.csv")
-
-    print("\n🔍 Columns in summaries:", summaries.columns.tolist())
-    print("🔍 Columns in articles:", articles.columns.tolist())
-
-    merged = summaries.merge(
-        articles[["title", "text", "domain"]],
-        on="title",
-        how="inner"
-    )
-
-    print("\n🔍 Columns AFTER merge:", merged.columns.tolist())
-
-    # FIX DOMAIN COLUMNS
-    if "domain_y" in merged.columns:
-        merged = merged.rename(columns={"domain_y": "domain"})
-    elif "domain" not in merged.columns:
-        raise KeyError("❌ No domain column available after merge!")
-
-    if "domain_x" in merged.columns:
-        merged = merged.drop(columns=["domain_x"])
-
-    print("\n🔍 Columns AFTER FIX:", merged.columns.tolist())
-
-    merged = merged.drop_duplicates(subset="title")
-
-    merged = merged.head(5)
-    print(f"\n📌 Loaded {len(merged)} articles for extraction")
-
-    return merged
-
-
-# --------------------------------------------------------------------
-# SAVE EXTRACTION
-# --------------------------------------------------------------------
-def save_extraction(entry):
-    os.makedirs(os.path.dirname(CONFIG["output_file"]), exist_ok=True)
-    with open(CONFIG["output_file"], "a", encoding="utf-8") as f:
-        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
-
-
-# --------------------------------------------------------------------
-# MAIN EXTRACTION LOOP
-# --------------------------------------------------------------------
-def run_extraction():
-    print("=" * 80)
-    print("🚀 RUNNING ARTICLE-ONLY CUE EXTRACTION USING DEEPSEEK")
-    print("=" * 80)
-
-    if not load_templates():
+def extract_all_articles():
+    """
+    Main pipeline: Extract cues from all unique articles.
+    """
+    
+    print("="*80)
+    print("STAGE 1: EXTRACT CUES FROM ARTICLES (OpenAI GPT-4o-mini)")
+    print("="*80)
+    
+    # Load environment variables
+    load_dotenv()
+    
+    # Setup OpenAI API
+    print("\n🔑 Configuring OpenAI API...")
+    api_key = os.getenv('OPENAI_API_KEY')
+    
+    if not api_key:
+        print("❌ No OPENAI_API_KEY found in .env file!")
         return
+    
+    client = openai.OpenAI(api_key=api_key)
+    
+    print("✅ API configured")
+    
+    # Load articles
+    print("\n📊 Loading articles...")
+    articles_file = "data/guardian_articles_raw.csv"
+    
+    if not os.path.exists(articles_file):
+        print(f"❌ File not found: {articles_file}")
+        return
+    
+    articles_df = pd.read_csv(articles_file)
+    print(f"   ✅ Loaded {len(articles_df)} articles")
+    
+    # Check for existing extractions
+    output_file = CONFIG['output_file']
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
+    
+    completed = set()
+    
+    if os.path.exists(output_file):
+        print(f"\n📂 Found existing extractions: {output_file}")
+        with open(output_file, 'r', encoding='utf-8') as f:
+            for line in f:
+                if line.strip():
+                    data = json.loads(line)
+                    completed.add(data['title'])
+        print(f"   ✅ Already completed: {len(completed)} articles")
+    
+    # Filter out completed
+    remaining = articles_df[~articles_df['title'].isin(completed)]
+    
+    if len(remaining) == 0:
+        print("\n✅ All articles already processed!")
+        return
+    
+    # LIMIT TO 5 ARTICLES FOR TESTING
+    remaining = remaining.head(5)
+    
+    print(f"\n📋 Articles to process: {len(remaining)} (LIMITED TO 5 FOR TESTING)")
+    print(f"   Total: {len(articles_df)}")
+    print(f"   Completed: {len(completed)}")
+    print(f"   Remaining (original): {len(articles_df) - len(completed)}")
+    
+    # Extract cues from each article
+    print("\n" + "="*80)
+    print("EXTRACTING CUES")
+    print("="*80)
+    print(f"\nOutput: {output_file}")
+    print("Saving after EACH article (safe mode)")
+    print("="*80 + "\n")
+    
+    successful = 0
+    failed = 0
 
-    df = load_data()
-
-    print("\nExtracting cues...\n")
-
-    for _, row in tqdm(df.iterrows(), total=len(df), desc="Extracting"):
-        result = extract_from_article(row["domain"], row["title"], row["text"])
-
-        if result:
-            entry = {
-                "title": row["title"],
-                "domain": row["domain"],
-                "extraction_timestamp": datetime.now().isoformat(),
-                "cues": result,
+    for idx, row in tqdm(remaining.iterrows(), total=len(remaining), desc="Processing"):
+        
+        # Extract cues
+        extraction_result = extract_cues_from_article(
+            article_title=row['title'],
+            article_text=row['text'],
+            domain=row['domain'],
+            client=client,
+            templates_dir=CONFIG['templates_dir']
+        )
+        
+        if extraction_result:
+            # Flatten to simple cue list
+            cues = flatten_cues(extraction_result)
+            
+            # Filter noise (remove generic cues)
+            cues = filter_noisy_cues(cues)
+            
+            # Build output
+            article_cues = {
+                'title': row['title'],
+                'domain': row['domain'],
+                'url': row.get('url', ''),
+                'extraction_model': CONFIG['model_name'],
+                'extraction_timestamp': datetime.now().isoformat(),
+                'total_cues': len(cues),
+                'cues': cues,
+                'raw_extraction': extraction_result
             }
-            save_extraction(entry)
+            
+            # Save immediately
+            with open(output_file, 'a', encoding='utf-8') as f:
+                f.write(json.dumps(article_cues, ensure_ascii=False) + '\n')
+            
+            successful += 1
+            
         else:
-            print(f"\n❌ Extraction failed for: {row['title']}")
-            break
+            # Failed
+            failed += 1
+            
+            print(f"\n❌ Failed: {row['title']}")
+            print(f"   Domain: {row['domain']}")
+            
+            # Save error
+            error_file = output_file.replace('.jsonl', '_errors.jsonl')
+            with open(error_file, 'a', encoding='utf-8') as f:
+                error_entry = {
+                    'title': row['title'],
+                    'domain': row['domain'],
+                    'timestamp': datetime.now().isoformat(),
+                    'status': 'FAILED'
+                }
+                f.write(json.dumps(error_entry, ensure_ascii=False) + '\n')
+            
+            # Stop on error
+            print(f"\n💾 Saved {successful} articles before stopping")
+            return
+    
+    # Summary
+    print("\n" + "="*80)
+    print("✅ EXTRACTION COMPLETE!")
+    print("="*80)
+    print(f"\n📊 Statistics:")
+    print(f"   Successful: {successful}")
+    print(f"   Failed: {failed}")
+    print(f"   Total processed: {successful + failed}")
+    print(f"\n📁 Output: {output_file}")
+    
+    # Show sample statistics
+    print(f"\n📈 Sample Statistics:")
+    all_cues = []
+    with open(output_file, 'r', encoding='utf-8') as f:
+        for line in f:
+            if line.strip():
+                data = json.loads(line)
+                all_cues.append(data['total_cues'])
+    
+    if all_cues:
+        print(f"   Avg cues per article: {sum(all_cues)/len(all_cues):.1f}")
+        print(f"   Min cues: {min(all_cues)}")
+        print(f"   Max cues: {max(all_cues)}")
+    
+    print("="*80)
 
-    print("\n🎉 Extraction complete! Saved to:")
-    print(CONFIG["output_file"])
-
-
-# --------------------------------------------------------------------
-# MAIN
-# --------------------------------------------------------------------
-def main():
-    run_extraction()
-
+# ============================================================================
+# CLI
+# ============================================================================
 
 if __name__ == "__main__":
-    main()
+    load_dotenv()
+    extract_all_articles()
