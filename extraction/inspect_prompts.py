@@ -38,21 +38,9 @@ def generate_prompt_for_inspection(domain, n_examples=2):
     prompt_parts.append("\n")
     
     # Add placeholder for target article/summary
-    prompt_parts.append("="*80)
-    prompt_parts.append("TARGET ARTICLE/SUMMARY TO ANALYZE (NOT SHOWN IN THIS PREVIEW)")
-    prompt_parts.append("="*80)
-    prompt_parts.append("""
-ARTICLE TITLE: [Target article title will be inserted here]
-DOMAIN: [Target domain will be inserted here]
-
-ORIGINAL ARTICLE (identify cues from here):
-[Full target article text will be inserted here]
-
-SUMMARY (check if cues are preserved here):
-[Target summary text will be inserted here]
-
-NOW OUTPUT YOUR ANALYSIS AS JSON:
-""")
+    prompt_parts.append("="*40)
+    prompt_parts.append("TARGET ARTICLE/SUMMARY TO ANALYZE")
+    prompt_parts.append("="*40)
     
     return "\n".join(prompt_parts)
 
@@ -66,7 +54,7 @@ def save_domain_prompts():
     print("="*80)
     
     # Define domains (based on your labeled data)
-    domains = ["Educational", "Politics", "Cultural", "Sport", "Technology", "Social"]
+    domains = ["Education", "Politics", "Culture", "Sports", "Tech", "Social"]
     
     # Create output directory
     output_dir = "data/prompt_previews"

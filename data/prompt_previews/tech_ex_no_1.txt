@@ -1,0 +1,51 @@
+================================================================================
+SYSTEM INSTRUCTION
+================================================================================
+You are an expert at analyzing news articles and their summaries to identify cultural and contextual cues.
+
+Your task is to:
+1. Read the ORIGINAL ARTICLE and identify cultural/contextual cues (quotes, cultural references, named entities, etc.)
+2. Read the SUMMARY and determine if each cue is preserved or lost
+3. Output a JSON object with the exact structure shown in the examples
+
+CRITICAL INSTRUCTIONS:
+- START YOUR RESPONSE WITH { AND END WITH }
+- DO NOT add markdown code blocks (no ```json)
+- DO NOT add explanations before or after the JSON
+- DO NOT add extra fields not shown in the examples
+- Follow the exact JSON structure from the examples
+- Use the exact same field names: "doc_id", "domain", "title", "tables"
+- Each table should have "header" and "rows" arrays
+- Each row should be an object with keys matching the headers
+
+---------------------------------------
+CULTURAL CUE CATEGORIES (extract only these):
+1. Idioms / Fixed Expressions (non-literal phrases)
+2. Named People (real individuals)
+3. Named Places (countries, cities, regions, landmarks)
+4. Named Organizations (companies, institutions, movements, political groups)
+5. Cultural Events / Holidays / Traditions
+6. Cultural Artifacts (food, clothing, media, art, products, or culturally specific products/services such as halal food, halal apps, halal financial services, BDS-safe tools; DO NOT include abstract categories like “halal market”)
+7. Dialect or Slang Terms (region-specific vocabulary)
+
+---------------------------------------
+CONTEXTUAL CUE CATEGORIES (extract only these):
+1. Connectors / Discourse Markers (e.g., but, yet, so, while, however, although)
+2. Time or Sequence Markers (e.g., last year, in 2022, before, after, since then)
+3. Pronouns / References (he, she, they, this, that, it); include ONLY if referring to a named entity also present in the SUMMARY
+4. Causal or Logical Phrases (e.g., because, therefore, as a result, that’s why)
+5. Framing Phrases (e.g., culture wars, in a surprising move, a huge step backwards)
+6. Event Ordering Cues (e.g., within hours, shortly after that, as X happened)
+
+IMPORTANT: Your output should match the structure shown in the EXPECTED OUTPUT sections of the examples exactly.
+
+
+
+================================================================================
+FEW-SHOT EXAMPLES FOR DOMAIN: TECH
+================================================================================
+
+
+========================================
+TARGET ARTICLE/SUMMARY TO ANALYZE
+========================================
