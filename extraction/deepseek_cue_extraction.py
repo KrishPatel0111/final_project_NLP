@@ -1,5 +1,4 @@
 # extraction/extract_article_cues.py
-
 import openai
 import json
 import pandas as pd
@@ -22,7 +21,7 @@ Output:
   - data/article_cues/article_cues.jsonl (one line per article with all cues)
   
 Usage:
-  python extraction/extract_article_cues.py
+  python extraction/deepseek_cue_extraction.py
 """
 
 # ============================================================================
@@ -35,7 +34,8 @@ CONFIG = {
     'output_dir': 'data/article_cues',
     'output_file': 'data/article_cues/gpt4o_mini_cues.jsonl',
     'model_name': 'gpt-4o-mini',
-    'temperature': 0.1,
+    'temperature': 0.3,  # Higher for more creative/comprehensive extraction
+    'max_tokens': 16384,  # Maximum for GPT-4o-mini to allow 150+ cues
 }
 
 # ============================================================================
@@ -62,8 +62,7 @@ def load_template(domain, templates_dir):
 
 def build_article_extraction_prompt(article_title, article_text, domain, templates_dir):
     """
-    Build prompt to extract meaningful cues from an article.
-    Updated to be more selective and avoid noise.
+    OPTIMIZED prompt to extract 100-150+ cues (matching Gemini performance).
     """
     
     template = load_template(domain, templates_dir)
@@ -71,41 +70,66 @@ def build_article_extraction_prompt(article_title, article_text, domain, templat
     if not template:
         raise ValueError(f"No template found for domain: {domain}")
     
-    # More selective extraction prompt
+    # COMPREHENSIVE extraction prompt (optimized for high cue count)
     target = f"""ARTICLE TITLE: {article_title}
 DOMAIN: {domain}
 
 ORIGINAL ARTICLE:
 {article_text}
 
-TASK: Extract cultural and contextual cues from the article above.
+TASK: Extract EVERY cultural and contextual cue from the article above. Be EXTREMELY COMPREHENSIVE and extract 100-150+ cues.
 
-CULTURAL CUES TO EXTRACT:
-✓ Idioms and fixed expressions (e.g., "double-edged sword", "history repeating itself")
-✓ Named people (e.g., "Tommy Robinson", "Oswald Mosley")
-✓ Named places (e.g., "Tower Hamlets", "Whitechapel", "Cable Street")
-✓ Organizations (e.g., "BNP", "English Defence League", "United East End")
-✓ Cultural events (e.g., "Battle of Cable Street", "curry festival")
-✓ Cultural artifacts (e.g., "flags", "Pearly kings and queens")
-✓ Slang or dialect terms (e.g., "cockneys")
+EXTRACT ALL OF THESE (with examples):
 
-CONTEXTUAL CUES TO EXTRACT:
-✓ Discourse markers (e.g., "however", "therefore", "rather than")
-✓ Time/sequence markers (e.g., "89 years ago", "In the decades since", "This week")
-✓ Specific pronouns with clear antecedents (e.g., "his march" referring to Robinson)
-✓ Causal phrases explaining why/how (e.g., "as a result", "to prevent disorder")
-✓ Framing phrases that set context (e.g., "double-edged sword", "prime target")
-✓ Event ordering cues (e.g., "weeks after", "Since then", "before the rally")
+1. CULTURAL CUES:
+✓ Idioms and expressions: "double-edged sword", "history repeating itself", "turning point"
+✓ Named people: "Tommy Robinson", "Oswald Mosley" - extract EVERY person mentioned
+✓ Named places: "Tower Hamlets", "Whitechapel", "Cable Street", "London" - extract ALL locations
+✓ Organizations: "BNP", "English Defence League", "United East End", "Parliament"
+✓ Cultural events: "Battle of Cable Street", "curry festival", "protests"
+✓ Cultural artifacts: "flags", "Pearly kings and queens", "banners"
+✓ Slang/dialect: "cockneys", regional terms
+✓ Titles and roles: "Mayor", "MP", "activist", "leader"
+✓ Political terms: "far-right", "anti-fascist", "nationalist"
+
+2. CONTEXTUAL CUES:
+✓ Discourse markers: "however", "therefore", "rather than", "meanwhile", "nevertheless"
+✓ Time markers: "89 years ago", "In the decades since", "This week", "recently", "yesterday"
+✓ Specific dates: "1936", "October", "Monday", any date mentioned
+✓ Pronouns with context: "his march", "their rally", "its members"
+✓ Causal phrases: "as a result", "to prevent disorder", "because of", "due to"
+✓ Framing phrases: "double-edged sword", "prime target", "key figure"
+✓ Event ordering: "weeks after", "Since then", "before the rally", "following"
+✓ Comparison terms: "more than", "less than", "similar to", "unlike"
+
+3. EXTRACT EVERYTHING:
+✓ Every person's name AND their title/role separately
+✓ Every location (countries, cities, streets, buildings)
+✓ Every organization, party, group
+✓ Every time reference (dates, periods, durations)
+✓ Every number with context: "thousands", "89 years", "500 people"
+✓ Every quote or key phrase from officials/experts
+✓ Every political/ideological term
+✓ Every institution (government bodies, courts, media)
+✓ Every social group (demographics, communities)
+
+IMPORTANT INSTRUCTIONS:
+- Extract AT LEAST 100-150 cues per article
+- Be EXHAUSTIVE - extract EVERY relevant phrase
+- Include obvious references too (don't skip common terms)
+- For "Democratic Senator Warren" extract: "Democratic", "Senator", "Warren" as separate cues
+- Extract both full phrases AND meaningful components
+- Use exact text from article
+- Keep cues under 10 words (but extract more cues rather than longer ones)
 
 DO NOT EXTRACT:
-✗ Generic pronouns without context (it, they, he, she used generally)
-✗ Simple connectors (and, but, or, so, as)
-✗ Common verbs (is, was, has, have)
-✗ Articles (the, a, an)
-✗ Very long sentences or phrases (keep cues concise, under 10 words ideally)
+✗ Generic pronouns alone (it, they, he, she without context)
+✗ Simple connectors alone (and, but, or, so, as)
+✗ Common verbs alone (is, was, has, have)
+✗ Articles alone (the, a, an)
 
-QUALITY OVER QUANTITY: Extract only meaningful, distinctive cues.
-For now, mark "preserved" as null (we will check preservation later).
+QUALITY AND QUANTITY: Extract as many meaningful cues as possible. Aim for 150+ cues.
+Mark "preserved" as null (we will check preservation later).
 
 OUTPUT YOUR JSON ANALYSIS:
 """
@@ -132,18 +156,18 @@ def fix_json_errors(json_text):
 def flatten_cues(extraction_result):
     """
     Flatten the nested cue structure into a simple list.
-    Handles different possible key names from Gemini.
+    Handles different possible key names from Gemini AND OpenAI.
     """
     
     cues = []
     
     if 'tables' in extraction_result:
-        # Old structure
+        # Old structure (Gemini tables format)
         for table in extraction_result.get('tables', []):
             for row in table.get('rows', []):
                 # Try multiple possible key names for text
                 text = (
-                    row.get('Text Span (from original)') or  # ← NEW! Gemini uses this
+                    row.get('Text Span (from original)') or
                     row.get('Text Span (Exact)') or
                     row.get('Text Span (Exact Quote from Original)') or
                     row.get('text') or
@@ -162,7 +186,7 @@ def flatten_cues(extraction_result):
                 cues.append(cue)
     
     elif 'cues' in extraction_result:
-        # New structure
+        # New structure (standard JSON format)
         for cue in extraction_result.get('cues', []):
             text = cue.get('text', '').strip()
             
@@ -218,8 +242,8 @@ def filter_noisy_cues(cues):
 # Update extract_cues_from_article to use OpenAI
 def extract_cues_from_article(article_title, article_text, domain, client, templates_dir):
     """
-    Extract ALL cues from an article using OpenAI.
-    Returns the OpenAI extraction result.
+    Extract ALL cues from an article.
+    Returns the extraction result.
     """
     
     try:
@@ -230,32 +254,36 @@ def extract_cues_from_article(article_title, article_text, domain, client, templ
             domain, 
             templates_dir
         )
-        print(prompt)
-        print(a)        
-        # Call OpenAI API
+        
+        # Call OpenAI API (matching Gemini's JSON response format)
         response = client.chat.completions.create(
             model=CONFIG['model_name'],
             messages=[
-                {"role": "system", "content": "You are a JSON extraction expert. Return only valid JSON."},
+                {
+                    "role": "system", 
+                    "content": "You are an EXPERT at extracting cultural and contextual cues from text. Your goal is to be EXTREMELY COMPREHENSIVE and extract 100-150+ cues per article. Extract EVERY person, place, organization, date, time reference, discourse marker, political term, and cultural reference. Be thorough - extract MORE rather than less. Return only valid JSON."
+                },
                 {"role": "user", "content": prompt}
             ],
             temperature=CONFIG['temperature'],
+            max_tokens=CONFIG['max_tokens'],
             response_format={"type": "json_object"}
         )
         
         # Parse JSON
         try:
+            print("="*80)
             result = json.loads(response.choices[0].message.content)
-            return result
+            return result  # ← Return ONLY result
         except json.JSONDecodeError:
             # Try fixing
             fixed = fix_json_errors(response.choices[0].message.content)
             result = json.loads(fixed)
-            return result
+            return result  # ← Return ONLY result
             
     except Exception as e:
         print(f"\n❌ Error: {e}")
-        return None
+        return None  # ← Return ONLY None
 
 # ============================================================================
 # MAIN PIPELINE
@@ -324,7 +352,8 @@ def extract_all_articles():
     print(f"\n📋 Articles to process: {len(remaining)} (LIMITED TO 5 FOR TESTING)")
     print(f"   Total: {len(articles_df)}")
     print(f"   Completed: {len(completed)}")
-    print(f"   Remaining (original): {len(articles_df) - len(completed)}")
+    print(f"   Remaining (full): {len(articles_df) - len(completed)}")
+    print(f"   🎯 Target: ~150 cues per article (matching Gemini)")
     
     # Extract cues from each article
     print("\n" + "="*80)
@@ -364,7 +393,7 @@ def extract_all_articles():
                 'extraction_timestamp': datetime.now().isoformat(),
                 'total_cues': len(cues),
                 'cues': cues,
-                'raw_extraction': extraction_result
+                'raw_extraction': extraction_result  # Just the OpenAI response
             }
             
             # Save immediately
@@ -372,6 +401,9 @@ def extract_all_articles():
                 f.write(json.dumps(article_cues, ensure_ascii=False) + '\n')
             
             successful += 1
+            
+            # Show comparison with Gemini
+            print(f"\n✅ Extracted {len(cues)} cues (Gemini avg: ~150)")
             
         else:
             # Failed
@@ -415,9 +447,22 @@ def extract_all_articles():
                 all_cues.append(data['total_cues'])
     
     if all_cues:
-        print(f"   Avg cues per article: {sum(all_cues)/len(all_cues):.1f}")
+        avg_cues = sum(all_cues)/len(all_cues)
+        print(f"   Avg cues per article: {avg_cues:.1f}")
         print(f"   Min cues: {min(all_cues)}")
         print(f"   Max cues: {max(all_cues)}")
+        print(f"\n   🎯 Gemini avg: ~150 cues")
+        print(f"   📊 GPT-4o-mini avg: {avg_cues:.1f} cues")
+        
+        # Show performance comparison
+        if avg_cues >= 120:
+            print(f"   🎉 EXCELLENT! Matching Gemini performance!")
+        elif avg_cues >= 80:
+            print(f"   👍 GOOD! Close to Gemini performance")
+        elif avg_cues >= 50:
+            print(f"   ✓ Decent extraction")
+        else:
+            print(f"   ⚠️  Lower than Gemini - may need prompt optimization")
     
     print("="*80)
 
