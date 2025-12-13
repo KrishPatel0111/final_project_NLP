@@ -232,7 +232,26 @@ def extract_cues_from_article(article_title, article_text, domain, model, templa
         
         # Call API
         response = model.generate_content(prompt)
-        
+
+        # ---- NEW: handle blocked prompts / empty candidates ----
+        feedback = getattr(response, "prompt_feedback", None)
+        block_reason = getattr(feedback, "block_reason", None) if feedback else None
+
+        if block_reason:
+            print("\n" + "="*80)
+            print(f"❌ Prompt blocked for article: {article_title}")
+            print(f"   Reason: {block_reason}")
+            print("="*80)
+            return None
+
+        candidates = getattr(response, "candidates", None)
+        if not candidates:
+            print("\n" + "="*80)
+            print(f"❌ No candidates returned for article: {article_title}")
+            print("="*80)
+            return None
+        # --------------------------------------------------------
+
         # Parse JSON
         try:
             print("="*80)
@@ -247,6 +266,7 @@ def extract_cues_from_article(article_title, article_text, domain, model, templa
     except Exception as e:
         print(f"\n❌ Error: {e}")
         return None  # ← Return ONLY None
+
 # ============================================================================
 # MAIN PIPELINE
 # ============================================================================
@@ -386,9 +406,9 @@ def extract_all_articles():
                 }
                 f.write(json.dumps(error_entry, ensure_ascii=False) + '\n')
             
-            # Stop on error
-            print(f"\n💾 Saved {successful} articles before stopping")
-            return
+            # 👉 Just skip this article and keep going
+            continue
+
     
     # Summary
     print("\n" + "="*80)
