@@ -1,0 +1,7 @@
+model,compression_ratio,preservation_rate,summary_length
+BART-large-cnn,0.0343,0.2386,142.7986
+Gemma-2-9B-IT,0.0317,0.2608,127.0456
+Mistral-7B-Instruct,0.0281,0.2103,111.6978
+PEGASUS-cnn_dailymail,0.0352,0.2418,146.9568
+TextRank,0.0403,0.2178,165.5156
+mT5-XLSum,0.0179,0.0815,71.8273

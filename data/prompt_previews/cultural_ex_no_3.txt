@@ -1,0 +1,1075 @@
+================================================================================
+SYSTEM INSTRUCTION
+================================================================================
+You are an expert at analyzing news articles and their summaries to identify cultural and contextual cues.
+
+Your task is to:
+1. Read the ORIGINAL ARTICLE and identify cultural/contextual cues (quotes, cultural references, named entities, etc.)
+2. Read the SUMMARY and determine if each cue is preserved or lost
+3. Output a JSON object with the exact structure shown in the examples
+
+CRITICAL INSTRUCTIONS:
+- START YOUR RESPONSE WITH { AND END WITH }
+- DO NOT add markdown code blocks (no ```json)
+- DO NOT add explanations before or after the JSON
+- DO NOT add extra fields not shown in the examples
+- Follow the exact JSON structure from the examples
+- Use the exact same field names: "doc_id", "domain", "title", "tables"
+- Each table should have "header" and "rows" arrays
+- Each row should be an object with keys matching the headers
+
+---------------------------------------
+CULTURAL CUE CATEGORIES (extract only these):
+1. Idioms / Fixed Expressions (non-literal phrases)
+2. Named People (real individuals)
+3. Named Places (countries, cities, regions, landmarks)
+4. Named Organizations (companies, institutions, movements, political groups)
+5. Cultural Events / Holidays / Traditions
+6. Cultural Artifacts (food, clothing, media, art, products, or culturally specific products/services such as halal food, halal apps, halal financial services, BDS-safe tools; DO NOT include abstract categories like “halal market”)
+7. Dialect or Slang Terms (region-specific vocabulary)
+
+---------------------------------------
+CONTEXTUAL CUE CATEGORIES (extract only these):
+1. Connectors / Discourse Markers (e.g., but, yet, so, while, however, although)
+2. Time or Sequence Markers (e.g., last year, in 2022, before, after, since then)
+3. Pronouns / References (he, she, they, this, that, it); include ONLY if referring to a named entity also present in the SUMMARY
+4. Causal or Logical Phrases (e.g., because, therefore, as a result, that’s why)
+5. Framing Phrases (e.g., culture wars, in a surprising move, a huge step backwards)
+6. Event Ordering Cues (e.g., within hours, shortly after that, as X happened)
+
+IMPORTANT: Your output should match the structure shown in the EXPECTED OUTPUT sections of the examples exactly.
+
+
+
+================================================================================
+FEW-SHOT EXAMPLES FOR DOMAIN: CULTURAL
+================================================================================
+
+====================
+EXAMPLE 1
+====================
+
+ARTICLE TITLE: ‘Dictator-for-life vibes’: our architecture critic on Trump’s bulletproof ballroom bling
+DOMAIN: Cultural
+
+ORIGINAL ARTICLE (identify cues from here):
+As if truffling thuggishly in pursuit of the Nobel peace prize wasn’t enough, the spectacle of bulldozers ripping into the White House is yet more evidence of Donald Trump’s unstinting quest for epic self-aggrandisement. Having decreed the East Wing not fit for purpose – namely, his purposes of swank and show – he plans to replace it with a faux classical bulletproof ballroom, capable of seating up to 650 partygoers. Renderings show a vast, glacially white aircraft hangar of a structure embellished with an ornate coffered ceiling, gilded Corinthian columns and drooping gold chandeliers. Nero, who conceived the original domus aurea, would feel right at home. Costing $250m (£187.5m), a sum to be extracted from sycophantic donors, Trump’s ballroom is one of the most grandiose White House projects to be implemented in more than a century, as he strives to bend the building – and US architecture more generally – to his will. On re-assuming the presidency, one of his first executive orders – under the title Making Federal Architecture Beautiful Again – mandated that “traditional and classical architecture” should be the preferred style for all federal public buildings, with Trump having the final veto on designs. A similarly prescriptive order was enacted during Trump’s first spell in office, only to be rescinded by Joe Biden. So, having been here before, the American Institute of Architects is wearily wary, stating: “AIA is extremely concerned about any revisions that remove control from local communities, mandate official federal design preferences, or otherwise hinder design freedom, and add bureaucratic hurdles for federal buildings.” White House occupants do have a history of tweaking, expanding and remodelling. Theodore Roosevelt added the West Wing, Richard Nixon installed a bowling lane and Harry S Truman commissioned an entire reconstruction. Several first ladies have revamped the decor and furnishings, notably Jackie Kennedy, whose soigné interiors were designed to connect the presidential home more resonantly with American history. The now doomed East Wing, dating from 1902, has been a much-changed addition. Intermittently housing the office of the first lady, what’s left of it sits above the presidential emergency operations centre, a high security bunker built during the second world war. Vice-president Dick Cheney and his retinue retreated there during the 9/11 attacks, as did Trump at the start of the George Floyd protests in 2020. The man who landed the ballroom job is James McCrery, founder of Washington-based McCrery Architects and a trenchant advocate of classical architecture. “Americans love classical architecture,” he has said, “because it is our formative architecture – and we love our nation’s formation.” Ironically, McCrery began his career working for Peter Eisenman, the high priest of deconstructivism, before a conversion of Damascene proportions prompted him to renounce the avant garde and “rethink his modernist education”. 
+[...article truncated for brevity...]
+
+SUMMARY (check if cues are preserved here):
+Costing $250m (£187.5m), a sum to be extracted from sycophantic donors, Trump’s ballroom is one of the most grandiose White House projects to be implemented in more than a century, as he strives to bend the building – and US architecture more generally – to his will. White House occupants do have a history of tweaking, expanding and remodelling. His more recent engoldening of the Oval Office, described by White House press secretary Karoline Leavitt as a “golden office for the golden age”, has been unflatteringly compared to a professional wrestler’s dressing room. “It gives Trump a narrative of authority and tradition,” says Daniel Abramson, professor of architectural history at Boston University, “and fits into his overarching strategy of undermining the established elites, including in architecture.” On re-assuming the presidency, one of his first executive orders – under the title Making Federal Architecture Beautiful Again – mandated that “traditional and classical architecture” should be the preferred style for all federal public buildings, with Trump having the final veto on designs. A similarly prescriptive order was enacted during Trump’s first spell in office, only to be rescinded by Joe Biden. Specialising in the design of “traditional” Catholic churches, McCrery was appointed by Trump during his first term to serve on the US Commission of Fine Arts, an independent federal agency with the power to review the “design and aesthetics” of all construction within Washington DC.
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 8,
+  "domain": "Cultural",
+  "title": "‘Dictator-for-life vibes’: our architecture critic on Trump’s bulletproof ballroom bling",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (from original)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (from original)": "truffling thuggishly",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Non-literal phrases",
+          "Text Span (from original)": "epic self-aggrandisement",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Non-literal phrases",
+          "Text Span (from original)": "swank and show",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Non-literal phrases",
+          "Text Span (from original)": "bulletproof ballroom",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Non-literal phrases",
+          "Text Span (from original)": "glacially white aircraft hangar of a structure",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Non-literal phrases",
+          "Text Span (from original)": "domus aurea",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Donald Trump",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Nero",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Joe Biden",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Karoline Leavitt",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "James McCrery",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Peter Eisenman",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Daniel Abramson",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "White House",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "East Wing",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "West Wing",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Oval Office",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Washington DC",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Mar-a-Lago",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Rose Garden",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Potomac river",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Lincoln Memorial",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "American Institute of Architects",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "McCrery Architects",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "US Commission of Fine Arts",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / traditions",
+          "Text Span (from original)": "second world war",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / traditions",
+          "Text Span (from original)": "9/11 attacks",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / traditions",
+          "Text Span (from original)": "George Floyd protests in 2020",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (from original)": "bowling lane",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (from original)": "soigné interiors",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (from original)": "Trump International Hotel and Tower",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (from original)": "golden office for the golden age",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (from original)": "Arc de Trump",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / traditions",
+          "Text Span (from original)": "US's 250th anniversary",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connectors / discourse markers",
+          "Text Span (from original)": "as",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connectors / discourse markers",
+          "Text Span (from original)": "but",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connectors / discourse markers",
+          "Text Span (from original)": "So",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (from original)": "more than a century",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (from original)": "during Trump's first spell in office",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (from original)": "during his first term",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (from original)": "next year",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (from original)": "he (Trump)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (from original)": "his (Trump)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrases",
+          "Text Span (from original)": "fits into his overarching strategy",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrases",
+          "Text Span (from original)": "because",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (from original)": "traditional and classical architecture",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (from original)": "extremely concerned",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (from original)": "a narrative of authority and tradition",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (from original)": "On re-assuming the presidency",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (from original)": "only to be rescinded by Joe Biden",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (from original)": "during the second world war",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (from original)": "during the 9/11 attacks",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (from original)": "at the start of the George Floyd protests in 2020",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    }
+  ]
+}
+
+
+====================
+EXAMPLE 2
+====================
+
+ARTICLE TITLE: Bob Vylan ‘not regretful’ about IDF chant at Glastonbury: ‘I’d do it again tomorrow’
+DOMAIN: Cultural
+
+ORIGINAL ARTICLE (identify cues from here):
+Bob Vylan frontman Bobby Vylan is “not regretful” of his “death, death to the IDF” chant at Glastonbury and said he would “do it again tomorrow, twice on Sundays”. The outspoken punk duo sparked controversy when they led chants of “death, death to the IDF”, referring to the Israel Defense Forces, at the festival in June. The chant was condemned by Glastonbury and the UK prime minister, Keir Starmer, who described it as “appalling hate speech”. Bob Vylan was dropped by its agency UTA, and the US state department revoked the member’s visas, forcing them to cancel a North American tour. Speaking on The Louis Theroux Podcast in his first interview since Glastonbury, Vylan, whose real name is Pascal Robinson-Foster, was asked if he would do it all again. He replied: “Oh yeah. Like what if I was to go on Glastonbury again tomorrow, yes I would do it again. I’m not regretful of it. I’d do it again tomorrow, twice on Sundays. He said the backlash the band had faced was “minimal compared to what people in Palestine are going through”. “I don’t want to overstate the importance of the chant,” he added. “That’s not what I’m trying to do, but if I have their support, they’re the people that I’m doing it for, they’re the people that I’m being vocal for, then what is there to regret? Oh, because I’ve upset some rightwing politician or some rightwing media?” Vylan’s conversation with Theroux was recorded on 1 October. At the start of the episode, the presenter states that it took place before the Manchester synagogue attacks on 2 October, in which two people were killed and three others injured, and before the ceasefire in Gaza came into effect on 10 October. The musician said he was taken aback by the uproar sparked by the chant, and claimed members of BBC staff at Glastonbury told him on the day that the set was “fantastic”. The corporation’s executive complaints unit (ECU) has since found the BBC’s broadcast of the performance breached editorial standards in relation to harm and offence. Vylan told Theroux there was no sign of a controversy in the moment: “It wasn’t like we came off stage, and everybody was like [gasps]. It’s just normal. We come off stage. It’s normal. Nobody thought anything. Nobody. Even staff at the BBC were like ‘That was fantastic! We loved that!’” Vylan also hit back at Damon Albarn from Blur, who called the chant “one of the most spectacular misfires I’ve seen in my life” and described Vylan as “goose-stepping in tennis gear”. Albarn’s reaction was “disappointing” and “lacked self-awareness”, Vylan said. “I just want to say that categorising it as a ‘spectacular misfire’ implies that somehow the politics of the band or our stance on Palestinian liberation is not thought out,” he said. “I take great issue with the phrase ‘goose-stepping’ being used because it’s only used around Nazi Germany,” he added. “That’s it. And for him to use that language, I think is disgusting. I think his response was disgusting.” Asked what he meant by the c
+[...article truncated for brevity...]
+
+SUMMARY (check if cues are preserved here):
+Bob Vylan frontman Bobby Vylan is “not regretful” of his “death, death to the IDF” chant at Glastonbury and said he would “do it again tomorrow, twice on Sundays”. Asked what he meant by the chant “Death to the IDF,” Vylan said the chant itself was “unimportant”. The outspoken punk duo sparked controversy when they led chants of “death, death to the IDF”, referring to the Israel Defense Forces, at the festival in June. When Vylan said he thought the band had been criticised more heavily than others for speaking about the conflict, Theroux mentioned the Irish band Kneecap, who have also faced backlash for their approach to pro-Palestine messaging. If there were large numbers of people going out and going like ‘Bob Vylan made me do this’. Speaking on The Louis Theroux Podcast in his first interview since Glastonbury, Vylan, whose real name is Pascal Robinson-Foster, was asked if he would do it all again. Vylan also rejected claims from the Community Security Trust (CST), a monitoring and Jewish community safety organisation, that their set contributed to a spike in antisemitic incidents reported two days later.
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 9,
+  "domain": "Cultural",
+  "title": "Bob Vylan ‘not regretful’ about IDF chant at Glastonbury: ‘I’d do it again tomorrow’",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (from original)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (from original)": "twice on Sundays",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Non-literal phrases",
+          "Text Span (from original)": "easier villain",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Non-literal phrases",
+          "Text Span (from original)": "negative impact",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Bobby Vylan",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Pascal Robinson-Foster",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Theroux",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Keir Starmer",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Damon Albarn",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Kneecap",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "Israel Defense Forces",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "IDF",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "Community Security Trust (CST)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "BBC",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "UTA",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "US state department",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "Press Association",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Glastonbury",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Palestine",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Manchester",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Gaza",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / traditions",
+          "Text Span (from original)": "Manchester synagogue attacks",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / traditions",
+          "Text Span (from original)": "ceasefire in Gaza",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (from original)": "Bob Vylan",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (from original)": "The Louis Theroux Podcast",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connectors / discourse markers",
+          "Text Span (from original)": "and",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connectors / discourse markers",
+          "Text Span (from original)": "when",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connectors / discourse markers",
+          "Text Span (from original)": "but",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time or sequence markers",
+          "Text Span (from original)": "in June",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time or sequence markers",
+          "Text Span (from original)": "since Glastonbury",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time or sequence markers",
+          "Text Span (from original)": "on 1 October",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time or sequence markers",
+          "Text Span (from original)": "two days later",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (from original)": "he (referring to Vylan)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (from original)": "they (referring to the band)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (from original)": "their (referring to the band)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal or logical phrases",
+          "Text Span (from original)": "If there were large numbers of people going out and going like \"Bob Vylan made me do this\"",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (from original)": "sparked controversy",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (from original)": "criticised more heavily",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (from original)": "faced backlash",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (from original)": "appalling hate speech",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (from original)": "in his first interview since Glastonbury",
+          "Preserved in Summary?": "Yes"
+        }
+      ]
+    }
+  ]
+}
+
+
+====================
+EXAMPLE 3
+====================
+
+ARTICLE TITLE: Stephen Colbert on Trump’s White House East Wing demolition: ‘So deeply unsettling’
+DOMAIN: Cultural
+
+ORIGINAL ARTICLE (identify cues from here):
+Late-night hosts reacted to Donald Trump’s partial demolition of the East Wing of the White House for his proposed $250m gilded ballroom. Stephen Colbert “At this point, we’re nine months into this, you’d think it would be impossible for us to be shocked by Donald Trump,” said Stephen Colbert on Tuesday’s Late Show. “But give the man credit – every so often, he takes the time to attach the electrodes to our nipples. And then it feels like the first time.” Case in point: on Monday, as part of his White House renovation project to construct a gilded ballroom, Trump sent out a backhoe to rip off a part of the East Wing. “That is it, we are not giving him the security deposit back,” Colbert quipped. “That is so deeply unsettling,” he continued. “It’s like being a kid and seeing your teacher at the grocery store … for sale … in the meat department. “We’re just nine months into Trump’s term, and he’s already going ‘Hulk smash’ on the White House. Last time, it took at least four years to bring a demo crew to the Capitol,” he added, referring to January 6. The demolition comes after Trump promised that the $250m, 90,000-sq-ft ballroom renovation would not touch the existing White House. “So that was a lie,” said Colbert. “At this point, should we even believe that this is going to end up being a ballroom? It could just as easily end up being a combination Pizza Hut-Taco Bell!” The treasury department has even instructed its employees not to share any photos of the White House “construction”. “Not generally something you instruct when you’re proud of what’s going on,” Colbert noted. “Hey guys, remember, no photos at my wedding … and it’s not because I’m marrying a body pillow of Mariah Carey.’” The Daily Show “The government shutdown is now in its third week,” said Michael Kosta on the Daily Show. “Countless federal employees aren’t being paid. Food stamps will run out soon. And there’s no end in sight. But not to worry – President Trump is working day and night … to build a ballroom! “It’s exactly what you voted for, coalminers in Pennsylvania: 90,000 gilded sq ft for Trump to do the jerk-off dance in,” he joked. “But if you’re worried such a renovation might damage the people’s house, let Donald Trump put your fears to rest.” Trump claimed that the project would “not interfere with the current building” because it would be “near it but not touching it” and “paying total respect to the existing building, which I’m the biggest fan of, it’s my favorite” “Yeah, it’s my favorite. I never want to leave … and I’m never going to,” Kosta mocked. “I believe it’s his favorite building, though. He loves the history, the decor, the immunity from criminal convictions it provides. But great! The White House itself is going to be fine.” Until a backhoe tore down some of the East Wing facade. “Well, it looks like they touched it,” Kosta joked. “I mean, holy shit, who’s his general contractor? Bin Laden and Sons?” “Apparently ‘not touching’ the White House turned into ‘
+[...article truncated for brevity...]
+
+SUMMARY (check if cues are preserved here):
+Case in point: on Monday, as part of his White House renovation project to construct a gilded ballroom, Trump sent out a backhoe to rip off a part of the East Wing. In other news, during a White House press conference on Monday, Trump claimed that a cameraman hit a mirror with a piece of equipment. The demolition comes after Trump promised that the $250m, 90,000-sq-ft ballroom renovation would not touch the existing White House. But not to worry – President Trump is working day and night … to build a ballroom! Stephen Colbert “At this point, we’re nine months into this, you’d think it would be impossible for us to be shocked by Donald Trump,” said Stephen Colbert on Tuesday’s Late Show. “But if you’re worried such a renovation might damage the people’s house, let Donald Trump put your fears to rest.” “We’re just nine months into Trump’s term, and he’s already going ‘Hulk smash’ on the White House.
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 4,
+  "domain": "Cultural",
+  "title": "Stephen Colbert on Trump’s White House East Wing demolition: ‘So deeply unsettling’",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (Exact from Original)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“attach the electrodes to our nipples”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“not giving him the security deposit back”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“like being a kid and seeing your teacher at the grocery store … in the meat department”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“Hulk smash”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“So that was a lie”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“combination Pizza Hut–Taco Bell”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“working day and night”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“jerk-off dance”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“not touching” the White House",
+          "Preserved in Summary?": "Yes (concept preserved)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“I don’t think he’s planning on leaving”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“one room where Barron did not have to crouch”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (Exact from Original)": "“riles up the dogs”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Stephen Colbert",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Donald Trump",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Michael Kosta",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Seth Meyers",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Anthony Albanese",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Kristi Noem",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Stephen Miller",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Barron",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (Exact from Original)": "Bin Laden",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (Exact from Original)": "White House",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (Exact from Original)": "East Wing",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (Exact from Original)": "Capitol",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (Exact from Original)": "Pennsylvania",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (Exact from Original)": "Australia (implied)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (Exact from Original)": "Treasury Department",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (Exact from Original)": "The Daily Show",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (Exact from Original)": "TSA",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (Exact from Original)": "Homeland Security",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural event",
+          "Text Span (Exact from Original)": "January 6",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifact",
+          "Text Span (Exact from Original)": "Pizza Hut",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifact",
+          "Text Span (Exact from Original)": "Taco Bell",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifact",
+          "Text Span (Exact from Original)": "body pillow of Mariah Carey",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifact",
+          "Text Span (Exact from Original)": "food stamps",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Slang",
+          "Text Span (Exact from Original)": "“Hulk smash”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Slang",
+          "Text Span (Exact from Original)": "“jerk-off dance”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Slang",
+          "Text Span (Exact from Original)": "“holy shit”",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    },
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (Exact from Original)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (Exact from Original)": "“But”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (Exact from Original)": "“And then”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (Exact from Original)": "“So”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (Exact from Original)": "“But give the man credit”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (Exact from Original)": "“on Monday”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (Exact from Original)": "“nine months into this”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (Exact from Original)": "“Last time”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (Exact from Original)": "“after”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (Exact from Original)": "“in its third week”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (Exact from Original)": "“he” (Trump)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (Exact from Original)": "“it”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (Exact from Original)": "“this”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal phrase",
+          "Text Span (Exact from Original)": "“because”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal phrase",
+          "Text Span (Exact from Original)": "“not generally something you instruct when…”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal phrase",
+          "Text Span (Exact from Original)": "“might damage”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing",
+          "Text Span (Exact from Original)": "“Case in point:”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing",
+          "Text Span (Exact from Original)": "“In other news,”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing",
+          "Text Span (Exact from Original)": "“referring to January 6”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (Exact from Original)": "“The demolition comes after Trump promised…”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (Exact from Original)": "“Until a backhoe tore down…”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (Exact from Original)": "“After Trump praised…”",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    }
+  ]
+}
+
+
+
+========================================
+TARGET ARTICLE/SUMMARY TO ANALYZE
+========================================

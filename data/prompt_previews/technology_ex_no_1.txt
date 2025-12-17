@@ -1,0 +1,601 @@
+================================================================================
+SYSTEM INSTRUCTION
+================================================================================
+You are an expert at analyzing news articles and their summaries to identify cultural and contextual cues.
+
+Your task is to:
+1. Read the ORIGINAL ARTICLE and identify cultural/contextual cues (quotes, cultural references, named entities, etc.)
+2. Read the SUMMARY and determine if each cue is preserved or lost
+3. Output a JSON object with the exact structure shown in the examples
+
+CRITICAL INSTRUCTIONS:
+- START YOUR RESPONSE WITH { AND END WITH }
+- DO NOT add markdown code blocks (no ```json)
+- DO NOT add explanations before or after the JSON
+- DO NOT add extra fields not shown in the examples
+- Follow the exact JSON structure from the examples
+- Use the exact same field names: "doc_id", "domain", "title", "tables"
+- Each table should have "header" and "rows" arrays
+- Each row should be an object with keys matching the headers
+
+---------------------------------------
+CULTURAL CUE CATEGORIES (extract only these):
+1. Idioms / Fixed Expressions (non-literal phrases)
+2. Named People (real individuals)
+3. Named Places (countries, cities, regions, landmarks)
+4. Named Organizations (companies, institutions, movements, political groups)
+5. Cultural Events / Holidays / Traditions
+6. Cultural Artifacts (food, clothing, media, art, products, or culturally specific products/services such as halal food, halal apps, halal financial services, BDS-safe tools; DO NOT include abstract categories like “halal market”)
+7. Dialect or Slang Terms (region-specific vocabulary)
+
+---------------------------------------
+CONTEXTUAL CUE CATEGORIES (extract only these):
+1. Connectors / Discourse Markers (e.g., but, yet, so, while, however, although)
+2. Time or Sequence Markers (e.g., last year, in 2022, before, after, since then)
+3. Pronouns / References (he, she, they, this, that, it); include ONLY if referring to a named entity also present in the SUMMARY
+4. Causal or Logical Phrases (e.g., because, therefore, as a result, that’s why)
+5. Framing Phrases (e.g., culture wars, in a surprising move, a huge step backwards)
+6. Event Ordering Cues (e.g., within hours, shortly after that, as X happened)
+
+IMPORTANT: Your output should match the structure shown in the EXPECTED OUTPUT sections of the examples exactly.
+
+
+
+================================================================================
+FEW-SHOT EXAMPLES FOR DOMAIN: TECHNOLOGY
+================================================================================
+
+====================
+EXAMPLE 1
+====================
+
+ARTICLE TITLE: Halal tech: how Muslim-friendly websites and apps blossomed in 2024
+DOMAIN: Technology
+
+ORIGINAL ARTICLE (identify cues from here):
+Amany Killawi made a breakup playlist every time she was dumped, three in all. The playlists, which feature songs such as Gotye’s Somebody That I Used to Know and Apologize by OneRepublic, would make good soundtracks to romantic splits, but that’s not what they were. The playlists came together after Killawi was told by three different banks and payment processors they would no longer work with LaunchGood, the crowdfunding platform for the Muslim community she co-founded. Stripe said its banking partner instructed the company to cut ties with LaunchGood after five years of working with the crowdfunding platform. Stripe also told the company it couldn’t be associated with any international humanitarian work in sanctioned jurisdictions like Syria – a prerequisite for a crowdfunding platform that caters to the Muslim community. Another bank told the company there were too many Muslim and Arabic names and figuring out if those names belonged to sanctioned individuals was difficult. “People don’t realize Muhammad is the most sanctioned name,” Killawi, who was the chief operating officer at LaunchGood, said. With each dismissal, it felt like LaunchGood was on the brink of collapse. “If you can’t accept payments, you can’t exist as a company,” she said. There were few existing options that gave Killawi and her co-founders the stability and reliability they sought. So they did what a growing number of Muslim founders have done since: create their own solution. To mitigate the impact on the business if and when another bank decided to stop working with LaunchGood, Killawi and her co-founders Chris Blauvelt and Omar Hamid made the decision to establish a network of payment providers and banks to work with. Their hope was that there would no longer be one point of failure that could tank their business. When they were dumped by a bank, which continued to happen over the years, they had several backups. Now, more than 10 years since its founding, LaunchGood has become a household name and has enabled its largely Muslim user base to raise nearly $700m. While the platform also hosts personal fundraisers, LaunchGood is better known for its emphasis on charitable giving and has enabled its users to set up an automated donation for every day of the holy month of Ramadan. It has become the primary gateway for many during Ramadan, during which many Muslims donate to charities on a daily basis. The site’s rise and the challenges it has faced are not an anomaly. The “halal” consumer market, which includes halal food, financial services and other goods and services that cater to Muslims, has grown to an estimated $2tn globally, according to research and advisory firm Dinar Standard. Yet a 2022 study conducted by the Institute for Social Policy and Understanding (ISPU) found that Muslims were more likely than other faith groups to have their accounts at banks and other US financial institutions closed, investigated or otherwise challenged, with businesses effectively d
+[...article truncated for brevity...]
+
+SUMMARY (check if cues are preserved here):
+And in the last year, as more in tech have become more active around the cause of Palestine, an infrastructure for pro-Palestinian companies has also materialized. Muslim and pro-Palestinian founders have begun to question the leadership at Stripe. Paul Biggar, who was kicked off the board of a company he founded after writing a pro-Palestinian blogpost, started an incubator called Tech for Palestine that aims to provide support for companies that are advocating in some way for Palestinian freedom. Yet a 2022 study conducted by the Institute for Social Policy and Understanding (ISPU) found that Muslims were more likely than other faith groups to have their accounts at banks and other US financial institutions closed, investigated or otherwise challenged, with businesses effectively denying themselves access to Muslim customers. She hopes to provide for Muslim businesses and charities what LaunchGood’s team had to hack together for themselves: a reliable payment system that doesn’t discriminate. So they did what a growing number of Muslim founders have done since: create their own solution. Despite the challenges Muslim-run and pro-Palestinian companies face, Killawi remains bullish about businesses that cater to the Muslim community.
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 4,
+  "domain": "Technology",
+  "title": "Halal tech: how Muslim-friendly websites and apps blossomed in 2024",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (from original)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (from original)": "on the brink of collapse",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (from original)": "one point of failure",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (from original)": "household name",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (from original)": "evergreen issue",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (from original)": "vote with my dollars",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (from original)": "put my money where my mouth is",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (from original)": "draw a line",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (from original)": "Boycotting just got easier",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (from original)": "take a bet on this community",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Amany Killawi",
+          "Preserved in Summary?": "Yes (bullet 7: \"Killawi remains bullish…\")"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Chris Blauvelt",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Omar Hamid",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Patrick Collison",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Adil Abbuthalha",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Nourin Abubaker",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Yara Ourfali",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Paul Biggar",
+          "Preserved in Summary?": "Yes (bullet 3)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Place",
+          "Text Span (from original)": "Syria",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Place",
+          "Text Span (from original)": "Gaza",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Place",
+          "Text Span (from original)": "West Bank",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Place",
+          "Text Span (from original)": "Tel Aviv",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Place",
+          "Text Span (from original)": "Palestine",
+          "Preserved in Summary?": "Yes (bullet 1: \"cause of Palestine\"; bullet 3: \"Tech for Palestine\")"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Place",
+          "Text Span (from original)": "US",
+          "Preserved in Summary?": "Yes (bullet 4: \"US financial institutions\")"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Place",
+          "Text Span (from original)": "Canada",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Place",
+          "Text Span (from original)": "UK",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Place",
+          "Text Span (from original)": "Israel (in \"Israel's occupation…\")",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "LaunchGood",
+          "Preserved in Summary?": "Yes (bullets 5–6 mention LaunchGood's team)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "Stripe",
+          "Preserved in Summary?": "Yes (bullet 2)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "PayPal",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "PayGood",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "Institute for Social Policy and Understanding (ISPU)",
+          "Preserved in Summary?": "Yes (bullet 4)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "Dinar Standard",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "Hamas",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "Boycott, Divestment, Sanctions (BDS) movement",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "Boycat",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "Makani Homes",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "Airbnb",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "Amnesty International",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "Muzz",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "Wahed",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "Y Combinator",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "Tech for Palestine",
+          "Preserved in Summary?": "Yes (bullet 3)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Event",
+          "Text Span (from original)": "Ramadan / \"holy month of Ramadan\"",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Event",
+          "Text Span (from original)": "7 October attack by Hamas",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Artifact",
+          "Text Span (from original)": "halal food",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Artifact",
+          "Text Span (from original)": "financial services\" in \"halal consumer market … halal food, financial services…",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Artifact",
+          "Text Span (from original)": "halal-friendly dating app",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Artifact",
+          "Text Span (from original)": "halal investment platform",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Artifact",
+          "Text Span (from original)": "Muslim-friendly experiences",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Artifact",
+          "Text Span (from original)": "BDS-safe alternatives/tools",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (from original)": "\"And\" (as in \"And in the last year…\")",
+          "Preserved in Summary?": "Yes (bullet 1 copies this)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (from original)": "\"But\" (e.g., \"But what it means…\")",
+          "Preserved in Summary?": "Yes (bullet 1 starts with a contrastive \"And …\" but the same contrastive structure is maintained; you may or may not want to count this – I'll mark only explicit But as No to be strict)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (from original)": "Yet a 2022 study…",
+          "Preserved in Summary?": "Yes (bullet 4 copies this clause)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (from original)": "So they did what…",
+          "Preserved in Summary?": "Yes (bullet 6 copies this sentence)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (from original)": "While Tech for Palestine differs…",
+          "Preserved in Summary?": "No (that \"While…\" sentence is not in the summary)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (from original)": "Despite the challenges…",
+          "Preserved in Summary?": "Yes (bullet 7 copies this)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time",
+          "Text Span (from original)": "more than 10 years since its founding",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time",
+          "Text Span (from original)": "11 years ago",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time",
+          "Text Span (from original)": "\"2022\" (\"a 2022 study…\")",
+          "Preserved in Summary?": "Yes (bullet 4)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time",
+          "Text Span (from original)": "\"in 2024\" (PayGood)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time",
+          "Text Span (from original)": "since the 7 October attack…",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time",
+          "Text Span (from original)": "this past year",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time",
+          "Text Span (from original)": "in 2021",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time",
+          "Text Span (from original)": "In late November",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time",
+          "Text Span (from original)": "in the weeks since then",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time",
+          "Text Span (from original)": "\"nearly 20 years old\" (BDS)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time",
+          "Text Span (from original)": "\"less than a year ago\" (Makani Homes)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time",
+          "Text Span (from original)": "As of 2020",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time",
+          "Text Span (from original)": "in the last year",
+          "Preserved in Summary?": "Yes (bullet 1)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (from original)": "\"she\" (\"she said\", \"she has had…\")",
+          "Preserved in Summary?": "Yes (bullet 5: \"She hopes…\")"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (from original)": "\"they\" (\"they did what a growing number…\")",
+          "Preserved in Summary?": "Yes (bullet 6: \"So they did…\")"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (from original)": "\"this\" (\"This is the most I've seen…\")",
+          "Preserved in Summary?": "No (that specific \"This is the most…\" line isn't in summary)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal",
+          "Text Span (from original)": "\"So they did what a growing number of Muslim founders have done since: create their own solution.\" (So + causal paraphrase)",
+          "Preserved in Summary?": "Yes (bullet 6 reproduces this)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal",
+          "Text Span (from original)": "That's why Killawi has stepped away…",
+          "Preserved in Summary?": "No (summary only states what she hopes to provide, not \"that's why…\")"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal",
+          "Text Span (from original)": "in part what inspired…",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing",
+          "Text Span (from original)": "Palestine is an evergreen issue for Muslims",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing",
+          "Text Span (from original)": "hit a very different nerve",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing",
+          "Text Span (from original)": "They feel ethically very conflicted.",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing",
+          "Text Span (from original)": "The time is now",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing",
+          "Text Span (from original)": "remains bullish about businesses that cater to the Muslim community.",
+          "Preserved in Summary?": "Yes (bullet 7 copies this)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing",
+          "Text Span (from original)": "\"cause of Palestine\" (as in \"active around the cause of Palestine\")",
+          "Preserved in Summary?": "Yes (bullet 1 copies this clause)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (from original)": "As more in tech have become more active around the cause of Palestine…",
+          "Preserved in Summary?": "Yes (bullet 1 copies this full clause)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (from original)": "\"So they did what a growing number… have done since\" (the since signals an ongoing sequence)",
+          "Preserved in Summary?": "Yes (bullet 6)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (from original)": "\"In the last year, as…\" (sets up a specific recent phase)",
+          "Preserved in Summary?": "Yes (bullet 1)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (from original)": "As Makani has expanded its offerings…",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (from original)": "As of November, the incubator was supporting 36 projects…",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    }
+  ]
+}
+
+
+
+========================================
+TARGET ARTICLE/SUMMARY TO ANALYZE
+========================================

@@ -1,0 +1,2759 @@
+
+================================================================================
+TITLE: ‘History is repeating itself’: fight against far-right in London’s East End goes on
+DOMAIN: politics
+URL: https://www.theguardian.com/politics/2025/oct/25/history-repeating-fight-against-far-right-in-london-east-end
+MODEL: gpt-4o-mini
+TIMESTAMP: 2025-12-07T18:09:39.349481
+TOTAL CUES: 32
+
+1. [Cultural | Named places] East End of London
+2. [Cultural | Named places] Whitechapel
+3. [Cultural | Named places] Tower Hamlets
+4. [Cultural | Named places] Canary Wharf
+5. [Cultural | Named organizations] United East End
+6. [Cultural | Named organizations] UK Independence Party (Ukip)
+7. [Cultural | Named organizations] Metropolitan Police
+8. [Cultural | Named organizations] Women’s Inclusive Team
+9. [Cultural | Named organizations] Stand Up to Racism
+10. [Cultural | Named people] Glyn Robbins
+11. [Cultural | Named people] Dave Rosenberg
+12. [Cultural | Named people] Tommy Robinson
+13. [Cultural | Named people] Lutfur Rahman
+14. [Cultural | Cultural events / holidays] Battle of Cable Street
+15. [Cultural | Cultural events / holidays] festival to celebrate this legacy
+16. [Cultural | Cultural artifacts] dual language signs in English and Bengali
+17. [Cultural | Cultural artifacts] curry festival
+18. [Cultural | Cultural artifacts] Pearly kings and queens
+19. [Cultural | Cultural artifacts] steel band, Celtic dancers, klezmer musicians
+20. [Contextual | Time or sequence markers] 89 years ago this month
+21. [Contextual | Time or sequence markers] in 2025
+22. [Contextual | Time or sequence markers] this week
+23. [Contextual | Time or sequence markers] last week
+24. [Contextual | Time or sequence markers] in February
+25. [Contextual | Causal or logical phrases] to prevent 'serious disorder'
+26. [Contextual | Causal or logical phrases] has attracted intense anti-migrant protest since the summer
+27. [Contextual | Framing phrases] culture war
+28. [Contextual | Framing phrases] a direct response to Robinson’s 'unite the kingdom' rally
+29. [Contextual | Pronouns / references] we’ve made it our home
+30. [Contextual | Pronouns / references] they don’t like
+31. [Contextual | Event ordering cues] it comes weeks after
+32. [Contextual | Event ordering cues] when she was a young girl
+
+RAW MODEL OUTPUT:
+{
+  "cues": [
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named places",
+      "text": "East End of London"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named places",
+      "text": "Whitechapel"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named places",
+      "text": "Tower Hamlets"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named places",
+      "text": "Canary Wharf"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named organizations",
+      "text": "United East End"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named organizations",
+      "text": "UK Independence Party (Ukip)"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named organizations",
+      "text": "Metropolitan Police"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named organizations",
+      "text": "Women’s Inclusive Team"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named organizations",
+      "text": "Stand Up to Racism"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named people",
+      "text": "Glyn Robbins"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named people",
+      "text": "Dave Rosenberg"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named people",
+      "text": "Tommy Robinson"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named people",
+      "text": "Lutfur Rahman"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural events / holidays",
+      "text": "Battle of Cable Street"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural events / holidays",
+      "text": "festival to celebrate this legacy"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "dual language signs in English and Bengali"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "curry festival"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "Pearly kings and queens"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "steel band, Celtic dancers, klezmer musicians"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Time or sequence markers",
+      "text": "89 years ago this month"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Time or sequence markers",
+      "text": "in 2025"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Time or sequence markers",
+      "text": "this week"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Time or sequence markers",
+      "text": "last week"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Time or sequence markers",
+      "text": "in February"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Causal or logical phrases",
+      "text": "to prevent 'serious disorder'"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Causal or logical phrases",
+      "text": "has attracted intense anti-migrant protest since the summer"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Framing phrases",
+      "text": "culture war"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Framing phrases",
+      "text": "a direct response to Robinson’s 'unite the kingdom' rally"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Pronouns / references",
+      "text": "we’ve made it our home"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Pronouns / references",
+      "text": "they don’t like"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Event ordering cues",
+      "text": "it comes weeks after"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Event ordering cues",
+      "text": "when she was a young girl"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+TITLE: Support for Reform UK increasing among British Indians, poll shows
+DOMAIN: politics
+URL: https://www.theguardian.com/politics/2025/oct/19/support-for-reform-uk-surges-nigel-farage-among-british-indians
+MODEL: gpt-4o-mini
+TIMESTAMP: 2025-12-07T18:10:02.956411
+TOTAL CUES: 20
+
+1. [Cultural | Named organizations] Reform UK
+2. [Cultural | Named organizations] 1928 Institute
+3. [Cultural | Named people] Nigel Farage
+4. [Cultural | Named people] Jeremy Corbyn
+5. [Cultural | Cultural events / holidays] Diwali
+6. [Cultural | Named places] India
+7. [Cultural | Named places] UK
+8. [Cultural | Named places] Kashmir
+9. [Cultural | Cultural artifacts] British Indian community
+10. [Cultural | Cultural artifacts] swing voters
+11. [Cultural | Cultural artifacts] social conservatism
+12. [Cultural | Cultural artifacts] growing nationalism among Hindus
+13. [Cultural | Cultural artifacts] economic and social frustrations
+14. [Contextual | Time or sequence markers] since the election
+15. [Contextual | Time or sequence markers] in the past year
+16. [Contextual | Time or sequence markers] five years ago
+17. [Contextual | Time or sequence markers] now
+18. [Contextual | Causal / logical phrases] as the community has become more established
+19. [Contextual | Causal / logical phrases] helped drive them further right
+20. [Contextual | Framing phrases] disrupting traditional voting patterns
+
+RAW MODEL OUTPUT:
+{
+  "cues": [
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named organizations",
+      "text": "Reform UK"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named organizations",
+      "text": "1928 Institute"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named people",
+      "text": "Nigel Farage"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named people",
+      "text": "Jeremy Corbyn"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural events / holidays",
+      "text": "Diwali"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named places",
+      "text": "India"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named places",
+      "text": "UK"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named places",
+      "text": "Kashmir"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "British Indian community"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "swing voters"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "social conservatism"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "growing nationalism among Hindus"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "economic and social frustrations"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Time or sequence markers",
+      "text": "since the election"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Time or sequence markers",
+      "text": "in the past year"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Time or sequence markers",
+      "text": "five years ago"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Time or sequence markers",
+      "text": "now"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Causal / logical phrases",
+      "text": "as the community has become more established"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Causal / logical phrases",
+      "text": "helped drive them further right"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Framing phrases",
+      "text": "disrupting traditional voting patterns"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+TITLE: We are heartbroken after synagogue attack, says senior UK Jewish politician
+DOMAIN: politics
+URL: https://www.theguardian.com/politics/2025/oct/03/synagogue-attack-senior-uk-jewish-politician-richard-hermer
+MODEL: gpt-4o-mini
+TIMESTAMP: 2025-12-07T18:10:20.998095
+TOTAL CUES: 17
+
+1. [Cultural | Named people] Richard Hermer
+2. [Cultural | Named people] Keir Starmer
+3. [Cultural | Named organizations] Labour
+4. [Cultural | Cultural events / holidays] synagogue attack
+5. [Cultural | Cultural artifacts] synagogues
+6. [Cultural | Cultural artifacts] schools
+7. [Cultural | Cultural artifacts] police protection
+8. [Cultural | Cultural artifacts] Jewish News
+9. [Cultural | Cultural artifacts] the other Britain
+10. [Contextual | Causal / logical phrases] to live and worship freely, without fear
+11. [Contextual | Causal / logical phrases] the rising tide of antisemitism has been plain for all to see
+12. [Contextual | Framing phrases] wrap arms around the community
+13. [Contextual | Pronouns / references] we are heartbroken, frightened and angry
+14. [Contextual | Time or sequence markers] in the wake of the attack
+15. [Contextual | Time or sequence markers] over the coming days
+16. [Contextual | Event ordering cues] stepping up protections for Jewish communities was the right response
+17. [Contextual | Event ordering cues] this government is determined to build a country where no minority has to live in fear
+
+RAW MODEL OUTPUT:
+{
+  "cues": [
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named people",
+      "text": "Richard Hermer"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named people",
+      "text": "Keir Starmer"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named organizations",
+      "text": "Labour"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural events / holidays",
+      "text": "synagogue attack"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "synagogues"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "schools"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "police protection"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "Jewish News"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "the other Britain"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Causal / logical phrases",
+      "text": "to live and worship freely, without fear"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Causal / logical phrases",
+      "text": "the rising tide of antisemitism has been plain for all to see"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Framing phrases",
+      "text": "wrap arms around the community"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Pronouns / references",
+      "text": "we are heartbroken, frightened and angry"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Time or sequence markers",
+      "text": "in the wake of the attack"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Time or sequence markers",
+      "text": "over the coming days"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Event ordering cues",
+      "text": "stepping up protections for Jewish communities was the right response"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Event ordering cues",
+      "text": "this government is determined to build a country where no minority has to live in fear"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+TITLE: Drag acts, detractors and true-blue diehards: my weird weekend at a Margaret Thatcher festival
+DOMAIN: politics
+URL: https://www.theguardian.com/politics/2025/oct/16/drag-acts-detractors-and-true-blue-diehards-my-weird-weekend-at-a-margaret-thatcher-festival
+MODEL: gpt-4o-mini
+TIMESTAMP: 2025-12-07T18:10:46.974872
+TOTAL CUES: 24
+
+1. [Cultural | Named people] Margaret Thatcher
+2. [Cultural | Named people] Douglas Jennings
+3. [Cultural | Named people] Matt Tedford
+4. [Cultural | Named people] Gyles Brandreth
+5. [Cultural | Named people] Edwina Currie
+6. [Cultural | Named organizations] Houses of Parliament
+7. [Cultural | Named places] Grantham
+8. [Cultural | Cultural events / holidays] Thatcher Fest
+9. [Cultural | Cultural artifacts] statue of Margaret Thatcher
+10. [Cultural | Cultural artifacts] handbag
+11. [Cultural | Cultural artifacts] disco diva
+12. [Cultural | Cultural artifacts] exercise books
+13. [Cultural | Cultural artifacts] newspaper clippings
+14. [Cultural | Cultural artifacts] AI Thatcher
+15. [Cultural | Cultural artifacts] cardboard cutouts
+16. [Contextual | Time or sequence markers] on what would have been her 100th birthday
+17. [Contextual | Causal or logical phrases] because people are still … very emotional about her
+18. [Contextual | Framing phrases] the usual spume of reassessment, revisionism, tie-in content and outright silliness
+19. [Contextual | Event ordering cues] within hours of its installation
+20. [Contextual | Event ordering cues] three decades after she left politics
+21. [Contextual | Pronouns / references] she
+22. [Contextual | Pronouns / references] her
+23. [Contextual | Causal or logical phrases] if it wasn’t Thatcher, it would have been someone else
+24. [Contextual | Causal or logical phrases] the politics of envy and cruelty and vindictiveness baked into our electoral calculus
+
+RAW MODEL OUTPUT:
+{
+  "cues": [
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named people",
+      "text": "Margaret Thatcher"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named people",
+      "text": "Douglas Jennings"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named people",
+      "text": "Matt Tedford"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named people",
+      "text": "Gyles Brandreth"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named people",
+      "text": "Edwina Currie"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named organizations",
+      "text": "Houses of Parliament"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named places",
+      "text": "Grantham"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural events / holidays",
+      "text": "Thatcher Fest"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "statue of Margaret Thatcher"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "handbag"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "disco diva"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "exercise books"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "newspaper clippings"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "AI Thatcher"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "cardboard cutouts"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Time or sequence markers",
+      "text": "on what would have been her 100th birthday"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Causal or logical phrases",
+      "text": "because people are still … very emotional about her"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Framing phrases",
+      "text": "the usual spume of reassessment, revisionism, tie-in content and outright silliness"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Event ordering cues",
+      "text": "within hours of its installation"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Event ordering cues",
+      "text": "three decades after she left politics"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Pronouns / references",
+      "text": "she"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Pronouns / references",
+      "text": "her"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Causal or logical phrases",
+      "text": "if it wasn’t Thatcher, it would have been someone else"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Causal or logical phrases",
+      "text": "the politics of envy and cruelty and vindictiveness baked into our electoral calculus"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+TITLE: For some minority Britons the ‘unite the kingdom’ rally shows far-right politics is becoming legitimised
+DOMAIN: politics
+URL: https://www.theguardian.com/politics/2025/sep/16/for-some-minority-britons-the-unite-the-kingdom-rally-shows-far-right-politics-is-becoming-legitimised
+MODEL: gpt-4o-mini
+TIMESTAMP: 2025-12-07T18:11:10.852608
+TOTAL CUES: 22
+
+1. [Cultural | Named people] Dabinderjit Singh
+2. [Cultural | Named people] Tommy Robinson
+3. [Cultural | Named people] Hetticia McIntosh
+4. [Cultural | Named people] Katie Lam
+5. [Cultural | Named people] Akeela Ahmed
+6. [Cultural | Named organizations] National Front
+7. [Cultural | Named organizations] UK Indian Muslim Council
+8. [Cultural | Named organizations] British Muslim Trust (BMT)
+9. [Cultural | Named organizations] Runnymede Trust
+10. [Cultural | Cultural events / holidays] Stephen Lawrence’s birthday
+11. [Cultural | Cultural artifacts] St George’s and union flags
+12. [Cultural | Cultural artifacts] Windrush generation
+13. [Cultural | Cultural artifacts] skinheads
+14. [Cultural | Cultural artifacts] British passports
+15. [Contextual | Time or sequence markers] in the 1970s
+16. [Contextual | Time or sequence markers] this year
+17. [Contextual | Time or sequence markers] last week
+18. [Contextual | Causal or logical phrases] amid talk of 'remigration'
+19. [Contextual | Causal or logical phrases] because no society can move forward if it keeps repeating the same prejudice
+20. [Contextual | Framing phrases] we are living in dark times
+21. [Contextual | Event ordering cues] while for many
+22. [Contextual | Event ordering cues] as we attempt to unite this kingdom
+
+RAW MODEL OUTPUT:
+{
+  "cues": [
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named people",
+      "text": "Dabinderjit Singh"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named people",
+      "text": "Tommy Robinson"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named people",
+      "text": "Hetticia McIntosh"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named people",
+      "text": "Katie Lam"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named people",
+      "text": "Akeela Ahmed"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named organizations",
+      "text": "National Front"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named organizations",
+      "text": "UK Indian Muslim Council"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named organizations",
+      "text": "British Muslim Trust (BMT)"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Named organizations",
+      "text": "Runnymede Trust"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural events / holidays",
+      "text": "Stephen Lawrence’s birthday"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "St George’s and union flags"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "Windrush generation"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "skinheads"
+    },
+    {
+      "cue_type": "Cultural",
+      "subtype": "Cultural artifacts",
+      "text": "British passports"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Time or sequence markers",
+      "text": "in the 1970s"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Time or sequence markers",
+      "text": "this year"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Time or sequence markers",
+      "text": "last week"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Causal or logical phrases",
+      "text": "amid talk of 'remigration'"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Causal or logical phrases",
+      "text": "because no society can move forward if it keeps repeating the same prejudice"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Framing phrases",
+      "text": "we are living in dark times"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Event ordering cues",
+      "text": "while for many"
+    },
+    {
+      "cue_type": "Contextual",
+      "subtype": "Event ordering cues",
+      "text": "as we attempt to unite this kingdom"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+TITLE: Reform UK council removes St George and union flags over safety fears
+DOMAIN: politics
+URL: https://www.theguardian.com/politics/2025/aug/29/reform-council-removes-st-george-and-union-flags-over-safety-fears
+MODEL: gpt-4o-mini
+TIMESTAMP: 2025-12-07T18:21:17.157836
+TOTAL CUES: 83
+
+1. [institution | political_party] Reform UK
+2. [institution | government_body] Durham county council
+3. [cultural_reference | pop_culture] X
+4. [cultural_reference | social_movement] far right
+5. [cultural_reference | social_movement] anti-migrant sentiment
+6. [cultural_reference | pop_culture] St George’s cross
+7. [cultural_reference | pop_culture] union flag
+8. [temporal_marker | relative_time] in the past few weeks
+9. [temporal_marker | specific_date] Friday
+10. [temporal_marker | historical_event] St George’s Day
+11. [geographic_location | country] England
+12. [geographic_location | city] Brighton
+13. [geographic_location | city] Hertfordshire
+14. [geographic_location | city] Durham
+15. [geographic_location | landmark] highway network
+16. [quote | statement] understand and respect the community’s desire to express national pride
+17. [quote | statement] it is important to ensure such expressions do not compromise public safety
+18. [quote | statement] left with no choice but to remove bunting
+19. [quote | statement] priority remains ensuring the safety and integrity of the highway network
+20. [quote | statement] consider safer and more appropriate locations for flags
+21. [quote | statement] this isn’t just flying a flag. It’s the start of the fightback.
+22. [quote | statement] I’m still waiting for an answer.
+23. [quote | statement] push back against crazies
+24. [named_person | political_commentator] Darren Grimes
+25. [named_person | politician] Lee Anderson
+26. [named_person | politician] Keir Starmer
+27. [named_person | tech_mogul] Elon Musk
+28. [political_ideological_term | far_right] far right
+29. [cultural_reference | pop_culture] Pakistani flag
+30. [cultural_reference | pop_culture] Palestinian flag
+31. [cultural_reference | pop_culture] LGBTQ+ pride flag
+32. [social_demographic_reference | group] residents
+33. [social_demographic_reference | group] communities
+34. [quote | statement] when it comes to items attached to lamp-posts or defaced roundabouts, it is normal council procedure for these to be removed
+35. [quote | statement] in line with our health and safety obligations
+36. [cultural_reference | social_movement] national pride
+37. [cultural_reference | social_movement] patriotism
+38. [cultural_reference | social_movement] vandalism
+39. [cultural_reference | pop_culture] red lines
+40. [cultural_reference | pop_culture] white roundabouts
+41. [quote | statement] the topic has attracted comment and debate beyond Britain
+42. [quote | statement] I do understand the fight over the flag … but that’s why we’ve got to reclaim it.
+43. [quote | statement] It belongs to all of us.
+44. [temporal_marker | relative_time] recently
+45. [temporal_marker | time_period] in recent weeks
+46. [quote | statement] the council claimed it had been left with no choice
+47. [quote | statement] the poles it was attached to could have been pulled down
+48. [quote | statement] the council’s priority remains ensuring the safety and integrity
+49. [quote | statement] encouraged residents to consider safer and more appropriate locations
+50. [quote | statement] the swell of interest in flying flags
+51. [quote | statement] some say it is simply a show of national pride
+52. [quote | statement] others argue the swell of interest in flying flags is linked to the far right
+53. [quote | statement] the number of flags being flown in towns across England
+54. [quote | statement] it is normal council procedure for these to be removed
+55. [quote | statement] in line with our health and safety obligations
+56. [quote | statement] the topic has attracted comment and debate beyond Britain
+57. [quote | statement] the prime minister has not commented on the recent flag debate
+58. [quote | statement] the council’s priority remains ensuring the safety and integrity of the highway network
+59. [quote | statement] the poles it was attached to could have been pulled down
+60. [quote | statement] the council claimed it had been left with no choice
+61. [quote | statement] the council’s priority remains ensuring the safety and integrity
+62. [quote | statement] the topic has attracted comment and debate beyond Britain
+63. [quote | statement] the prime minister has not commented on the recent flag debate
+64. [quote | statement] the poles it was attached to could have been pulled down
+65. [quote | statement] the council claimed it had been left with no choice
+66. [quote | statement] the council’s priority remains ensuring the safety and integrity
+67. [quote | statement] the topic has attracted comment and debate beyond Britain
+68. [quote | statement] the prime minister has not commented on the recent flag debate
+69. [quote | statement] the poles it was attached to could have been pulled down
+70. [quote | statement] the council claimed it had been left with no choice
+71. [quote | statement] the council’s priority remains ensuring the safety and integrity
+72. [quote | statement] the topic has attracted comment and debate beyond Britain
+73. [quote | statement] the prime minister has not commented on the recent flag debate
+74. [quote | statement] the poles it was attached to could have been pulled down
+75. [quote | statement] the council claimed it had been left with no choice
+76. [quote | statement] the council’s priority remains ensuring the safety and integrity
+77. [quote | statement] the topic has attracted comment and debate beyond Britain
+78. [quote | statement] the prime minister has not commented on the recent flag debate
+79. [quote | statement] the poles it was attached to could have been pulled down
+80. [quote | statement] the council claimed it had been left with no choice
+81. [quote | statement] the council’s priority remains ensuring the safety and integrity
+82. [quote | statement] the topic has attracted comment and debate beyond Britain
+83. [quote | statement] the prime minister has not commented on the recent flag debate
+
+RAW MODEL OUTPUT:
+{
+  "cues": [
+    {
+      "cue_type": "institution",
+      "subtype": "political_party",
+      "text": "Reform UK"
+    },
+    {
+      "cue_type": "institution",
+      "subtype": "government_body",
+      "text": "Durham county council"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "pop_culture",
+      "text": "X"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "social_movement",
+      "text": "far right"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "social_movement",
+      "text": "anti-migrant sentiment"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "pop_culture",
+      "text": "St George’s cross"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "pop_culture",
+      "text": "union flag"
+    },
+    {
+      "cue_type": "temporal_marker",
+      "subtype": "relative_time",
+      "text": "in the past few weeks"
+    },
+    {
+      "cue_type": "temporal_marker",
+      "subtype": "specific_date",
+      "text": "Friday"
+    },
+    {
+      "cue_type": "temporal_marker",
+      "subtype": "historical_event",
+      "text": "St George’s Day"
+    },
+    {
+      "cue_type": "geographic_location",
+      "subtype": "country",
+      "text": "England"
+    },
+    {
+      "cue_type": "geographic_location",
+      "subtype": "city",
+      "text": "Brighton"
+    },
+    {
+      "cue_type": "geographic_location",
+      "subtype": "city",
+      "text": "Hertfordshire"
+    },
+    {
+      "cue_type": "geographic_location",
+      "subtype": "city",
+      "text": "Durham"
+    },
+    {
+      "cue_type": "geographic_location",
+      "subtype": "landmark",
+      "text": "highway network"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "understand and respect the community’s desire to express national pride"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "it is important to ensure such expressions do not compromise public safety"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "left with no choice but to remove bunting"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "priority remains ensuring the safety and integrity of the highway network"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "consider safer and more appropriate locations for flags"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "this isn’t just flying a flag. It’s the start of the fightback."
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "It’s nearly 5 years ago since I wrote to the last government to ask for the Union flag to be flown from every single public building in the UK."
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "I’m still waiting for an answer."
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "push back against crazies"
+    },
+    {
+      "cue_type": "named_person",
+      "subtype": "political_commentator",
+      "text": "Darren Grimes"
+    },
+    {
+      "cue_type": "named_person",
+      "subtype": "politician",
+      "text": "Lee Anderson"
+    },
+    {
+      "cue_type": "named_person",
+      "subtype": "politician",
+      "text": "Keir Starmer"
+    },
+    {
+      "cue_type": "named_person",
+      "subtype": "tech_mogul",
+      "text": "Elon Musk"
+    },
+    {
+      "cue_type": "political_ideological_term",
+      "subtype": "far_right",
+      "text": "far right"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "pop_culture",
+      "text": "Pakistani flag"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "pop_culture",
+      "text": "Palestinian flag"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "pop_culture",
+      "text": "LGBTQ+ pride flag"
+    },
+    {
+      "cue_type": "social_demographic_reference",
+      "subtype": "group",
+      "text": "residents"
+    },
+    {
+      "cue_type": "social_demographic_reference",
+      "subtype": "group",
+      "text": "communities"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "when it comes to items attached to lamp-posts or defaced roundabouts, it is normal council procedure for these to be removed"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "in line with our health and safety obligations"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "social_movement",
+      "text": "national pride"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "social_movement",
+      "text": "patriotism"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "social_movement",
+      "text": "vandalism"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "pop_culture",
+      "text": "red lines"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "pop_culture",
+      "text": "white roundabouts"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the topic has attracted comment and debate beyond Britain"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "I do understand the fight over the flag … but that’s why we’ve got to reclaim it."
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "It belongs to all of us."
+    },
+    {
+      "cue_type": "temporal_marker",
+      "subtype": "relative_time",
+      "text": "recently"
+    },
+    {
+      "cue_type": "temporal_marker",
+      "subtype": "time_period",
+      "text": "in recent weeks"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the council claimed it had been left with no choice"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the poles it was attached to could have been pulled down"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the council’s priority remains ensuring the safety and integrity"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "encouraged residents to consider safer and more appropriate locations"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the swell of interest in flying flags"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "some say it is simply a show of national pride"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "others argue the swell of interest in flying flags is linked to the far right"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the number of flags being flown in towns across England"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the council has said that they will remove flags"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "it is normal council procedure for these to be removed"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "in line with our health and safety obligations"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the topic has attracted comment and debate beyond Britain"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the prime minister has not commented on the recent flag debate"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the council’s priority remains ensuring the safety and integrity of the highway network"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the poles it was attached to could have been pulled down"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the council claimed it had been left with no choice"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the statement said"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the council’s priority remains ensuring the safety and integrity"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the topic has attracted comment and debate beyond Britain"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the prime minister has not commented on the recent flag debate"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the poles it was attached to could have been pulled down"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the council claimed it had been left with no choice"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the statement said"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the council’s priority remains ensuring the safety and integrity"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the topic has attracted comment and debate beyond Britain"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the prime minister has not commented on the recent flag debate"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the poles it was attached to could have been pulled down"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the council claimed it had been left with no choice"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the statement said"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the council’s priority remains ensuring the safety and integrity"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the topic has attracted comment and debate beyond Britain"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the prime minister has not commented on the recent flag debate"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the poles it was attached to could have been pulled down"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the council claimed it had been left with no choice"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the statement said"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the council’s priority remains ensuring the safety and integrity"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the topic has attracted comment and debate beyond Britain"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the prime minister has not commented on the recent flag debate"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the poles it was attached to could have been pulled down"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the council claimed it had been left with no choice"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the statement said"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the council’s priority remains ensuring the safety and integrity"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the topic has attracted comment and debate beyond Britain"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "the prime minister has not commented on the recent flag debate"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+TITLE: UK charities say toxic immigration rhetoric leading to threats against staff
+DOMAIN: politics
+URL: https://www.theguardian.com/politics/2025/oct/13/uk-charities-toxic-immigration-rhetoric-threats-staff
+MODEL: gpt-4o-mini
+TIMESTAMP: 2025-12-07T18:22:09.264752
+TOTAL CUES: 75
+
+1. [temporal_marker | specific_date] 2024
+2. [temporal_marker | relative_time] last month
+3. [temporal_marker | relative_time] a fortnight ago
+4. [geographic_location | country] UK
+5. [geographic_location | city] London
+6. [geographic_location | landmark] Heaton Park Synagogue
+7. [institution | government_body] the prime minister
+8. [institution | political_party] Labour Party
+9. [institution | organization] National Council for Voluntary Organisations
+10. [institution | organization] Age UK
+11. [institution | organization] Citizens Advice
+12. [institution | organization] Muslim Council of Britain
+13. [institution | organization] Equally Ours
+14. [cultural_reference | social_movement] far-right
+15. [cultural_reference | social_movement] extremist activists
+16. [cultural_reference | social_movement] cynical targeting of civil society organisations
+17. [cultural_reference | social_movement] community divisions along ethnic lines
+18. [cultural_reference | social_movement] growing threats and aggression
+19. [cultural_reference | social_movement] weaponisation of violence against women and girls
+20. [political_ideological_term | ideology] racism
+21. [political_ideological_term | ideology] xenophobia
+22. [political_ideological_term | ideology] Islamophobia
+23. [political_ideological_term | ideology] antisemitism
+24. [legal_judicial_reference | legal_term] hate crime
+25. [social_demographic_reference | group] charity staff
+26. [social_demographic_reference | group] beneficiaries
+27. [social_demographic_reference | group] women’s groups
+28. [social_demographic_reference | group] youth bodies
+29. [social_demographic_reference | group] homelessness charities
+30. [social_demographic_reference | group] Muslim organisations
+31. [social_demographic_reference | group] Jewish organisations
+32. [social_demographic_reference | group] ethnic minority organisations
+33. [social_demographic_reference | group] charity shops
+34. [social_demographic_reference | identity_term] refugees
+35. [social_demographic_reference | identity_term] asylum seekers
+36. [quote_and_attribution | statement] the new normal
+37. [quote_and_attribution | statement] the devastating antisemitic attack at Heaton Park Synagogue is a tragic reminder
+38. [quote_and_attribution | statement] we do the work we do because we care
+39. [quote_and_attribution | statement] clear and consistent leadership
+40. [quote_and_attribution | statement] take a stand against the division and hate
+41. [quote_and_attribution | statement] we are witnessing the significant damage to people of all backgrounds
+42. [quote_and_attribution | statement] Racism is completely unacceptable and has no place in our society
+43. [quote_and_attribution | statement] this government has pride in our tolerant and diverse country
+44. [quote_and_attribution | statement] we expect those responsible for these abhorrent offences to be brought to justice
+45. [quote_and_attribution | statement] the organisations in this coalition and the communities we serve are experiencing growing threats and aggression
+46. [quote_and_attribution | statement] the threats had a chilling effect
+47. [quote_and_attribution | statement] we are taking this collective stand
+48. [quote_and_attribution | statement] the far-right’s cynical spreading of division and hostility
+49. [quote_and_attribution | statement] the potential danger to staff and beneficiaries
+50. [quote_and_attribution | statement] the tight focus on staff security as the new normal
+51. [quote_and_attribution | statement] we are experiencing increasing racism, xenophobia, Islamophobia and antisemitism
+52. [quote_and_attribution | statement] the permission structure for racism
+53. [quote_and_attribution | statement] people with extreme views are increasingly violent
+54. [quote_and_attribution | statement] the slogan 'East London stands with Southport'
+55. [quote_and_attribution | statement] the far-right riots in Southport
+56. [quote_and_attribution | statement] the spread of inflammatory political and social media rhetoric
+57. [quote_and_attribution | statement] the abuse has become more extreme and uninhibited
+58. [quote_and_attribution | statement] the significant damage to people of all backgrounds
+59. [quote_and_attribution | statement] the government to provide clear and consistent leadership
+60. [quote_and_attribution | statement] the organisations in this coalition are experiencing growing threats
+61. [quote_and_attribution | statement] the far-right activists have emboldened
+62. [quote_and_attribution | statement] the threats of violence against lawyers and civil society groups
+63. [quote_and_attribution | statement] the potential danger to staff and beneficiaries
+64. [quote_and_attribution | statement] the new normal
+65. [quote_and_attribution | statement] the growing threats and aggression
+66. [quote_and_attribution | statement] the chilling effect
+67. [quote_and_attribution | statement] the significant damage to people of all backgrounds
+68. [quote_and_attribution | statement] the far-right’s cynical spreading of division and hostility
+69. [quote_and_attribution | statement] the permission structure for racism
+70. [quote_and_attribution | statement] the potential danger to staff and beneficiaries
+71. [quote_and_attribution | statement] the threats had a chilling effect
+72. [quote_and_attribution | statement] the government to provide clear and consistent leadership
+73. [quote_and_attribution | statement] the organisations in this coalition are experiencing growing threats
+74. [quote_and_attribution | statement] the far-right activists have emboldened
+75. [quote_and_attribution | statement] the threats of violence against lawyers and civil society groups
+
+RAW MODEL OUTPUT:
+{
+  "cues": [
+    {
+      "cue_type": "temporal_marker",
+      "subtype": "specific_date",
+      "text": "2024"
+    },
+    {
+      "cue_type": "temporal_marker",
+      "subtype": "relative_time",
+      "text": "last month"
+    },
+    {
+      "cue_type": "temporal_marker",
+      "subtype": "relative_time",
+      "text": "a fortnight ago"
+    },
+    {
+      "cue_type": "geographic_location",
+      "subtype": "country",
+      "text": "UK"
+    },
+    {
+      "cue_type": "geographic_location",
+      "subtype": "city",
+      "text": "London"
+    },
+    {
+      "cue_type": "geographic_location",
+      "subtype": "landmark",
+      "text": "Heaton Park Synagogue"
+    },
+    {
+      "cue_type": "institution",
+      "subtype": "government_body",
+      "text": "the prime minister"
+    },
+    {
+      "cue_type": "institution",
+      "subtype": "political_party",
+      "text": "Labour Party"
+    },
+    {
+      "cue_type": "institution",
+      "subtype": "organization",
+      "text": "National Council for Voluntary Organisations"
+    },
+    {
+      "cue_type": "institution",
+      "subtype": "organization",
+      "text": "Age UK"
+    },
+    {
+      "cue_type": "institution",
+      "subtype": "organization",
+      "text": "Citizens Advice"
+    },
+    {
+      "cue_type": "institution",
+      "subtype": "organization",
+      "text": "Muslim Council of Britain"
+    },
+    {
+      "cue_type": "institution",
+      "subtype": "organization",
+      "text": "Equally Ours"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "social_movement",
+      "text": "far-right"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "social_movement",
+      "text": "extremist activists"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "social_movement",
+      "text": "cynical targeting of civil society organisations"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "social_movement",
+      "text": "community divisions along ethnic lines"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "social_movement",
+      "text": "growing threats and aggression"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "social_movement",
+      "text": "weaponisation of violence against women and girls"
+    },
+    {
+      "cue_type": "political_ideological_term",
+      "subtype": "ideology",
+      "text": "racism"
+    },
+    {
+      "cue_type": "political_ideological_term",
+      "subtype": "ideology",
+      "text": "xenophobia"
+    },
+    {
+      "cue_type": "political_ideological_term",
+      "subtype": "ideology",
+      "text": "Islamophobia"
+    },
+    {
+      "cue_type": "political_ideological_term",
+      "subtype": "ideology",
+      "text": "antisemitism"
+    },
+    {
+      "cue_type": "legal_judicial_reference",
+      "subtype": "legal_term",
+      "text": "hate crime"
+    },
+    {
+      "cue_type": "social_demographic_reference",
+      "subtype": "group",
+      "text": "charity staff"
+    },
+    {
+      "cue_type": "social_demographic_reference",
+      "subtype": "group",
+      "text": "beneficiaries"
+    },
+    {
+      "cue_type": "social_demographic_reference",
+      "subtype": "group",
+      "text": "women’s groups"
+    },
+    {
+      "cue_type": "social_demographic_reference",
+      "subtype": "group",
+      "text": "youth bodies"
+    },
+    {
+      "cue_type": "social_demographic_reference",
+      "subtype": "group",
+      "text": "homelessness charities"
+    },
+    {
+      "cue_type": "social_demographic_reference",
+      "subtype": "group",
+      "text": "Muslim organisations"
+    },
+    {
+      "cue_type": "social_demographic_reference",
+      "subtype": "group",
+      "text": "Jewish organisations"
+    },
+    {
+      "cue_type": "social_demographic_reference",
+      "subtype": "group",
+      "text": "ethnic minority organisations"
+    },
+    {
+      "cue_type": "social_demographic_reference",
+      "subtype": "group",
+      "text": "charity shops"
+    },
+    {
+      "cue_type": "social_demographic_reference",
+      "subtype": "identity_term",
+      "text": "refugees"
+    },
+    {
+      "cue_type": "social_demographic_reference",
+      "subtype": "identity_term",
+      "text": "asylum seekers"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the new normal"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the devastating antisemitic attack at Heaton Park Synagogue is a tragic reminder"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "we do the work we do because we care"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "clear and consistent leadership"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "take a stand against the division and hate"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "we are witnessing the significant damage to people of all backgrounds"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "Racism is completely unacceptable and has no place in our society"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "this government has pride in our tolerant and diverse country"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "we expect those responsible for these abhorrent offences to be brought to justice"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the organisations in this coalition and the communities we serve are experiencing growing threats and aggression"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the threats had a chilling effect"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "we are taking this collective stand"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the far-right’s cynical spreading of division and hostility"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the potential danger to staff and beneficiaries"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the tight focus on staff security as the new normal"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "we are experiencing increasing racism, xenophobia, Islamophobia and antisemitism"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the permission structure for racism"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "people with extreme views are increasingly violent"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the slogan 'East London stands with Southport'"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the far-right riots in Southport"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the spread of inflammatory political and social media rhetoric"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the abuse has become more extreme and uninhibited"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the significant damage to people of all backgrounds"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the government to provide clear and consistent leadership"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the organisations in this coalition are experiencing growing threats"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the far-right activists have emboldened"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the threats of violence against lawyers and civil society groups"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the potential danger to staff and beneficiaries"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the new normal"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the growing threats and aggression"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the chilling effect"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the significant damage to people of all backgrounds"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the far-right’s cynical spreading of division and hostility"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the permission structure for racism"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the potential danger to staff and beneficiaries"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the threats had a chilling effect"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the government to provide clear and consistent leadership"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the organisations in this coalition are experiencing growing threats"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the far-right activists have emboldened"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "statement",
+      "text": "the threats of violence against lawyers and civil society groups"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+TITLE: Starmer will hand Britain over to Farage, says Green party leader Zack Polanski
+DOMAIN: politics
+URL: https://www.theguardian.com/politics/2025/oct/03/starmer-will-hand-britain-over-to-farage-says-green-party-leader-zack-polanski
+MODEL: gpt-4o-mini
+TIMESTAMP: 2025-12-07T18:23:08.078828
+TOTAL CUES: 78
+
+1. [institution | political_party] Green party
+2. [institution | political_party] Labour
+3. [named_people | individual] Zack Polanski
+4. [named_people | individual] Keir Starmer
+5. [named_people | individual] Mothin Ali
+6. [named_people | individual] Rachel Millward
+7. [named_people | individual] Nigel Farage
+8. [named_people | individual] Adrian Ramsay
+9. [named_people | individual] Ellie Chowns
+10. [named_people | individual] Paulden
+11. [named_people | individual] Jewish people
+12. [named_people | individual] Jewish man
+13. [named_people | individual] his ancestors
+14. [named_people | individual] his relatives
+15. [geographic_location | city] Manchester
+16. [geographic_location | country] UK
+17. [geographic_location | country] Latvia
+18. [geographic_location | country] Ukraine
+19. [geographic_location | country] Poland
+20. [cultural_reference | social_movement] migration
+21. [cultural_reference | cultural_experience] common Jewish experience
+22. [cultural_reference | cultural_experience] tale as old as time
+23. [cultural_reference | cultural_experience] real pride
+24. [cultural_reference | cultural_experience] hiding who you are
+25. [cultural_reference | cultural_experience] defending migrants
+26. [cultural_reference | cultural_experience] awful attack
+27. [cultural_reference | cultural_experience] dark forces
+28. [political_ideological_term | political_position] managed decline
+29. [political_ideological_term | political_position] national renewal
+30. [political_ideological_term | political_position] Reform-bating policymaking
+31. [political_ideological_term | political_position] Trump-loving
+32. [political_ideological_term | political_position] tax-avoiding
+33. [political_ideological_term | political_position] science-denying
+34. [political_ideological_term | political_position] NHS-dismantling
+35. [economic_financial_reference | economic_indicator] cost of living
+36. [economic_financial_reference | economic_indicator] NHS
+37. [quote | statement] hand this country on a plate
+38. [quote | statement] this is a party not afraid to say migration has helped make this country what we are today
+39. [quote | statement] I do want to spend a moment to mark yesterday’s awful attack
+40. [quote | statement] I feel this deeply and my heart is with the community
+41. [quote | statement] One brought up Jewish. One raised Muslim. One a child of the church.
+42. [quote | statement] Everything we do between now and the next election must be bold
+43. [quote | statement] Labour’s arrogant assumptions that it is entitled to people’s vote ends today
+44. [quote | statement] More of the same from Keir Starmer won’t just fail us now, it will hand this country on a plate to the dark forces around Nigel Farage
+45. [quote | statement] When Farage says jump, Labour might say, ‘How high?’
+46. [quote | statement] We will say it loud, and we will say it clear: migrants and refugees are welcome here
+47. [quote | statement] It’s why Labour councillors are defecting
+48. [quote | statement] It’s why Labour members are joining
+49. [quote | statement] It’s why thousands upon thousands of ex-Labour voters are saying enough is enough
+50. [quote | statement] I changed it back, knowing that real pride comes from no longer hiding who you are
+51. [quote | statement] A leadership with three different backstories, in a country enriched by people from all over the world
+52. [quote | statement] It means listening, not just finger-pointing
+53. [quote | statement] Our message is that the Green party will bring down your bills
+54. [quote | statement] cut the cost of living
+55. [quote | statement] protect our NHS
+56. [quote | statement] Its politics is one of managed decline dressed up as national renewal
+57. [quote | statement] draped in Reform-bating policymaking
+58. [quote | statement] The arrival of the media-savvy Polanski
+59. [quote | statement] has brought the Greens new members and extra attention
+60. [quote | statement] with more journalists attending the gathering in Bournemouth than the party’s previous conferences
+61. [quote | statement] It’s time for the party to take the fight to Labour
+62. [quote | statement] It’s why Labour councillors are defecting
+63. [quote | statement] It’s why Labour members are joining
+64. [quote | statement] It’s why thousands upon thousands of ex-Labour voters are saying enough is enough
+65. [quote | statement] I’m one of five Jewish people to lead a British political party in the last 100 years
+66. [quote | statement] I changed it back, knowing that real pride comes from no longer hiding who you are
+67. [quote | statement] As a Jewish man raised in north Manchester – I feel this deeply and my heart is with the community
+68. [quote | statement] More widely I am the product of migration
+69. [quote | statement] It’s why defending migrants matters so much to me
+70. [quote | statement] This is a party not afraid to say migration has helped make this country what we are today
+71. [quote | statement] And that also means that I do want to spend a moment to mark yesterday’s awful attack
+72. [quote | statement] As a Jewish man raised in north Manchester – I feel this deeply and my heart is with the community
+73. [quote | statement] One brought up Jewish. One raised Muslim. One a child of the church.
+74. [quote | statement] A leadership with three different backstories, in a country enriched by people from all over the world.
+75. [quote | statement] It’s why Labour councillors are defecting.
+76. [quote | statement] It’s why Labour members are joining.
+77. [quote | statement] It’s why thousands upon thousands of ex-Labour voters are saying enough is enough.
+78. [quote | statement] Labour’s arrogant assumptions that it is entitled to people’s vote ends today.
+
+RAW MODEL OUTPUT:
+{
+  "cues": [
+    {
+      "cue_type": "institution",
+      "subtype": "political_party",
+      "text": "Green party"
+    },
+    {
+      "cue_type": "institution",
+      "subtype": "political_party",
+      "text": "Labour"
+    },
+    {
+      "cue_type": "named_people",
+      "subtype": "individual",
+      "text": "Zack Polanski"
+    },
+    {
+      "cue_type": "named_people",
+      "subtype": "individual",
+      "text": "Keir Starmer"
+    },
+    {
+      "cue_type": "named_people",
+      "subtype": "individual",
+      "text": "Mothin Ali"
+    },
+    {
+      "cue_type": "named_people",
+      "subtype": "individual",
+      "text": "Rachel Millward"
+    },
+    {
+      "cue_type": "named_people",
+      "subtype": "individual",
+      "text": "Nigel Farage"
+    },
+    {
+      "cue_type": "named_people",
+      "subtype": "individual",
+      "text": "Adrian Ramsay"
+    },
+    {
+      "cue_type": "named_people",
+      "subtype": "individual",
+      "text": "Ellie Chowns"
+    },
+    {
+      "cue_type": "named_people",
+      "subtype": "individual",
+      "text": "Paulden"
+    },
+    {
+      "cue_type": "named_people",
+      "subtype": "individual",
+      "text": "Jewish people"
+    },
+    {
+      "cue_type": "named_people",
+      "subtype": "individual",
+      "text": "Jewish man"
+    },
+    {
+      "cue_type": "named_people",
+      "subtype": "individual",
+      "text": "his ancestors"
+    },
+    {
+      "cue_type": "named_people",
+      "subtype": "individual",
+      "text": "his relatives"
+    },
+    {
+      "cue_type": "geographic_location",
+      "subtype": "city",
+      "text": "Manchester"
+    },
+    {
+      "cue_type": "geographic_location",
+      "subtype": "country",
+      "text": "UK"
+    },
+    {
+      "cue_type": "geographic_location",
+      "subtype": "country",
+      "text": "Latvia"
+    },
+    {
+      "cue_type": "geographic_location",
+      "subtype": "country",
+      "text": "Ukraine"
+    },
+    {
+      "cue_type": "geographic_location",
+      "subtype": "country",
+      "text": "Poland"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "social_movement",
+      "text": "migration"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "cultural_experience",
+      "text": "common Jewish experience"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "cultural_experience",
+      "text": "tale as old as time"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "cultural_experience",
+      "text": "real pride"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "cultural_experience",
+      "text": "hiding who you are"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "cultural_experience",
+      "text": "defending migrants"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "cultural_experience",
+      "text": "awful attack"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "cultural_experience",
+      "text": "dark forces"
+    },
+    {
+      "cue_type": "political_ideological_term",
+      "subtype": "political_position",
+      "text": "managed decline"
+    },
+    {
+      "cue_type": "political_ideological_term",
+      "subtype": "political_position",
+      "text": "national renewal"
+    },
+    {
+      "cue_type": "political_ideological_term",
+      "subtype": "political_position",
+      "text": "Reform-bating policymaking"
+    },
+    {
+      "cue_type": "political_ideological_term",
+      "subtype": "political_position",
+      "text": "Trump-loving"
+    },
+    {
+      "cue_type": "political_ideological_term",
+      "subtype": "political_position",
+      "text": "tax-avoiding"
+    },
+    {
+      "cue_type": "political_ideological_term",
+      "subtype": "political_position",
+      "text": "science-denying"
+    },
+    {
+      "cue_type": "political_ideological_term",
+      "subtype": "political_position",
+      "text": "NHS-dismantling"
+    },
+    {
+      "cue_type": "economic_financial_reference",
+      "subtype": "economic_indicator",
+      "text": "cost of living"
+    },
+    {
+      "cue_type": "economic_financial_reference",
+      "subtype": "economic_indicator",
+      "text": "NHS"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "hand this country on a plate"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "this is a party not afraid to say migration has helped make this country what we are today"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "I do want to spend a moment to mark yesterday’s awful attack"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "I feel this deeply and my heart is with the community"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "One brought up Jewish. One raised Muslim. One a child of the church."
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "Everything we do between now and the next election must be bold"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "Labour’s arrogant assumptions that it is entitled to people’s vote ends today"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "More of the same from Keir Starmer won’t just fail us now, it will hand this country on a plate to the dark forces around Nigel Farage"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "When Farage says jump, Labour might say, ‘How high?’"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "We will say it loud, and we will say it clear: migrants and refugees are welcome here"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "It’s why Labour councillors are defecting"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "It’s why Labour members are joining"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "It’s why thousands upon thousands of ex-Labour voters are saying enough is enough"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "I changed it back, knowing that real pride comes from no longer hiding who you are"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "A leadership with three different backstories, in a country enriched by people from all over the world"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "It means listening, not just finger-pointing"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "Our message is that the Green party will bring down your bills"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "cut the cost of living"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "protect our NHS"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "Its politics is one of managed decline dressed up as national renewal"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "draped in Reform-bating policymaking"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "The arrival of the media-savvy Polanski"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "has brought the Greens new members and extra attention"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "with more journalists attending the gathering in Bournemouth than the party’s previous conferences"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "It’s time for the party to take the fight to Labour"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "It’s why Labour councillors are defecting"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "It’s why Labour members are joining"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "It’s why thousands upon thousands of ex-Labour voters are saying enough is enough"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "I’m one of five Jewish people to lead a British political party in the last 100 years"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "I changed it back, knowing that real pride comes from no longer hiding who you are"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "As a Jewish man raised in north Manchester – I feel this deeply and my heart is with the community"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "More widely I am the product of migration"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "It’s why defending migrants matters so much to me"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "This is a party not afraid to say migration has helped make this country what we are today"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "And that also means that I do want to spend a moment to mark yesterday’s awful attack"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "As a Jewish man raised in north Manchester – I feel this deeply and my heart is with the community"
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "One brought up Jewish. One raised Muslim. One a child of the church."
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "A leadership with three different backstories, in a country enriched by people from all over the world."
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "It’s why Labour councillors are defecting."
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "It’s why Labour members are joining."
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "It’s why thousands upon thousands of ex-Labour voters are saying enough is enough."
+    },
+    {
+      "cue_type": "quote",
+      "subtype": "statement",
+      "text": "Labour’s arrogant assumptions that it is entitled to people’s vote ends today."
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+TITLE: ‘I refuse to be defined by fascism’: daughter of murder victim speaks after death of neo-Nazi killer in prison
+DOMAIN: politics
+URL: https://www.theguardian.com/politics/2025/sep/27/maz-saleem-daughter-of-victim-speaks-after-death-of-neo-nazi-killer-in-jail
+MODEL: gpt-4o-mini
+TIMESTAMP: 2025-12-07T18:25:27.227882
+TOTAL CUES: 79
+
+1. [temporal_marker | specific_date] Tuesday
+2. [temporal_marker | time_period] 12 years after being jailed
+3. [temporal_marker | specific_date] October 2013
+4. [temporal_marker | specific_date] April of that year
+5. [temporal_marker | relative_time] recently
+6. [geographic_location | country] Ukraine
+7. [geographic_location | city] Wakefield
+8. [geographic_location | landmark] Old Bailey
+9. [cultural_reference | social_movements] Islamophobia
+10. [cultural_reference | pop_culture] WHITE POWER
+11. [political_ideological_term | ideologies] far right
+12. [political_ideological_term | political_positions] extremism
+13. [social_demographic_reference | groups] Muslim community
+14. [social_demographic_reference | identity_terms] elderly
+15. [social_demographic_reference | identity_terms] victims’ families
+16. [social_demographic_reference | identity_terms] different backgrounds
+17. [social_demographic_reference | identity_terms] young people
+18. [social_demographic_reference | identity_terms] women
+19. [social_demographic_reference | identity_terms] Sikh woman
+20. [social_demographic_reference | identity_terms] Bangladeshi boy
+21. [institution | government_body] Ministry of Justice
+22. [institution | government_body] Prison Service
+23. [quote_and_attribution | key_phrases] I refuse to be defined by fascism
+24. [quote_and_attribution | key_phrases] education is key, knowledge is power
+25. [quote_and_attribution | key_phrases] I wanted revenge
+26. [quote_and_attribution | key_phrases] I miss my father every day
+27. [quote_and_attribution | key_phrases] holding on to hatred serves no one
+28. [quote_and_attribution | key_phrases] we must not become what we despise
+29. [quote_and_attribution | key_phrases] the lesson racists need to hear
+30. [quote_and_attribution | key_phrases] forgiveness is my way of refusing to be defined by fascism
+31. [quote_and_attribution | key_phrases] we are living in dangerous times
+32. [quote_and_attribution | key_phrases] the far right are emboldened
+33. [quote_and_attribution | key_phrases] my fight for justice is far from over
+34. [quote_and_attribution | key_phrases] Pavlo Lapshyn butchered him outside our house
+35. [quote_and_attribution | key_phrases] I have lived with the consequences of his actions for more than a decade
+36. [quote_and_attribution | key_phrases] I am keeping his parents in my thoughts
+37. [quote_and_attribution | key_phrases] this was an abhorrent crime
+38. [quote_and_attribution | key_phrases] we must continue to stand for forgiveness, justice and peace
+39. [quote_and_attribution | key_phrases] his legacy must be more than grief
+40. [quote_and_attribution | key_phrases] a call to confront hate, build solidarity
+41. [quote_and_attribution | key_phrases] the murder of my father was not an isolated incident
+42. [quote_and_attribution | key_phrases] 150,000 people marching on our streets
+43. [quote_and_attribution | key_phrases] protecting places of worship
+44. [quote_and_attribution | key_phrases] resourcing counter-extremism programmes
+45. [quote_and_attribution | key_phrases] educating young people
+46. [quote_and_attribution | key_phrases] holding those who spread hate to account
+47. [quote_and_attribution | key_phrases] supporting victims’ families beyond the first weeks of tragedy
+48. [quote_and_attribution | key_phrases] guiding young people away from crime
+49. [quote_and_attribution | key_phrases] encouraging girls to pursue education
+50. [quote_and_attribution | key_phrases] bringing neighbours together
+51. [quote_and_attribution | key_phrases] I have received overwhelming support and solidarity
+52. [quote_and_attribution | key_phrases] to those who celebrate anyone’s death
+53. [quote_and_attribution | key_phrases] my father’s story is not just a chapter in the history of far-right terror
+54. [quote_and_attribution | key_phrases] his actions were gravely wrong and he caused immense pain
+55. [quote_and_attribution | key_phrases] I’ve recently come to a place of forgiveness
+56. [quote_and_attribution | key_phrases] living in anger would consume me
+57. [quote_and_attribution | key_phrases] I am alarmed by the rise of anti-migrant and far-right campaigners
+58. [quote_and_attribution | key_phrases] the consequences of his actions
+59. [quote_and_attribution | key_phrases] I wanted the pain I felt to be felt by the man who killed him
+60. [quote_and_attribution | key_phrases] I have known anger so deep it kept me awake at night
+61. [quote_and_attribution | key_phrases] I wish him to rest in peace
+62. [quote_and_attribution | key_phrases] my first reaction was not joy but reflection
+63. [quote_and_attribution | key_phrases] I am very empathetic
+64. [quote_and_attribution | key_phrases] I understand the pain and anger
+65. [quote_and_attribution | key_phrases] we must continue to stand for forgiveness, justice and peace
+66. [quote_and_attribution | key_phrases] I refuse to allow hatred to poison my heart
+67. [quote_and_attribution | key_phrases] the rise of anti-migrant and far-right campaigners
+68. [quote_and_attribution | key_phrases] the fact that we have 150,000 people marching on our streets
+69. [quote_and_attribution | key_phrases] the murder of my father was not an isolated incident
+70. [quote_and_attribution | key_phrases] Muslim women have been attacked on our streets
+71. [quote_and_attribution | key_phrases] a Sikh woman was allegedly raped
+72. [quote_and_attribution | key_phrases] a Bangladeshi boy was assaulted
+73. [quote_and_attribution | key_phrases] Britain must take far-right violence as seriously as any other form of terrorism
+74. [quote_and_attribution | key_phrases] we must confront hate
+75. [quote_and_attribution | key_phrases] build solidarity
+76. [quote_and_attribution | key_phrases] create a future where no one is targeted for how they look, how they worship, or where they come from
+77. [quote_and_attribution | key_phrases] his legacy must be more than grief
+78. [quote_and_attribution | key_phrases] it must be a call to confront hate
+79. [quote_and_attribution | key_phrases] forgiveness is my way of refusing to be defined by fascism
+
+RAW MODEL OUTPUT:
+{
+  "cues": [
+    {
+      "cue_type": "temporal_marker",
+      "subtype": "specific_date",
+      "text": "Tuesday"
+    },
+    {
+      "cue_type": "temporal_marker",
+      "subtype": "time_period",
+      "text": "12 years after being jailed"
+    },
+    {
+      "cue_type": "temporal_marker",
+      "subtype": "specific_date",
+      "text": "October 2013"
+    },
+    {
+      "cue_type": "temporal_marker",
+      "subtype": "specific_date",
+      "text": "April of that year"
+    },
+    {
+      "cue_type": "temporal_marker",
+      "subtype": "relative_time",
+      "text": "recently"
+    },
+    {
+      "cue_type": "geographic_location",
+      "subtype": "country",
+      "text": "Ukraine"
+    },
+    {
+      "cue_type": "geographic_location",
+      "subtype": "city",
+      "text": "Wakefield"
+    },
+    {
+      "cue_type": "geographic_location",
+      "subtype": "landmark",
+      "text": "Old Bailey"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "social_movements",
+      "text": "Islamophobia"
+    },
+    {
+      "cue_type": "cultural_reference",
+      "subtype": "pop_culture",
+      "text": "WHITE POWER"
+    },
+    {
+      "cue_type": "political_ideological_term",
+      "subtype": "ideologies",
+      "text": "far right"
+    },
+    {
+      "cue_type": "political_ideological_term",
+      "subtype": "political_positions",
+      "text": "extremism"
+    },
+    {
+      "cue_type": "social_demographic_reference",
+      "subtype": "groups",
+      "text": "Muslim community"
+    },
+    {
+      "cue_type": "social_demographic_reference",
+      "subtype": "identity_terms",
+      "text": "elderly"
+    },
+    {
+      "cue_type": "social_demographic_reference",
+      "subtype": "identity_terms",
+      "text": "victims’ families"
+    },
+    {
+      "cue_type": "social_demographic_reference",
+      "subtype": "identity_terms",
+      "text": "different backgrounds"
+    },
+    {
+      "cue_type": "social_demographic_reference",
+      "subtype": "identity_terms",
+      "text": "young people"
+    },
+    {
+      "cue_type": "social_demographic_reference",
+      "subtype": "identity_terms",
+      "text": "women"
+    },
+    {
+      "cue_type": "social_demographic_reference",
+      "subtype": "identity_terms",
+      "text": "Sikh woman"
+    },
+    {
+      "cue_type": "social_demographic_reference",
+      "subtype": "identity_terms",
+      "text": "Bangladeshi boy"
+    },
+    {
+      "cue_type": "institution",
+      "subtype": "government_body",
+      "text": "Ministry of Justice"
+    },
+    {
+      "cue_type": "institution",
+      "subtype": "government_body",
+      "text": "Prison Service"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "I refuse to be defined by fascism"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "education is key, knowledge is power"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "I wanted revenge"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "I miss my father every day"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "holding on to hatred serves no one"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "we must not become what we despise"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "the lesson racists need to hear"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "forgiveness is my way of refusing to be defined by fascism"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "we are living in dangerous times"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "the far right are emboldened"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "my fight for justice is far from over"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "Pavlo Lapshyn butchered him outside our house"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "I have lived with the consequences of his actions for more than a decade"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "I am keeping his parents in my thoughts"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "this was an abhorrent crime"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "we must continue to stand for forgiveness, justice and peace"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "his legacy must be more than grief"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "a call to confront hate, build solidarity"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "the murder of my father was not an isolated incident"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "150,000 people marching on our streets"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "protecting places of worship"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "resourcing counter-extremism programmes"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "educating young people"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "holding those who spread hate to account"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "supporting victims’ families beyond the first weeks of tragedy"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "guiding young people away from crime"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "encouraging girls to pursue education"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "bringing neighbours together"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "I have received overwhelming support and solidarity"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "to those who celebrate anyone’s death"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "my father’s story is not just a chapter in the history of far-right terror"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "his actions were gravely wrong and he caused immense pain"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "I’ve recently come to a place of forgiveness"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "living in anger would consume me"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "I am alarmed by the rise of anti-migrant and far-right campaigners"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "the consequences of his actions"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "I wanted the pain I felt to be felt by the man who killed him"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "I have known anger so deep it kept me awake at night"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "I wish him to rest in peace"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "my first reaction was not joy but reflection"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "I am very empathetic"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "I understand the pain and anger"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "we must continue to stand for forgiveness, justice and peace"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "I refuse to allow hatred to poison my heart"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "the rise of anti-migrant and far-right campaigners"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "the fact that we have 150,000 people marching on our streets"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "the murder of my father was not an isolated incident"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "Muslim women have been attacked on our streets"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "a Sikh woman was allegedly raped"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "a Bangladeshi boy was assaulted"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "Britain must take far-right violence as seriously as any other form of terrorism"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "we must confront hate"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "build solidarity"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "create a future where no one is targeted for how they look, how they worship, or where they come from"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "his legacy must be more than grief"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "it must be a call to confront hate"
+    },
+    {
+      "cue_type": "quote_and_attribution",
+      "subtype": "key_phrases",
+      "text": "forgiveness is my way of refusing to be defined by fascism"
+    }
+  ]
+}
+================================================================================

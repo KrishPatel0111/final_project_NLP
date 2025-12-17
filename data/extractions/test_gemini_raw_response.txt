@@ -1,0 +1,1250 @@
+{
+  "doc_id": 8,
+  "domain": "politics",
+  "title": "‘History is repeating itself’: fight against far-right in London’s East End goes on",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (Exact)",
+        "Preserved?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact)": "“history is repeating itself”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact)": "“carve out a foothold”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact)": "“crusade on Whitechapel”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact)": "“double-edged sword”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact)": "“England for the English”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact)": "“our territory”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact)": "“tears, sweat, blood”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact)": "“culture war”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact)": "“no-go areas”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact)": "“get one with each other”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact)": "“community spirit”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact)": "“snub”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact)": "“in the midst of all rancour and in the midst of all uncertainty, there is hope”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact)": "“important emblems of patriotism and pride”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (Exact)": "“attempting to import division into our borough”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Glyn Robbins",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Oswald Mosley",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Tommy Robinson",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Dave Rosenberg",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Safia Jama",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Rupert Lowe",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Elon Musk",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Lutfur Rahman",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (Exact)": "Rev James Olanipekun",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "East End of London",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Wembley (stadium)",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "City of London",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Whitechapel",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Battle of Cable Street",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Tower Hamlets",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Isle of Dogs",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Britannia International Hotel",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Canary Wharf",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Brick Lane",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Spitalfields",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "England and Wales",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "UK",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Great Yarmouth",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Whitechapel tube station",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "central London",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (Exact)": "Royal London hospital",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "United East End",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "Blackshirt militia",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "National Front",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "BNP",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "English Defence League",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "UK Independence Party (Ukip)",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "Metropolitan police",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "Pink Ladies",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "Women’s Inclusive Team",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "Stand Up to Racism",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "British Union of Fascists",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "British Brothers’ League (BBL)",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (Exact)": "Tower Hamlets interfaith forum",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / holidays",
+          "Text Span (Exact)": "Battle of Cable Street",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / holidays",
+          "Text Span (Exact)": "curry festival",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (Exact)": "dual language signs in English and Bengali",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (Exact)": "Pearly kings and queens",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (Exact)": "steel band",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (Exact)": "Celtic dancers",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (Exact)": "klezmer musicians",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (Exact)": "Bengali, Somali and Chinese acts",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (Exact)": "curry (dish)",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect / slang",
+          "Text Span (Exact)": "“cockneys”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect / slang",
+          "Text Span (Exact)": "Jack the Ripper",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect / slang",
+          "Text Span (Exact)": "Kray twins",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural identity groups",
+          "Text Span (Exact)": "British Jews",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural identity groups",
+          "Text Span (Exact)": "British Muslim councillors",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural identity groups",
+          "Text Span (Exact)": "British Bengali mayor",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural identity groups",
+          "Text Span (Exact)": "Russian and Polish Jewish migrants",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural identity groups",
+          "Text Span (Exact)": "people of colour",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural identity groups",
+          "Text Span (Exact)": "white neighbours",
+          "Preserved?": "No"
+        }
+      ]
+    },
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (Exact)",
+        "Preserved?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“For them”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“In the decades since”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“This week”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“rather than”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“as they had”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“but”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“particularly”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“including from”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“While”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“but also”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“with the slogan”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“For Rosenberg”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“Last week”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“When she was a young girl”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“and”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“as well as”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“But for months”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“as rightwingers have made”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“when”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“adding”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“saying”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“Since then”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“Now”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“I grew up in this borough”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“while”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“The truth is”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“Once”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“After all”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse markers",
+          "Text Span (Exact)": "“But now”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (Exact)": "“89 years ago this month”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (Exact)": "“decades since”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (Exact)": "“2025”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (Exact)": "“This week”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (Exact)": "“weeks after”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (Exact)": "“1993”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (Exact)": "“since the summer”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (Exact)": "“since 2007”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (Exact)": "“1930s”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (Exact)": "“In 1936”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (Exact)": "“1901”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (Exact)": "“When she was a young girl”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (Exact)": "“since United East End was created in 2010”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (Exact)": "“for months”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (Exact)": "“in February”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (Exact)": "“By June”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (Exact)": "“2008”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (Exact)": "“late 1980s and early 90s”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (Exact)": "“70s and 80s”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (Exact)": "“In September”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (Exact)": "“over two days”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (Exact)": "“Once”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (Exact)": "“now”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (Exact)": "“they”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (Exact)": "“our”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (Exact)": "“them”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (Exact)": "“it”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (Exact)": "“this”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (Exact)": "“who”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (Exact)": "“where”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (Exact)": "“his”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (Exact)": "“her”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (Exact)": "“we”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (Exact)": "“I”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrases",
+          "Text Span (Exact)": "“to prevent “serious disorder.””",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrases",
+          "Text Span (Exact)": "“as a result”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrases",
+          "Text Span (Exact)": "“reflects two different visions”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrases",
+          "Text Span (Exact)": "“funded by”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrases",
+          "Text Span (Exact)": "“in a direct response to”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“said Glyn Robbins”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“there’s a feeling that”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“has become known as”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contexttype": "Framing phrases",
+          "Text Span (Exact)": "“London’s police stopped”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“The Metropolitan police said”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“Tower Hamlets council passed a motion that said”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“Furious far-right influencer Tommy Robinson tweeted”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“saying: “Here’s a list of the names and faces of Tower Hamlets council for some perspective.””",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“The government’s decision to place asylum seekers at Britannia International Hotel in Canary Wharf, Tower Hamlets has attracted intense anti-migrant protest since the summer, including from a group called the Pink Ladies who say they are concerned about safety.”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“who say they are concerned about safety”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“Dave Rosenberg, who has run walking tours through the East End since 2007, including on local anti-fascist history, will be among them.”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“said Rosenberg”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“For Rosenberg, the ban on the march was a “double-edged sword””",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“he said”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“For Rosenberg, the repeated battle against the far right in the East End reflects two different visions of working-class life”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“Rosenberg said”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“Safia Jama, the 47-year-old CEO of the charity Women’s Inclusive Team, was chairing a Stand Up to Racism meeting when it was disrupted by rightwing protesters.”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“she said”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“The community has seen “huge achievements” since”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“the leadership says”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“Rahman said”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“90% of our residents say”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“I grew up in this borough”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“said Rev James Olanipekun”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“Living in the borough has not been without incident for Olanipekun.”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“he said with a laugh”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“Robbins, a university lecturer who has seen off numerous far-right marches since United East End was created in 2010.”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (Exact)": "“what they’re saying is being echoed by the government, or the government in-waiting.”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“drove out Oswald Mosley’s Blackshirt militia from Whitechapel in the East End, in what has become known as the Battle of Cable Street.”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“the National Front, the BNP and the English Defence League have all tried to carve out a foothold in the East End.”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“communities are fighting back against the hard right yet again.”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“rather than attempting to escort protesters, as they had in Mosley’s day, London’s police stopped the hard right UK Independence Party (Ukip) from staging a “crusade on Whitechapel””",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“It comes weeks after”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“has attracted intense anti-migrant protest since the summer”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“While this weekend’s Ukip march has been stopped, counter-protesters still plan to gather in Whitechapel on Saturday.”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“Dave Rosenberg, who has run walking tours through the East End since 2007”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“the Public Order Act was introduced to inhibit Mosley’s British Union of Fascists.”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“Mosley’s wasn’t the first anti-immigrant movement to target the area”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“the British Brothers’ League (BBL) launched itself with a 1,000-strong rally in the East End”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“Safia Jama... was chairing a Stand Up to Racism meeting when it was disrupted by rightwing protesters.”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“her father was attacked in Tower Hamlets and left disabled as a result.”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“The community has seen “huge achievements” since”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“Brick Lane and Spitalfields have experienced profound regeneration”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“Canary Wharf is a leading financial centre.”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“tensions have been simmering in Tower Hamlets, as rightwingers have made its diversity the centre of a culture war.”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“The latest escalation began in February, when Great Yarmouth MP Rupert Lowe tweeted about dual language signs in English and Bengali at Whitechapel tube station.”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“By June, Robinson was complaining about bilingual children in Whitechapel”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“Lutfur Rahman, Tower Hamlets’ British Bengali mayor, described the online attack as “despicable”.”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“Rahman has defied controversies to lead the borough repeatedly since 2008”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“All primary and secondary schoolchildren enjoy free school meals”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“the borough provides university bursaries and the education maintenance allowance for working-class teenagers”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“is investing, the leadership says, £700m in council homes”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“In the late 1980s and early 90s, parts of the borough were no-go areas for people of colour.”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“Since then successive leaders have invested in the people of the borough”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“I grew up in this borough, our white neighbours helped my mother, helped me when my father went to work.”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“In September, the borough hosted a festival to celebrate this legacy”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“New dual language signs were unveiled on the town hall”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“Pearly kings and queens, a steel band, Celtic dancers, klezmer musicians, Bengali, Somali and Chinese acts performed and told stories of the East End through the ages”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“while a curry festival took place on Brick Lane”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“Living in the borough has not been without incident for Olanipekun.”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "“Once, a brick was thrown at his wife’s car.”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "““I didn’t look at it, I said nothing. After all, I was insured,” he said with a laugh.”",
+          "Preserved?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "““Racism has a long history and Tower Hamlets, we’ve had a particular variant of it,” Robbins, a university lecturer who has seen off numerous far-right marches since United East End was created in 2010.”",
+          "Preserved?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (Exact)": "““(But) now, what they’re saying is being echoed by the government, or the government in-waiting.””",
+          "Preserved?": "No"
+        }
+      ]
+    }
+  ]
+}

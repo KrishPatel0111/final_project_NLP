@@ -1,0 +1,403 @@
+================================================================================
+SYSTEM INSTRUCTION
+================================================================================
+You are an expert at analyzing news articles and their summaries to identify cultural and contextual cues.
+
+Your task is to:
+1. Read the ORIGINAL ARTICLE and identify cultural/contextual cues (quotes, cultural references, named entities, etc.)
+2. Read the SUMMARY and determine if each cue is preserved or lost
+3. Output a JSON object with the exact structure shown in the examples
+
+CRITICAL INSTRUCTIONS:
+- START YOUR RESPONSE WITH { AND END WITH }
+- DO NOT add markdown code blocks (no ```json)
+- DO NOT add explanations before or after the JSON
+- DO NOT add extra fields not shown in the examples
+- Follow the exact JSON structure from the examples
+- Use the exact same field names: "doc_id", "domain", "title", "tables"
+- Each table should have "header" and "rows" arrays
+- Each row should be an object with keys matching the headers
+
+---------------------------------------
+CULTURAL CUE CATEGORIES (extract only these):
+1. Idioms / Fixed Expressions (non-literal phrases)
+2. Named People (real individuals)
+3. Named Places (countries, cities, regions, landmarks)
+4. Named Organizations (companies, institutions, movements, political groups)
+5. Cultural Events / Holidays / Traditions
+6. Cultural Artifacts (food, clothing, media, art, products, or culturally specific products/services such as halal food, halal apps, halal financial services, BDS-safe tools; DO NOT include abstract categories like “halal market”)
+7. Dialect or Slang Terms (region-specific vocabulary)
+
+---------------------------------------
+CONTEXTUAL CUE CATEGORIES (extract only these):
+1. Connectors / Discourse Markers (e.g., but, yet, so, while, however, although)
+2. Time or Sequence Markers (e.g., last year, in 2022, before, after, since then)
+3. Pronouns / References (he, she, they, this, that, it); include ONLY if referring to a named entity also present in the SUMMARY
+4. Causal or Logical Phrases (e.g., because, therefore, as a result, that’s why)
+5. Framing Phrases (e.g., culture wars, in a surprising move, a huge step backwards)
+6. Event Ordering Cues (e.g., within hours, shortly after that, as X happened)
+
+IMPORTANT: Your output should match the structure shown in the EXPECTED OUTPUT sections of the examples exactly.
+
+
+
+================================================================================
+FEW-SHOT EXAMPLES FOR DOMAIN: CULTURAL
+================================================================================
+
+====================
+EXAMPLE 1
+====================
+
+ARTICLE TITLE: ‘Dictator-for-life vibes’: our architecture critic on Trump’s bulletproof ballroom bling
+DOMAIN: Cultural
+
+ORIGINAL ARTICLE (identify cues from here):
+As if truffling thuggishly in pursuit of the Nobel peace prize wasn’t enough, the spectacle of bulldozers ripping into the White House is yet more evidence of Donald Trump’s unstinting quest for epic self-aggrandisement. Having decreed the East Wing not fit for purpose – namely, his purposes of swank and show – he plans to replace it with a faux classical bulletproof ballroom, capable of seating up to 650 partygoers. Renderings show a vast, glacially white aircraft hangar of a structure embellished with an ornate coffered ceiling, gilded Corinthian columns and drooping gold chandeliers. Nero, who conceived the original domus aurea, would feel right at home. Costing $250m (£187.5m), a sum to be extracted from sycophantic donors, Trump’s ballroom is one of the most grandiose White House projects to be implemented in more than a century, as he strives to bend the building – and US architecture more generally – to his will. On re-assuming the presidency, one of his first executive orders – under the title Making Federal Architecture Beautiful Again – mandated that “traditional and classical architecture” should be the preferred style for all federal public buildings, with Trump having the final veto on designs. A similarly prescriptive order was enacted during Trump’s first spell in office, only to be rescinded by Joe Biden. So, having been here before, the American Institute of Architects is wearily wary, stating: “AIA is extremely concerned about any revisions that remove control from local communities, mandate official federal design preferences, or otherwise hinder design freedom, and add bureaucratic hurdles for federal buildings.” White House occupants do have a history of tweaking, expanding and remodelling. Theodore Roosevelt added the West Wing, Richard Nixon installed a bowling lane and Harry S Truman commissioned an entire reconstruction. Several first ladies have revamped the decor and furnishings, notably Jackie Kennedy, whose soigné interiors were designed to connect the presidential home more resonantly with American history. The now doomed East Wing, dating from 1902, has been a much-changed addition. Intermittently housing the office of the first lady, what’s left of it sits above the presidential emergency operations centre, a high security bunker built during the second world war. Vice-president Dick Cheney and his retinue retreated there during the 9/11 attacks, as did Trump at the start of the George Floyd protests in 2020. The man who landed the ballroom job is James McCrery, founder of Washington-based McCrery Architects and a trenchant advocate of classical architecture. “Americans love classical architecture,” he has said, “because it is our formative architecture – and we love our nation’s formation.” Ironically, McCrery began his career working for Peter Eisenman, the high priest of deconstructivism, before a conversion of Damascene proportions prompted him to renounce the avant garde and “rethink his modernist education”. 
+[...article truncated for brevity...]
+
+SUMMARY (check if cues are preserved here):
+Costing $250m (£187.5m), a sum to be extracted from sycophantic donors, Trump’s ballroom is one of the most grandiose White House projects to be implemented in more than a century, as he strives to bend the building – and US architecture more generally – to his will. White House occupants do have a history of tweaking, expanding and remodelling. His more recent engoldening of the Oval Office, described by White House press secretary Karoline Leavitt as a “golden office for the golden age”, has been unflatteringly compared to a professional wrestler’s dressing room. “It gives Trump a narrative of authority and tradition,” says Daniel Abramson, professor of architectural history at Boston University, “and fits into his overarching strategy of undermining the established elites, including in architecture.” On re-assuming the presidency, one of his first executive orders – under the title Making Federal Architecture Beautiful Again – mandated that “traditional and classical architecture” should be the preferred style for all federal public buildings, with Trump having the final veto on designs. A similarly prescriptive order was enacted during Trump’s first spell in office, only to be rescinded by Joe Biden. Specialising in the design of “traditional” Catholic churches, McCrery was appointed by Trump during his first term to serve on the US Commission of Fine Arts, an independent federal agency with the power to review the “design and aesthetics” of all construction within Washington DC.
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 8,
+  "domain": "Cultural",
+  "title": "‘Dictator-for-life vibes’: our architecture critic on Trump’s bulletproof ballroom bling",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (from original)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (from original)": "truffling thuggishly",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Non-literal phrases",
+          "Text Span (from original)": "epic self-aggrandisement",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Non-literal phrases",
+          "Text Span (from original)": "swank and show",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Non-literal phrases",
+          "Text Span (from original)": "bulletproof ballroom",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Non-literal phrases",
+          "Text Span (from original)": "glacially white aircraft hangar of a structure",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Non-literal phrases",
+          "Text Span (from original)": "domus aurea",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Donald Trump",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Nero",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Joe Biden",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Karoline Leavitt",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "James McCrery",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Peter Eisenman",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Daniel Abramson",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "White House",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "East Wing",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "West Wing",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Oval Office",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Washington DC",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Mar-a-Lago",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Rose Garden",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Potomac river",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Lincoln Memorial",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "American Institute of Architects",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "McCrery Architects",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "US Commission of Fine Arts",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / traditions",
+          "Text Span (from original)": "second world war",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / traditions",
+          "Text Span (from original)": "9/11 attacks",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / traditions",
+          "Text Span (from original)": "George Floyd protests in 2020",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (from original)": "bowling lane",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (from original)": "soigné interiors",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (from original)": "Trump International Hotel and Tower",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (from original)": "golden office for the golden age",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (from original)": "Arc de Trump",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / traditions",
+          "Text Span (from original)": "US's 250th anniversary",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connectors / discourse markers",
+          "Text Span (from original)": "as",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connectors / discourse markers",
+          "Text Span (from original)": "but",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connectors / discourse markers",
+          "Text Span (from original)": "So",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (from original)": "more than a century",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (from original)": "during Trump's first spell in office",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (from original)": "during his first term",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence markers",
+          "Text Span (from original)": "next year",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (from original)": "he (Trump)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span (from original)": "his (Trump)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrases",
+          "Text Span (from original)": "fits into his overarching strategy",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrases",
+          "Text Span (from original)": "because",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (from original)": "traditional and classical architecture",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (from original)": "extremely concerned",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (from original)": "a narrative of authority and tradition",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (from original)": "On re-assuming the presidency",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (from original)": "only to be rescinded by Joe Biden",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (from original)": "during the second world war",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (from original)": "during the 9/11 attacks",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cues",
+          "Text Span (from original)": "at the start of the George Floyd protests in 2020",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    }
+  ]
+}
+
+
+
+========================================
+TARGET ARTICLE/SUMMARY TO ANALYZE
+========================================

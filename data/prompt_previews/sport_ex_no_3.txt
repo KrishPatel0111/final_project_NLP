@@ -1,0 +1,1297 @@
+================================================================================
+SYSTEM INSTRUCTION
+================================================================================
+You are an expert at analyzing news articles and their summaries to identify cultural and contextual cues.
+
+Your task is to:
+1. Read the ORIGINAL ARTICLE and identify cultural/contextual cues (quotes, cultural references, named entities, etc.)
+2. Read the SUMMARY and determine if each cue is preserved or lost
+3. Output a JSON object with the exact structure shown in the examples
+
+CRITICAL INSTRUCTIONS:
+- START YOUR RESPONSE WITH { AND END WITH }
+- DO NOT add markdown code blocks (no ```json)
+- DO NOT add explanations before or after the JSON
+- DO NOT add extra fields not shown in the examples
+- Follow the exact JSON structure from the examples
+- Use the exact same field names: "doc_id", "domain", "title", "tables"
+- Each table should have "header" and "rows" arrays
+- Each row should be an object with keys matching the headers
+
+---------------------------------------
+CULTURAL CUE CATEGORIES (extract only these):
+1. Idioms / Fixed Expressions (non-literal phrases)
+2. Named People (real individuals)
+3. Named Places (countries, cities, regions, landmarks)
+4. Named Organizations (companies, institutions, movements, political groups)
+5. Cultural Events / Holidays / Traditions
+6. Cultural Artifacts (food, clothing, media, art, products, or culturally specific products/services such as halal food, halal apps, halal financial services, BDS-safe tools; DO NOT include abstract categories like “halal market”)
+7. Dialect or Slang Terms (region-specific vocabulary)
+
+---------------------------------------
+CONTEXTUAL CUE CATEGORIES (extract only these):
+1. Connectors / Discourse Markers (e.g., but, yet, so, while, however, although)
+2. Time or Sequence Markers (e.g., last year, in 2022, before, after, since then)
+3. Pronouns / References (he, she, they, this, that, it); include ONLY if referring to a named entity also present in the SUMMARY
+4. Causal or Logical Phrases (e.g., because, therefore, as a result, that’s why)
+5. Framing Phrases (e.g., culture wars, in a surprising move, a huge step backwards)
+6. Event Ordering Cues (e.g., within hours, shortly after that, as X happened)
+
+IMPORTANT: Your output should match the structure shown in the EXPECTED OUTPUT sections of the examples exactly.
+
+
+
+================================================================================
+FEW-SHOT EXAMPLES FOR DOMAIN: SPORT
+================================================================================
+
+====================
+EXAMPLE 1
+====================
+
+ARTICLE TITLE: Former West Coast player Mitch Brown becomes first AFL player to come out as bisexual
+DOMAIN: Sport
+
+ORIGINAL ARTICLE (identify cues from here):
+Mitch Brown has become the first male AFL player, past or present, to come out as gay or bisexual, in a step he hopes will make others in the game feel seen. The 36-year-old played 94 matches for West Coast in a career that ended in 2016. He identifies as a bisexual man and is in a long-term relationship with a woman. Brown said it would have been difficult had he spoken publicly during his playing career, but was motivated to help change the culture within the sport. “Maybe a second person [comes out], and then the third…,” he told The Daily Aus. “You may be playing with someone who’s in the queer community. Empathy is powerful.” Adelaide’s Izak Rankine became the latest in a string of players banned for using homophobic slurs last week. But suspensions have been unable to address the root causes of the game’s struggle to accept diversity among its players. “What matters to me most is a sense of change, [creating] a movement where [players] can be anyone and be safe in any environment,” Brown said. Ahead of AFL finals sign up for our free weekly newsletter The news was widely welcomed on social media. In addition to messages from fans and supporters, the AFL Players’ Association described the post as “powerful” and the GWS Giants’ account responded with a heart emoji. Pride Cup CEO Hayley Conway said the announcement was “an incredibly significant moment for LGBTIQ+ communities and for AFL” while AFL/AFLW analyst and former player Kate McCarthy welcomed the “overwhelmingly positive” news. “To be honest, I did not think I would ever see the day when either an ex or current AFL men’s player would come out,” she said. “I felt like we were so far away from this, which is really, really exciting, that someone has done it. It shouldn’t take courage to tell the world who you are, but it is extremely courageous from Mitch. “In the light of what the community went through last week, I thought that it’s even more brave that he decided to do it around this time and to speak up about his experiences.” Brown grew up in Ballarat and was drafted into the AFL with pick 16 in 2006. The defender debuted the following year and spent a decade in the competition before playing his final game at age 27, an elimination final against the Western Bulldogs. “I got to the end of my career and I was asked to play on for a couple more years, and I was over it. I was done,” he said. “I craved talking to someone and not being judged. I craved the ability to choose who I wanted to be around, rather than to fit into a team.” He said he had “buried” questions about his own sexuality due to the “hyper-masculine” environment, and that slurs were so constant they “just became part of the normal conversation”. “There have been so many times in my life I’ve seen things or heard things and not said anything … in fear of people thinking I was gay or bisexual.” Brown said he empathises with those currently playing, and it is easier for him as a past player to speak up. “I don’t have to 
+[...article truncated for brevity...]
+
+SUMMARY (check if cues are preserved here):
+Pride Cup CEO Hayley Conway said the announcement was “an incredibly significant moment for LGBTIQ+ communities and for AFL” while AFL/AFLW analyst and former player Kate McCarthy welcomed the “overwhelmingly positive” news. “I’m hopeful this could mean that Mitch’s story might have a bigger impact than other players who’ve come out, because he’s a respected AFL player, an insider, talking about the problems in the game. Adelaide’s Izak Rankine became the latest in a string of players banned for using homophobic slurs last week. “What matters to me most is a sense of change, [creating] a movement where [players] can be anyone and be safe in any environment,” Brown said. AFL CEO Andrew Dillon acknowledged Brown’s courage in sharing his story and how important the moment was for the game. Mitch Brown has become the first male AFL player, past or present, to come out as gay or bisexual, in a step he hopes will make others in the game feel seen. We haven’t heard that kind of direct criticism before from other players who have come out, including in rugby union and also football in Australia, and so this is an important turning point.
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 2,
+  "domain": "Sport",
+  "title": "Former West Coast player Mitch Brown becomes first AFL player to come out as bisexual",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (from original)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (from original)": "step forward",
+          "Preserved in Summary?": "Yes (\"step\" preserved in Dillon's quote)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (from original)": "watershed moment",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (from original)": "one of the boys",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (from original)": "buried questions",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Mitch Brown",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Izak Rankine",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Hayley Conway",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Kate McCarthy",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Erik Denison",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Andrew Dillon",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "The Daily Aus (interviewer, as org)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "GWS Giants account operator",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (from original)": "Ballarat",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (from original)": "MCG (Melbourne Cricket Ground)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (from original)": "Australia",
+          "Preserved in Summary?": "Yes (\"football in Australia\")"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named place",
+          "Text Span (from original)": "Western Bulldogs",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (from original)": "West Coast (AFL club)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (from original)": "Adelaide Crows",
+          "Preserved in Summary?": "Yes (Rankine mentioned as \"Adelaide's Izak Rankine\")"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (from original)": "AFL Players' Association",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (from original)": "GWS Giants",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (from original)": "Pride Cup",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (from original)": "Monash (faculty of arts)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (from original)": "AFL",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (from original)": "AFLW",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (from original)": "rugby union (code of sport)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (from original)": "Western Bulldogs",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Event",
+          "Text Span (from original)": "AFL finals",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Event",
+          "Text Span (from original)": "Pride Cup (event + org)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Event",
+          "Text Span (from original)": "elimination final",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Artifact",
+          "Text Span (from original)": "heart emoji (media symbol)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Artifact",
+          "Text Span (from original)": "social media posts",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Artifact",
+          "Text Span (from original)": "AFL jerseys / uniforms (implied, not named)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Slang",
+          "Text Span (from original)": "\"slurs\" (homophobic slurs)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Slang",
+          "Text Span (from original)": "\"one of the boys\" (idiomatic but not slang)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Slang",
+          "Text Span (from original)": "\"hyper-masculine\" (descriptor, not slang)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (from original)": "But",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (from original)": "While",
+          "Preserved in Summary?": "Yes (\"while…\")"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (from original)": "\"and\" (coordination)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (from original)": "In addition to",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (from original)": "Although",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time",
+          "Text Span (from original)": "last week",
+          "Preserved in Summary?": "Yes (Rankine banned last week)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time",
+          "Text Span (from original)": "2006",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time",
+          "Text Span (from original)": "the following year",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time",
+          "Text Span (from original)": "a decade",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time",
+          "Text Span (from original)": "next week",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time",
+          "Text Span (from original)": "in the light of what… last week",
+          "Preserved in Summary?": "Partially (reference preserved)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (from original)": "\"he\" referring to Brown",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (from original)": "his story",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (from original)": "others",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (from original)": "\"this\" (as in \"this could be a turning point\")",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal",
+          "Text Span (from original)": "because",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal",
+          "Text Span (from original)": "what matters most",
+          "Preserved in Summary?": "Yes (appears verbatim)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal",
+          "Text Span (from original)": "in light of",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal",
+          "Text Span (from original)": "due to",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing",
+          "Text Span (from original)": "incredibly significant moment",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing",
+          "Text Span (from original)": "overwhelmingly positive",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing",
+          "Text Span (from original)": "important turning point",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing",
+          "Text Span (from original)": "powerful",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing",
+          "Text Span (from original)": "could be a watershed moment",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Ordering",
+          "Text Span (from original)": "became the first",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Ordering",
+          "Text Span (from original)": "latest in a string of players",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Ordering",
+          "Text Span (from original)": "before playing his final game",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Ordering",
+          "Text Span (from original)": "ahead of finals",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    }
+  ]
+}
+
+
+====================
+EXAMPLE 2
+====================
+
+ARTICLE TITLE: The NHL preached inclusion. So why has it got into bed with Donald Trump?
+DOMAIN: Sport
+
+ORIGINAL ARTICLE (identify cues from here):
+“Diverse representation within inclusive environments is proven to advance innovation, creativity, and decision-making – all of which are critically important to the growth of the sport and our business,” NHL commissioner Gary Bettman wrote in his introduction to the NHL’s first – and only, so far – diversity and inclusion report, which it released in 2022. “Recognizing these facts, we are working to better understand and accelerate our engagement across all layers of diversity – including nationality, race, gender identity, sexual orientation, disability, and religion – and their nuances and intersections,” Bettman continued. Last week, Bettman was named alongside NHL legend Wayne Gretzky, Florida Panthers’ alternate captain Matthew Tkachuk and various representatives of other sports as a member of Donald Trump’s sports council. The council will be responsible for – among other things – playing an “important role in restoring tradition to college athletics, including … keeping men out of women’s sports.” Not what you’d call an opportunity for Bettman et al to gain a better understanding of the nuances of gender identity, by the sounds of it. This is not the first time Bettman has given mixed messages around social issues. In 2023, for example, the NHL tried to host a career fair aimed at recruiting a more diverse workforce (its inclusivity report noted that the league’s employees were roughly 84% white and 93% straight). The event, attached to that year’s All Star Game in Florida, quickly caught the attention of the governor’s office, which accused the NHL of discrimination – against white people. The league cancelled the career fair. A few weeks later, the NHL again had the opportunity to stand for its diversity values when a handful of players refused to wear their team’s Pride-themed warmup jerseys. Instead, the NHL retreated meekly, encouraging “voices and perspectives on social and cultural issues.” That June – Pride month, no less – Bettman cancelled the Pride jerseys altogether, calling the furor around them “a distraction” from the intended message. One wonders what he will call his own foray directly into the culture wars or, for that matter, how the NHL may characterize this particular moment of self-expression from the commissioner. It’s likely that Bettman’s participation in Trump’s sports council will fall into the “voices and perspectives on social and cultural issues” category the league talked about during the Pride jerseys fiasco. But seeing as Trump seems fixated on getting trans women out of college sports – even though there are fewer than 10 transgender athletes in college sports, according to the president of the NCAA – this feels like a very specific kind of perspective on a cultural issue, doesn’t it? What’s so aggravating about repeated allowances for anti-LGBTQ+ perspectives from the NHL under the guise of simply letting all opinions flourish equally, is how it pretends that these views are all morally equivalent when t
+[...article truncated for brevity...]
+
+SUMMARY (check if cues are preserved here):
+Last week, Bettman was named alongside NHL legend Wayne Gretzky, Florida Panthers’ alternate captain Matthew Tkachuk and various representatives of other sports as a member of Donald Trump’s sports council. “Diverse representation within inclusive environments is proven to advance innovation, creativity, and decision-making – all of which are critically important to the growth of the sport and our business,” NHL commissioner Gary Bettman wrote in his introduction to the NHL’s first – and only, so far – diversity and inclusion report, which it released in 2022. Not what you’d call an opportunity for Bettman et al to gain a better understanding of the nuances of gender identity, by the sounds of it. Maybe the diversity and inclusion stuff doesn’t totally make sense to Bettman in 2025 – other North American sports have decided that they don’t have the stomach to fight the culture wars under Trump either, and NFL commission Roger Goodell is also on the White House sports council. On Monday, Browne told the Guardian via email that “to see [Bettman, Gretzky, and Tkachuk] get behind an administration that is targeting marginalized communities, especially trans people in sports, is deeply disturbing and a huge step backwards in making hockey a more inclusive sport.” “Recognizing these facts, we are working to better understand and accelerate our engagement across all layers of diversity – including nationality, race, gender identity, sexual orientation, disability, and religion – and their nuances and intersections,” Bettman continued. What’s so aggravating about repeated allowances for anti-LGBTQ+ perspectives from the NHL under the guise of simply letting all opinions flourish equally, is how it pretends that these views are all morally equivalent when they’re not.
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 3,
+  "domain": "Sport",
+  "title": "The NHL preached inclusion. So why has it got into bed with Donald Trump?",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (from original)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (from original)": "not what you'd call an opportunity",
+          "Preserved in Summary?": "Yes (appears exactly in bullet 3)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (from original)": "one wonders",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (from original)": "step backwards",
+          "Preserved in Summary?": "Yes (\"a huge step backwards\")"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (from original)": "\"say no\" (idiomatic use)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Gary Bettman",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Wayne Gretzky",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Matthew Tkachuk",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Donald Trump",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Harrison Browne",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Roger Goodell",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "NCAA president (unnamed)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "owner / older owners (not named)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Place",
+          "Text Span (from original)": "Florida",
+          "Preserved in Summary?": "No (summary does not include Florida)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Place",
+          "Text Span (from original)": "college athletics (not a place)",
+          "Preserved in Summary?": "—"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Place",
+          "Text Span (from original)": "White House (implied via council)",
+          "Preserved in Summary?": "Yes (\"White House sports council\")"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Place",
+          "Text Span (from original)": "1992 (year, not place)",
+          "Preserved in Summary?": "—"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "NHL",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "Florida Panthers",
+          "Preserved in Summary?": "No (summary only references Tkachuk, not team name)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "NCAA",
+          "Preserved in Summary?": "Yes (\"according to the president of the NCAA\")"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "NFL",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "The Walrus (media)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "Guardian (media)",
+          "Preserved in Summary?": "Yes (\"told the Guardian\")"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "\"Pride Cup\" (not in article)",
+          "Preserved in Summary?": "—"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "All-Star Game",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Org",
+          "Text Span (from original)": "Trump's Sports Council",
+          "Preserved in Summary?": "Yes (appears in summary)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Event",
+          "Text Span (from original)": "Pride Month",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Event",
+          "Text Span (from original)": "All-Star Game",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Artifact",
+          "Text Span (from original)": "Pride-themed jerseys",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (from original)": "but",
+          "Preserved in Summary?": "Yes (\"but it's not…\" appears in summary bullet 7)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (from original)": "and",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (from original)": "so",
+          "Preserved in Summary?": "Yes (\"and so this is an important turning point\")"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (from original)": "although",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (from original)": "however",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (from original)": "2022",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (from original)": "Last week",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (from original)": "2023",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (from original)": "this spring",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (from original)": "on Monday",
+          "Preserved in Summary?": "Yes (\"On Monday, Browne told…\")"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (from original)": "1992",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time marker",
+          "Text Span (from original)": "2025",
+          "Preserved in Summary?": "Yes (appears in summary)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (from original)": "\"he\" (referring to Bettman)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (from original)": "\"they\" (Bettman et al)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (from original)": "\"these\" (perspectives)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronoun",
+          "Text Span (from original)": "\"it\" (referring to opportunity, report)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal phrase",
+          "Text Span (from original)": "because",
+          "Preserved in Summary?": "Yes (\"because he's a respected AFL player…\" appears in summary bullet 2)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal phrase",
+          "Text Span (from original)": "including",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal phrase",
+          "Text Span (from original)": "as",
+          "Preserved in Summary?": "Yes (e.g., \"as a member of Donald Trump's sports council\")"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal phrase",
+          "Text Span (from original)": "\"so\" (causal)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal phrase",
+          "Text Span (from original)": "what's so aggravating",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrase",
+          "Text Span (from original)": "culture wars",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrase",
+          "Text Span (from original)": "deeply disturbing",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrase",
+          "Text Span (from original)": "huge step backwards",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrase",
+          "Text Span (from original)": "important turning point",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrase",
+          "Text Span (from original)": "not what you'd call…",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (from original)": "first – and only so far",
+          "Preserved in Summary?": "Yes (summary includes this line verbatim)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (from original)": "Last week",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (from original)": "A few weeks later",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (from original)": "On Monday",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (from original)": "when he accepted his job",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    }
+  ]
+}
+
+
+====================
+EXAMPLE 3
+====================
+
+ARTICLE TITLE: Freedom and joy: Rugby World Cup’s quirky quality sets it apart from the pack
+DOMAIN: Sport
+
+ORIGINAL ARTICLE (identify cues from here):
+I have a friend who rejects the notion of “guilty pleasures”. There is, she argues, plenty of real and justified guilt in the world, without co-opting it to our choice of trash TV or an unkickable penchant for romantasy novels. She’s a helpful touchstone when I hear myself trying to justify the silly superhero film I went to see at the cinema on the basis that it might have carried an underlying anti-fascist message (if you squinted hard enough at the screen). My friend will sigh kindly and then remind me: sometimes it’s OK just to enjoy things. It is, perhaps, a lesson we particularly struggle with in sport because of its very nature. A huge part of our investment is grounded in the result and its consequences for whichever athlete or team we prefer. Ask a football fan if they enjoyed themselves at the match they just paid a decent whack to see, and there’s a better-than-even chance they will tell you no. If it was a close match, they will have been too anxious to have fun; if they lost they will be mourning their defeat. Even if their own side ran rampant, you can find them complaining about the lack of challenge or jeopardy. We are, as fans, especially averse to one-sided games, which can feel anything from a deflationary disappointment to a waste of everybody’s time. This is why the current Women’s Rugby World Cup is such a curious phenomenon. The tournament has been one of largely lopsided scorelines, from the group stages to the quarter-finals. Only five of the 28 fixtures have been decided by fewer than 14 points, and more than half were won by more than 40 – at least six scores. And yet there remains a profound and unanimous pleasure to be had across the entire affair: it’s hard to find anyone that’s watching along and not enjoying it. Since the opening game between England and USA a festival atmosphere – prevalent at every ground from Sunderland to Bristol to Brighton – has been successfully transmitted through our television screens thanks to some excellent broadcasting decisions from the BBC (signing Ruby Tui was a stroke of genius). Meanwhile the action on the pitch has delivered flair and fascination, even on days when the rain has lashed down until the ball is butter and the scrums steam like suet pudding. The match-ups may be uneven but the power and athleticism on display on all sides of the pitch have been mesmerising. Sure, the host nation’s dominance is a natural mood enhancer. England’s vast buffer of experience and professionalism has allowed them to see off whatever challenges are temporarily posed: fans have been able to relax and enjoy the show even when their team is not at its brilliant best. That’s only part of the picture, however. It doesn’t encompass the joyful embrace of The Kid, New Zealand’s 18-year-old top try-scorer Braxton Sorensen-McGee (whose daring dashes down the wing could well knock England’s cowgirls out of their saddles if the two sides meet). It can’t account for the bipartisan cheer when Spain, 54-3 d
+[...article truncated for brevity...]
+
+SUMMARY (check if cues are preserved here):
+Their fast-growing fanbase, many of whom have only discovered the sport in the past couple of years, do not show up to games with the typical baggage: decades of disappointment, crusted-over anger, inherited and inexplicably toxic rivalries. England’s vast buffer of experience and professionalism has allowed them to see off whatever challenges are temporarily posed: fans have been able to relax and enjoy the show even when their team is not at its brilliant best. Other sports – and more pertinently their investors – will be analysing this fan engagement and wondering how to replicate it. Since the opening game between England and USA a festival atmosphere – prevalent at every ground from Sunderland to Bristol to Brighton – has been successfully transmitted through our television screens thanks to some excellent broadcasting decisions from the BBC (signing Ruby Tui was a stroke of genius). It is, perhaps, a lesson we particularly struggle with in sport because of its very nature. It is, of course, a marketing tactic as much as a rallying cry, but it came directly from team conversations and reflects something quite true about the women’s rugby community, that is a place where people are for each other, not against them. A huge part of our investment is grounded in the result and its consequences for whichever athlete or team we prefer.
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 17,
+  "domain": "Sport",
+  "title": "Freedom and joy: Rugby World Cup’s quirky quality sets it apart from the pack",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“guilty pleasures”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“kickable penchant”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“if you squinted hard enough”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“just to enjoy things”",
+          "Preserved in Summary?": "Yes (“just enjoy…”)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“paid a decent whack”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“ran rampant”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“waste of everybody’s time”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“knock England’s cowgirls out of their saddles”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“come-as-you-are quality”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“forcing or faking it”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“for one brass farthing”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom / fixed expression",
+          "Text Span": "“for the girls” (slogan)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span": "Ruby Tui",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span": "Braxton Sorensen-McGee",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span": "Maro Itoje",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span": "Ilona Maher",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span": "Aseza Hele",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span": "Abby Dow",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span": "Anne-Marie",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span": "Ellie Kildunne",
+          "Preserved in Summary?": "Yes (appears indirectly in summary? No, does not appear)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span": "England",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span": "USA",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span": "Sunderland",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span": "Bristol",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span": "Brighton",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span": "New Zealand",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span": "Spain",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span": "South Africa",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span": "BBC",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span": "Black Ferns",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span": "Lions / Lions tour",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span": "Red Roses",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span": "Rugby World Cup",
+          "Preserved in Summary?": "Yes (implied as the event)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / traditions",
+          "Text Span": "opening ceremony",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / traditions",
+          "Text Span": "Women’s Rugby World Cup",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span": "cowboy hat",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span": "drums",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span": "Barbie pink",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span": "90s girl-power nostalgia",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span": "referees’ whistles (crocheted)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span": "TikTok videos",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect / slang",
+          "Text Span": "“cowgirls”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect / slang",
+          "Text Span": "“butter” (ball is butter)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect / slang",
+          "Text Span": "“Blommie”",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    },
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span": "“and yet”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span": "“however”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span": "“but” (multiple instances)",
+          "Preserved in Summary?": "Yes (appears in summary)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span": "“which can feel”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector / discourse marker",
+          "Text Span": "“even when”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence marker",
+          "Text Span": "“since the opening game”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence marker",
+          "Text Span": "“more than a year ago”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence marker",
+          "Text Span": "“earlier” (implicit in “opening game”)",
+          "Preserved in Summary?": "Yes (partially)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time / sequence marker",
+          "Text Span": "“when players are taking up their positions”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span": "“she” (the friend)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span": "“they” (fans, players)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span": "“this” (referring to tournament)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span": "“it”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns / references",
+          "Text Span": "“you”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrase",
+          "Text Span": "“because”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrase",
+          "Text Span": "“that’s why” (implied causal)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrase",
+          "Text Span": "“allowing them to”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal / logical phrase",
+          "Text Span": "“as much as”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrase",
+          "Text Span": "“perhaps”",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrase",
+          "Text Span": "“it may be that”",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cue",
+          "Text Span": "descriptions of group stage → quarter-finals",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cue",
+          "Text Span": "team scoring at 83rd minute",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering cue",
+          "Text Span": "Lions second Test → TV audience comparison",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    }
+  ]
+}
+
+
+
+========================================
+TARGET ARTICLE/SUMMARY TO ANALYZE
+========================================

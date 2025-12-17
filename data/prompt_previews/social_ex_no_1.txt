@@ -1,0 +1,361 @@
+================================================================================
+SYSTEM INSTRUCTION
+================================================================================
+You are an expert at analyzing news articles and their summaries to identify cultural and contextual cues.
+
+Your task is to:
+1. Read the ORIGINAL ARTICLE and identify cultural/contextual cues (quotes, cultural references, named entities, etc.)
+2. Read the SUMMARY and determine if each cue is preserved or lost
+3. Output a JSON object with the exact structure shown in the examples
+
+CRITICAL INSTRUCTIONS:
+- START YOUR RESPONSE WITH { AND END WITH }
+- DO NOT add markdown code blocks (no ```json)
+- DO NOT add explanations before or after the JSON
+- DO NOT add extra fields not shown in the examples
+- Follow the exact JSON structure from the examples
+- Use the exact same field names: "doc_id", "domain", "title", "tables"
+- Each table should have "header" and "rows" arrays
+- Each row should be an object with keys matching the headers
+
+---------------------------------------
+CULTURAL CUE CATEGORIES (extract only these):
+1. Idioms / Fixed Expressions (non-literal phrases)
+2. Named People (real individuals)
+3. Named Places (countries, cities, regions, landmarks)
+4. Named Organizations (companies, institutions, movements, political groups)
+5. Cultural Events / Holidays / Traditions
+6. Cultural Artifacts (food, clothing, media, art, products, or culturally specific products/services such as halal food, halal apps, halal financial services, BDS-safe tools; DO NOT include abstract categories like “halal market”)
+7. Dialect or Slang Terms (region-specific vocabulary)
+
+---------------------------------------
+CONTEXTUAL CUE CATEGORIES (extract only these):
+1. Connectors / Discourse Markers (e.g., but, yet, so, while, however, although)
+2. Time or Sequence Markers (e.g., last year, in 2022, before, after, since then)
+3. Pronouns / References (he, she, they, this, that, it); include ONLY if referring to a named entity also present in the SUMMARY
+4. Causal or Logical Phrases (e.g., because, therefore, as a result, that’s why)
+5. Framing Phrases (e.g., culture wars, in a surprising move, a huge step backwards)
+6. Event Ordering Cues (e.g., within hours, shortly after that, as X happened)
+
+IMPORTANT: Your output should match the structure shown in the EXPECTED OUTPUT sections of the examples exactly.
+
+
+
+================================================================================
+FEW-SHOT EXAMPLES FOR DOMAIN: SOCIAL
+================================================================================
+
+====================
+EXAMPLE 1
+====================
+
+ARTICLE TITLE: Church of Norway says sorry to LGBTQ+ people for ‘shame, great harm and pain’ 
+DOMAIN: Social
+
+ORIGINAL ARTICLE (identify cues from here):
+Against a backdrop of red stage curtains at one of Oslo’s most prominent LGBTQ+ spaces, the Church of Norway apologised for the discrimination and harm it had inflicted. “The church in Norway has caused LGBTQ+ people shame, great harm and pain,” the presiding bishop, Olav Fykse Tveit, said on Thursday. “This should never have happened and that is why I apologise today.” The “discrimination, unequal treatment and harassment” had caused some to lose their faith, Tveit acknowledged. A church service at Oslo Cathedral was scheduled to follow his apology. The apology took place at the London Pub, one of two bars targeted in the 2022 shooting that killed two people and left nine seriously injured during Oslo’s Pride celebrations. A Norwegian of Iranian origin, who had pledged allegiance to Islamic State, was sentenced to at least 30 years in prison for the killings. Like many religions around the world, the Church of Norway – an evangelical Lutheran church that is Norway’s largest faith community – had long marginalised LGBTQ+ people, refusing to allow them to become pastors or to marry in church. In the 1950s, the church’s bishops described gay people as a “social danger of global proportions”. But as Norwegian society became increasingly liberal, becoming the second in the world to allow same-sex registered partnerships in 1993 and in 2009 the first Scandinavian country to allow same-sex marriage, the church slowly followed. In 2007, the Church of Norway began ordaining gay pastors, and same-sex couples have been able to marry in church since 2017. In 2023, Tveit participated in Oslo’s Pride parade in what was described as a first for the church. Thursday’s apology was met with a mixed reaction. The head of a network of Christian lesbians in Norway, Hanne Marie Pedersen-Eriksen, herself a gay pastor, described it as “an important reparation” and a moment that “finally marked the end of a dark chapter in the church’s history”. For Stephen Adom, the head of Norway’s Association for Gender and Sexual Diversity, the apology was “strong and important” but had come “too late for those among us who died of Aids … with hearts filled with anguish because the church considered the epidemic to be God’s punishment”. Globally, a handful of religious institutions have sought to make amends for their actions towards LGBTQ+ people. In 2023, the Church of England apologised for what it described as its “shameful” treatment, though it continues to refuse to allow same-sex marriages in church. Similarly, the Methodist Church in Ireland last year apologised for its “failures in pastoral support and care” to LGBTQ+ people and their families, but remained staunch in its belief that marriage could only be a union between a man and a woman. Earlier this year, the United Church of Canada offered an apology to two spirit and LGBTQIA+ communities, describing it as a reaffirmation of the church’s “commitment to radical hospitality and full inclusion” in all aspects of church li
+[...article truncated for brevity...]
+
+SUMMARY (check if cues are preserved here):
+Like many religions around the world, the Church of Norway – an evangelical Lutheran church that is Norway’s largest faith community – had long marginalised LGBTQ+ people, refusing to allow them to become pastors or to marry in church. In 2007, the Church of Norway began ordaining gay pastors, and same-sex couples have been able to marry in church since 2017. “The church in Norway has caused LGBTQ+ people shame, great harm and pain,” the presiding bishop, Olav Fykse Tveit, said on Thursday. Similarly, the Methodist Church in Ireland last year apologised for its “failures in pastoral support and care” to LGBTQ+ people and their families, but remained staunch in its belief that marriage could only be a union between a man and a woman. Against a backdrop of red stage curtains at one of Oslo’s most prominent LGBTQ+ spaces, the Church of Norway apologised for the discrimination and harm it had inflicted. Globally, a handful of religious institutions have sought to make amends for their actions towards LGBTQ+ people.
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 6,
+  "domain": "Social",
+  "title": "Church of Norway says sorry to LGBTQ+ people for ‘shame, great harm and pain’ ",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (from original)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idioms / fixed expressions",
+          "Text Span (from original)": "a dark chapter",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Non-literal phrases",
+          "Text Span (from original)": "a social danger of global proportions",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Non-literal phrases",
+          "Text Span (from original)": "an important reparation",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Non-literal phrases",
+          "Text Span (from original)": "strong and important",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Non-literal phrases",
+          "Text Span (from original)": "too late for those among us who died of Aids … with hearts filled with anguish",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Olav Fykse Tveit",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Hanne Marie Pedersen-Eriksen",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Stephen Adom",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named people",
+          "Text Span (from original)": "Michael Blair / Rev Michael Blair",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Oslo",
+          "Preserved in Summary?": "No (summary does not include the word \"Oslo\")"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "London Pub",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Norway",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Ireland",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named places",
+          "Text Span (from original)": "Canada",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "Church of Norway",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "Islamic State",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "Church of England",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "Methodist Church in Ireland",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "United Church of Canada",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named organizations",
+          "Text Span (from original)": "Association for Gender and Sexual Diversity",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural events / traditions",
+          "Text Span (from original)": "Oslo's Pride celebrations",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Cultural artifacts",
+          "Text Span (from original)": "red stage curtains",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Dialect / slang",
+          "Text Span (from original)": "(none clearly present)",
+          "Preserved in Summary?": "—"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connectors",
+          "Text Span (from original)": "and",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connectors",
+          "Text Span (from original)": "but",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connectors",
+          "Text Span (from original)": "Similarly,",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time markers",
+          "Text Span (from original)": "on Thursday",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time markers",
+          "Text Span (from original)": "In the 1950s,",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time markers",
+          "Text Span (from original)": "in 1993",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time markers",
+          "Text Span (from original)": "in 2009",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time markers",
+          "Text Span (from original)": "In 2007,",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time markers",
+          "Text Span (from original)": "since 2017",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time markers",
+          "Text Span (from original)": "In 2023,",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time markers",
+          "Text Span (from original)": "last year",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns",
+          "Text Span (from original)": "\"it\" (referring to Church of Norway)",
+          "Preserved in Summary?": "Yes (\"it\" used in summary referring to Church of Norway)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns",
+          "Text Span (from original)": "they",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal phrases",
+          "Text Span (from original)": "because the church considered the epidemic to be God's punishment",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal phrases",
+          "Text Span (from original)": "but remained staunch in its belief",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal phrases",
+          "Text Span (from original)": "though it continues to refuse",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (from original)": "had long marginalised LGBTQ+ people",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (from original)": "shame, great harm and pain",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing phrases",
+          "Text Span (from original)": "a first for the church",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (from original)": "had long marginalised",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (from original)": "began ordaining",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (from original)": "have been able to marry in church since 2017",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (from original)": "took place",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    }
+  ]
+}
+
+
+
+========================================
+TARGET ARTICLE/SUMMARY TO ANALYZE
+========================================

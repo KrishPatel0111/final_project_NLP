@@ -1,0 +1,487 @@
+================================================================================
+SYSTEM INSTRUCTION
+================================================================================
+You are an expert at analyzing news articles and their summaries to identify cultural and contextual cues.
+
+Your task is to:
+1. Read the ORIGINAL ARTICLE and identify cultural/contextual cues (quotes, cultural references, named entities, etc.)
+2. Read the SUMMARY and determine if each cue is preserved or lost
+3. Output a JSON object with the exact structure shown in the examples
+
+CRITICAL INSTRUCTIONS:
+- START YOUR RESPONSE WITH { AND END WITH }
+- DO NOT add markdown code blocks (no ```json)
+- DO NOT add explanations before or after the JSON
+- DO NOT add extra fields not shown in the examples
+- Follow the exact JSON structure from the examples
+- Use the exact same field names: "doc_id", "domain", "title", "tables"
+- Each table should have "header" and "rows" arrays
+- Each row should be an object with keys matching the headers
+
+---------------------------------------
+CULTURAL CUE CATEGORIES (extract only these):
+1. Idioms / Fixed Expressions (non-literal phrases)
+2. Named People (real individuals)
+3. Named Places (countries, cities, regions, landmarks)
+4. Named Organizations (companies, institutions, movements, political groups)
+5. Cultural Events / Holidays / Traditions
+6. Cultural Artifacts (food, clothing, media, art, products, or culturally specific products/services such as halal food, halal apps, halal financial services, BDS-safe tools; DO NOT include abstract categories like “halal market”)
+7. Dialect or Slang Terms (region-specific vocabulary)
+
+---------------------------------------
+CONTEXTUAL CUE CATEGORIES (extract only these):
+1. Connectors / Discourse Markers (e.g., but, yet, so, while, however, although)
+2. Time or Sequence Markers (e.g., last year, in 2022, before, after, since then)
+3. Pronouns / References (he, she, they, this, that, it); include ONLY if referring to a named entity also present in the SUMMARY
+4. Causal or Logical Phrases (e.g., because, therefore, as a result, that’s why)
+5. Framing Phrases (e.g., culture wars, in a surprising move, a huge step backwards)
+6. Event Ordering Cues (e.g., within hours, shortly after that, as X happened)
+
+IMPORTANT: Your output should match the structure shown in the EXPECTED OUTPUT sections of the examples exactly.
+
+
+
+================================================================================
+FEW-SHOT EXAMPLES FOR DOMAIN: POLITICS
+================================================================================
+
+====================
+EXAMPLE 1
+====================
+
+ARTICLE TITLE: Drag acts, detractors and true-blue diehards: my weird weekend at a Margaret Thatcher festival
+DOMAIN: Politics
+
+ORIGINAL ARTICLE (identify cues from here):
+The bronze statue of Margaret Thatcher by the sculptor Douglas Jennings has a rating of 2.8 out of five on Google Maps. Although curiously, none of the reviewers seems to have overly preoccupied themselves with the quality of the craftsmanship or the fidelity of the likeness. “One of the most important PMs this country ever had,” writes one. “It’s a public toilet but there’s nowhere to wash your hands,” writes another. The statue was originally commissioned more than a decade ago, and was intended to stand in front of the Houses of Parliament, but Westminster city council rejected it on the grounds that it might become a target for vandalism. Instead, it was offered to her birthplace of Grantham, a town she left at the age of 18 and rarely visited again. Within hours of its installation, someone threw an egg at it. Shortly after that, it was defaced with red paint. And now, on a grey October afternoon, Margaret Thatcher herself is gazing upon it, bearing a look of pure disgust. “They’ve got the date wrong,” she moans, her trademark handbag sliding down a blue-sleeved arm pointed accusingly upwards. “It says I died in 2013. As you can see, I am very much alive.” The presence of Thatcher in her home town, on what would have been her 100th birthday, has drawn a small crowd outside the town’s Guildhall Arts Centre. Motorists toot horns; fans want selfies; passersby occasionally flick V-signs from across the street. A middle-aged woman approaches and clasps Thatcher’s hands in her own. “I just want to say, if it weren’t for you, I would never have been able to buy my house.” “That’s wonderful,” Thatcher replies. “And are you still living in the house?” “No,” the woman says. “I sold it to my son.” Somehow it scarcely matters that the figure they are venerating and vilifying is not Thatcher at all, but an actor named Matt Tedford, who plays the former prime minister in a riotous drag show called Margaret Thatcher: Queen of Soho, which played at the Guildhall on Monday night. In the show, Britain’s first female prime minister is depicted walking the streets of London on the night before the section 28 vote in parliament in 1987, stumbling upon a gay bar and ultimately reinventing herself as a disco diva. It’s sharp, topical, ridiculous and very funny. Tedford has been portraying Thatcher for 12 years – “longer than she was prime minister”, he observes wryly. The role has taken him to some strange and random places. He’s met party leaders. He’s been for dinner at the Foreign Office. He’s shared a stage with Kemi Badenoch at a book launch. For a character that began life as a gaudy Halloween costume around the start of the last decade, it’s been quite a ride. As he puts it: “I always say I’m the only northerner she ever gave work to.” Now his work has brought him to Thatcher Fest: a clever wheeze cooked up by Grantham’s local councillors to commemorate the centenary of its most famous daughter. There are talks and walks, Thatcher-themed music nights and ex
+[...article truncated for brevity...]
+
+SUMMARY (check if cues are preserved here):
+Somehow it scarcely matters that the figure they are venerating and vilifying is not Thatcher at all, but an actor named Matt Tedford, who plays the former prime minister in a riotous drag show called Margaret Thatcher: Queen of Soho, which played at the Guildhall on Monday night. Baxter, the council leader, is in his office reflecting on Thatcher’s true legacy in the town. Thatcher’s old school is now an academy. Naturally enough, current politics also intrude here, as Thatcher’s old party stands on the brink of collapse, as traditional institutions lie in ruins, as a surging far right evoke her memory while simultaneously running from her libertarian brand of small-state economics. There are talks and walks, Thatcher-themed music nights and exhibitions of memorabilia, Gyles Brandreth giving a lecture on Thatcher’s unlikely connection to Winnie-the-Pooh, exhibitions of her exercise books at the local school and newspaper clippings at the library. Tedford has been portraying Thatcher for 12 years – “longer than she was prime minister”, he observes wryly. A middle-aged woman approaches and clasps Thatcher’s hands in her own.
+
+EXPECTED OUTPUT (showing how cues are identified and preservation determined):
+{
+  "doc_id": 0,
+  "domain": "Politics",
+  "title": "Drag acts, detractors and true-blue diehards: my weird weekend at a Margaret Thatcher festival",
+  "tables": [
+    {
+      "header": [
+        "Cue Type",
+        "Subtype",
+        "Text Span (from original)",
+        "Preserved in Summary?"
+      ],
+      "rows": [
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (from original)": "\"longer than she was prime minister\" (wry phrasing)",
+          "Preserved in Summary?": "Yes (summary includes exact quote)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (from original)": "very much alive",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (from original)": "quite a ride",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (from original)": "upsetting all the right people",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (from original)": "flogged to within an inch of its life",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (from original)": "blood-and-soil nativism",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Idiom",
+          "Text Span (from original)": "baked into our electoral calculus",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Margaret Thatcher",
+          "Preserved in Summary?": "Yes (multiple mentions)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Matt Tedford",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Ashley Baxter",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Gyles Brandreth",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Douglas Jennings",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Kemi Badenoch",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Edwina Currie",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Charles Moore",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Ben Green",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Named person",
+          "Text Span (from original)": "Isaac Newton",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Place",
+          "Text Span (from original)": "Guildhall / Guildhall Arts Centre",
+          "Preserved in Summary?": "Yes (\"Guildhall\" appears in summary with the show)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Place",
+          "Text Span (from original)": "London (in drag show description)",
+          "Preserved in Summary?": "No (summary does not mention London)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Place",
+          "Text Span (from original)": "Soho (from Queen of Soho)",
+          "Preserved in Summary?": "Yes (drag show title preserved)"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Place",
+          "Text Span (from original)": "Grantham",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Place",
+          "Text Span (from original)": "Houses of Parliament",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Place",
+          "Text Span (from original)": "Foreign Office",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Place",
+          "Text Span (from original)": "Manchester",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Place",
+          "Text Span (from original)": "Scotland/Wales/Midlands",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Place",
+          "Text Span (from original)": "local school",
+          "Preserved in Summary?": "Yes (summary: \"local school\")"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (from original)": "Conservative Party (\"Thatcher's old party\")",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (from original)": "library",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (from original)": "academy (Thatcher's old school now an academy)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (from original)": "Westminster City Council",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (from original)": "Foreign Office",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (from original)": "Reform",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (from original)": "Costa/Starbucks",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Organization",
+          "Text Span (from original)": "South Kesteven district counci",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Event",
+          "Text Span (from original)": "Margaret Thatcher: Queen of Soho (drag show)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Event",
+          "Text Span (from original)": "talks and walks, Thatcher-themed music nights, exhibitions",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Event",
+          "Text Span (from original)": "centenary celebration",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Event",
+          "Text Span (from original)": "birthday gala dinner",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Event",
+          "Text Span (from original)": "Section 28 vote",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Artifact",
+          "Text Span (from original)": "exhibitions of memorabilia",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Artifact",
+          "Text Span (from original)": "Winnie-the-Pooh",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Artifact",
+          "Text Span (from original)": "newspaper clippings",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Artifact",
+          "Text Span (from original)": "trademark handbag",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Artifact",
+          "Text Span (from original)": "disco diva persona",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Artifact",
+          "Text Span (from original)": "BT shares",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Cultural",
+          "Subtype": "Slang",
+          "Text Span (from original)": "true-blue diehards",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (from original)": "Naturally enough",
+          "Preserved in Summary?": "Yes (appears verbatim)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (from original)": "\"as\" (logical connectors, multiple uses)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (from original)": "but",
+          "Preserved in Summary?": "Yes (used in summary sentence 1)"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (from original)": "although",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (from original)": "however",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Connector",
+          "Text Span (from original)": "instead",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time",
+          "Text Span (from original)": "for 12 years",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time",
+          "Text Span (from original)": "Monday night (show date)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time",
+          "Text Span (from original)": "earlier/later/shortly after/within hours",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Time",
+          "Text Span (from original)": "1987 / Section 28",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns",
+          "Text Span (from original)": "\"they,\" \"she,\" \"her,\" \"it\" referring to Thatcher or the actor",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Pronouns",
+          "Text Span (from original)": "multiple contextual references to Thatcher and Tedford",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal",
+          "Text Span (from original)": "\"as …\" (politics intrude as her party collapses)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal",
+          "Text Span (from original)": "because",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal",
+          "Text Span (from original)": "as a result",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Causal",
+          "Text Span (from original)": "on the grounds that",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing",
+          "Text Span (from original)": "Naturally enough…",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Framing",
+          "Text Span (from original)": "rhetorical scene-setting (less explicit in summary)",
+          "Preserved in Summary?": "No"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (from original)": "depiction of sequential actions (\"approaches and clasps…\")",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (from original)": "Monday night (chronological anchor)",
+          "Preserved in Summary?": "Yes"
+        },
+        {
+          "Cue Type": "Contextual",
+          "Subtype": "Event ordering",
+          "Text Span (from original)": "within hours,\" \"shortly after that,\" \"and now",
+          "Preserved in Summary?": "No"
+        }
+      ]
+    }
+  ]
+}
+
+
+
+========================================
+TARGET ARTICLE/SUMMARY TO ANALYZE
+========================================
