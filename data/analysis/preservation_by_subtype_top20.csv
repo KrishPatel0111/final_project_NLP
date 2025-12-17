@@ -1,0 +1,21 @@
+Subtype,Cue Type,Total Cues,Preserved Cues,Preservation Rate
+Framing,Framing Phrases,21336,3912,18.34%
+Time,Time or Sequence Markers,17408,2509,14.41%
+Idiom,Idioms / Fixed Expressions,16260,2053,12.63%
+Named person,Named People,16094,3889,24.16%
+Organization,Named Organizations,11160,3030,27.15%
+Causal,Causal or Logical Phrases,11005,2064,18.76%
+Place,Named Places,10801,2893,26.78%
+Artifact,Cultural,10582,1719,16.24%
+Connector,Connectors / Discourse Markers,7992,905,11.32%
+Event Ordering Cues,Contextual,6275,1084,17.27%
+Idioms / Fixed Expressions,Cultural,6264,685,10.94%
+Framing Phrases,Contextual,6110,1072,17.55%
+Event ordering,Event Ordering Cues,5607,927,16.53%
+Time or Sequence Markers,Contextual,3830,508,13.26%
+Event,Cultural,3733,984,26.36%
+Connectors / Discourse Markers,Contextual,2819,374,13.27%
+Cultural Artifacts,Cultural,2676,310,11.58%
+Named people,Cultural,2532,410,16.19%
+Named places,Cultural,2316,622,26.86%
+Named organizations,Cultural,2292,488,21.29%

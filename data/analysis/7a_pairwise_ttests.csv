@@ -1,0 +1,16 @@
+Model 1,Model 2,T-statistic,P-value,Significant
+TextRank,BART-large-cnn,-1.4830,0.1387,No
+TextRank,PEGASUS-cnn_dailymail,-1.6973,0.0902,No
+TextRank,Gemma-2-9B-IT,-4.3976,0.0000,Yes
+TextRank,mT5-XLSum,10.0915,0.0000,Yes
+TextRank,Mistral-7B-Instruct,0.8188,0.4131,No
+BART-large-cnn,PEGASUS-cnn_dailymail,-0.2707,0.7868,No
+BART-large-cnn,Gemma-2-9B-IT,-1.9211,0.0552,No
+BART-large-cnn,mT5-XLSum,16.8587,0.0000,Yes
+BART-large-cnn,Mistral-7B-Instruct,2.8319,0.0048,Yes
+PEGASUS-cnn_dailymail,Gemma-2-9B-IT,-1.6292,0.1038,No
+PEGASUS-cnn_dailymail,mT5-XLSum,16.3935,0.0000,Yes
+PEGASUS-cnn_dailymail,Mistral-7B-Instruct,3.1052,0.0020,Yes
+Gemma-2-9B-IT,mT5-XLSum,16.3544,0.0000,Yes
+Gemma-2-9B-IT,Mistral-7B-Instruct,6.3366,0.0000,Yes
+mT5-XLSum,Mistral-7B-Instruct,-13.8984,0.0000,Yes

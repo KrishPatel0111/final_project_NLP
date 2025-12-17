@@ -1,0 +1,73 @@
+Model,Cue Type,Total Cues,Preserved Cues,Preservation Rate
+BART-large-cnn,Causal or Logical Phrases,124,24,19.35%
+BART-large-cnn,Connectors / Discourse Markers,63,12,19.05%
+BART-large-cnn,Contextual,6446,1220,18.93%
+BART-large-cnn,Cultural,7387,1615,21.86%
+BART-large-cnn,Dialect or Slang Terms,17,1,5.88%
+BART-large-cnn,Event Ordering Cues,62,14,22.58%
+BART-large-cnn,Framing Phrases,191,39,20.42%
+BART-large-cnn,Idioms / Fixed Expressions,151,30,19.87%
+BART-large-cnn,Named Organizations,111,34,30.63%
+BART-large-cnn,Named People,200,39,19.50%
+BART-large-cnn,Named Places,110,30,27.27%
+BART-large-cnn,Time or Sequence Markers,158,26,16.46%
+Gemma-2-9B-IT,Causal or Logical Phrases,372,80,21.51%
+Gemma-2-9B-IT,Connectors / Discourse Markers,189,36,19.05%
+Gemma-2-9B-IT,Contextual,19339,3633,18.79%
+Gemma-2-9B-IT,Cultural,22161,5397,24.35%
+Gemma-2-9B-IT,Dialect or Slang Terms,51,2,3.92%
+Gemma-2-9B-IT,Event Ordering Cues,186,39,20.97%
+Gemma-2-9B-IT,Framing Phrases,573,118,20.59%
+Gemma-2-9B-IT,Idioms / Fixed Expressions,453,72,15.89%
+Gemma-2-9B-IT,Named Organizations,333,99,29.73%
+Gemma-2-9B-IT,Named People,600,154,25.67%
+Gemma-2-9B-IT,Named Places,330,94,28.48%
+Gemma-2-9B-IT,Time or Sequence Markers,474,69,14.56%
+Mistral-7B-Instruct,Causal or Logical Phrases,372,76,20.43%
+Mistral-7B-Instruct,Connectors / Discourse Markers,189,33,17.46%
+Mistral-7B-Instruct,Contextual,19339,3089,15.97%
+Mistral-7B-Instruct,Cultural,22161,4235,19.11%
+Mistral-7B-Instruct,Dialect or Slang Terms,51,0,0.00%
+Mistral-7B-Instruct,Event Ordering Cues,186,30,16.13%
+Mistral-7B-Instruct,Framing Phrases,573,92,16.06%
+Mistral-7B-Instruct,Idioms / Fixed Expressions,453,66,14.57%
+Mistral-7B-Instruct,Named Organizations,333,64,19.22%
+Mistral-7B-Instruct,Named People,600,93,15.50%
+Mistral-7B-Instruct,Named Places,330,72,21.82%
+Mistral-7B-Instruct,Time or Sequence Markers,474,56,11.81%
+PEGASUS-cnn_dailymail,Causal or Logical Phrases,124,25,20.16%
+PEGASUS-cnn_dailymail,Connectors / Discourse Markers,63,16,25.40%
+PEGASUS-cnn_dailymail,Contextual,6447,1203,18.66%
+PEGASUS-cnn_dailymail,Cultural,7389,1642,22.22%
+PEGASUS-cnn_dailymail,Dialect or Slang Terms,17,1,5.88%
+PEGASUS-cnn_dailymail,Event Ordering Cues,62,16,25.81%
+PEGASUS-cnn_dailymail,Framing Phrases,191,45,23.56%
+PEGASUS-cnn_dailymail,Idioms / Fixed Expressions,151,27,17.88%
+PEGASUS-cnn_dailymail,Named Organizations,111,36,32.43%
+PEGASUS-cnn_dailymail,Named People,200,35,17.50%
+PEGASUS-cnn_dailymail,Named Places,110,25,22.73%
+PEGASUS-cnn_dailymail,Time or Sequence Markers,158,29,18.35%
+TextRank,Causal or Logical Phrases,372,45,12.10%
+TextRank,Connectors / Discourse Markers,189,26,13.76%
+TextRank,Contextual,19330,3364,17.40%
+TextRank,Cultural,22161,4379,19.76%
+TextRank,Dialect or Slang Terms,51,4,7.84%
+TextRank,Event Ordering Cues,186,15,8.06%
+TextRank,Framing Phrases,573,89,15.53%
+TextRank,Idioms / Fixed Expressions,453,61,13.47%
+TextRank,Named Organizations,333,70,21.02%
+TextRank,Named People,600,82,13.67%
+TextRank,Named Places,330,47,14.24%
+TextRank,Time or Sequence Markers,474,41,8.65%
+mT5-XLSum,Causal or Logical Phrases,124,3,2.42%
+mT5-XLSum,Connectors / Discourse Markers,63,2,3.17%
+mT5-XLSum,Contextual,6446,364,5.65%
+mT5-XLSum,Cultural,7387,556,7.53%
+mT5-XLSum,Dialect or Slang Terms,17,0,0.00%
+mT5-XLSum,Event Ordering Cues,62,1,1.61%
+mT5-XLSum,Framing Phrases,191,8,4.19%
+mT5-XLSum,Idioms / Fixed Expressions,151,7,4.64%
+mT5-XLSum,Named Organizations,111,7,6.31%
+mT5-XLSum,Named People,200,10,5.00%
+mT5-XLSum,Named Places,110,13,11.82%
+mT5-XLSum,Time or Sequence Markers,158,6,3.80%

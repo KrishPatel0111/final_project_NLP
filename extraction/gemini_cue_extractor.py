@@ -312,6 +312,7 @@ def extract_all_articles():
         return
     
     articles_df = pd.read_csv(articles_file)
+    articles_df = articles_df[articles_df['title'] == 'Wednesday briefing: The new, devastating flood risk facing nearly all of Britain']
     print(f"   ✅ Loaded {len(articles_df)} articles")
     
     # Check for existing extractions

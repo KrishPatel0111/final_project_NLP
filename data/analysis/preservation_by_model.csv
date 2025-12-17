@@ -1,0 +1,7 @@
+Model,Summaries,Total Cues,Preserved Cues,Avg Preservation Rate,Overall Preservation Rate
+BART-large-cnn,139,15020,3084,23.86%,20.53%
+Gemma-2-9B-IT,417,45060,9793,26.08%,21.73%
+Mistral-7B-Instruct,417,45060,7906,21.03%,17.55%
+PEGASUS-cnn_dailymail,139,15020,3100,24.18%,20.64%
+TextRank,417,45060,8223,21.78%,18.25%
+mT5-XLSum,139,15020,977,8.15%,6.50%
